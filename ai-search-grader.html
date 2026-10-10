@@ -622,6 +622,23 @@
 
     .grader-submit { margin-top: 10px; }
 
+    .hp-field {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .form-error {
+      font-size: 14px;
+      color: #c0354d;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .form-error:empty { display: none; }
+
     .powered-by {
       margin-top: 24px;
       padding-top: 20px;
@@ -1138,9 +1155,16 @@
               <div class="field-error">Add a valid email.</div>
             </div>
 
-            <div class="grader-submit">
-              <button type="submit" class="btn-violet btn-block">Grade my brand →</button>
+            <!-- Honeypot: hidden from people, bots fill it in -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"/>
             </div>
+
+            <div class="grader-submit">
+              <button type="submit" class="btn-violet btn-block" id="graderSubmit">Grade my brand →</button>
+            </div>
+            <p class="form-error" id="formError" role="alert"></p>
 
             <div class="powered-by">
               <div class="powered-label">Checked across</div>
@@ -1160,7 +1184,7 @@
             <div class="done-ring">✓</div>
             <div class="done-title">Your grade is on the way.</div>
             <p class="body-copy">
-              We're running <strong id="doneCompany">your brand</strong> through ChatGPT, Claude, and Perplexity now. Your full report lands in your inbox shortly.
+              We're running <strong id="doneCompany">your brand</strong> through ChatGPT, Claude, and Perplexity now. Your full report goes to <strong id="doneEmail">your inbox</strong> in about two minutes. Check spam if you don't see it.
             </p>
             <div class="btn-row" style="margin-top: 24px;">
               <a href="#report" class="btn-ghost">See what's in the report</a>
@@ -1415,44 +1439,70 @@
       if (e.key === 'Escape') document.querySelectorAll('.tip.open').forEach(t => t.classList.remove('open'));
     });
 
-    // 3. Grader form: validate, then hand off via email (no backend yet)
+    // 3. Grader form: validate, then submit to the grading API
     const form = document.getElementById('graderForm');
     const card = document.getElementById('grader');
+    const submitBtn = document.getElementById('graderSubmit');
+    const formError = document.getElementById('formError');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    function showFieldErrors(fields) {
       let firstInvalid = null;
-
       form.querySelectorAll('.field').forEach(field => {
         const input = field.querySelector('.field-input');
-        const value = input.value.trim();
-        const valid = input.type === 'email' ? emailPattern.test(value) : value.length > 0;
-        field.classList.toggle('has-error', !valid);
-        input.setAttribute('aria-invalid', String(!valid));
-        if (!valid && !firstInvalid) firstInvalid = input;
+        const message = fields[input.name];
+        field.classList.toggle('has-error', Boolean(message));
+        input.setAttribute('aria-invalid', String(Boolean(message)));
+        if (message) {
+          field.querySelector('.field-error').textContent = message;
+          if (!firstInvalid) firstInvalid = input;
+        }
       });
+      if (firstInvalid) firstInvalid.focus();
+      return Boolean(firstInvalid);
+    }
 
-      if (firstInvalid) {
-        firstInvalid.focus();
-        return;
-      }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formError.textContent = '';
 
       const data = Object.fromEntries(new FormData(form));
-      const body = [
-        `Company: ${data.company}`,
-        `Location: ${data.location}`,
-        `Product or service: ${data.product}`,
-        `Industry: ${data.industry}`,
-        `Email: ${data.email}`
-      ].join('\n');
+      const localErrors = {};
+      form.querySelectorAll('.field-input').forEach(input => {
+        const value = (data[input.name] || '').trim();
+        const valid = input.type === 'email' ? emailPattern.test(value) : value.length > 0;
+        if (!valid) localErrors[input.name] = input.closest('.field').querySelector('.field-error').textContent;
+      });
+      if (showFieldErrors(localErrors)) return;
 
-      window.location.href = 'mailto:audit@aim-aeo.com'
-        + '?subject=' + encodeURIComponent(`AI Search Grade: ${data.company}`)
-        + '&body=' + encodeURIComponent(body);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Starting your grade…';
 
-      document.getElementById('doneCompany').textContent = data.company;
-      card.classList.add('submitted');
+      try {
+        const res = await fetch('/api/grade', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json().catch(() => ({}));
+
+        if (res.status === 202) {
+          document.getElementById('doneCompany').textContent = data.company.trim();
+          document.getElementById('doneEmail').textContent = data.email.trim();
+          card.classList.add('submitted');
+          return;
+        }
+        if (res.status === 400 && result.fields) {
+          showFieldErrors(result.fields);
+        } else {
+          formError.textContent = result.error || 'Something went wrong. Please try again.';
+        }
+      } catch {
+        formError.textContent = 'Network error. Check your connection and try again.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Grade my brand →';
+      }
     });
 
     form.querySelectorAll('.field-input').forEach(input => {
