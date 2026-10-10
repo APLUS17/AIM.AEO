@@ -3,8 +3,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Get recommended when people ask AI — AiM AEO</title>
-  <meta name="description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer."/>
+  <title>Get recommended when people ask AI | AiM</title>
+  <meta name="description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, AiM makes sure your brand is the answer."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="AiM"/>
+  <meta property="og:title" content="Get recommended when people ask AI | AiM"/>
+  <meta property="og:description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, AiM makes sure your brand is the answer."/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="theme-color" content="#5f79ff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27black%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%235f79ff%27/%3E%3C/svg%3E"/>
   
   <!-- Fonts: Cormorant Garamond 300 (OS Chronik) & Inter 400 (OS Studio Grotesk) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -287,6 +294,17 @@
 
     .nav-link:hover::after {
       transform: scaleX(1);
+    }
+
+    @media (max-width: 760px) {
+      .nav-wrapper { padding: 0 12px; top: 12px; }
+      .floating-nav { padding: 10px 14px; }
+      .nav-links { display: none; }
+      .footer-links-row { flex-wrap: wrap; gap: 12px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
     }
 
     /* ==========================================================================
@@ -691,54 +709,6 @@
       line-height: 1.45;
     }
 
-    /* 06. Social Proof Quotes */
-    .quotes-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    @media (max-width: 768px) {
-      .quotes-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .quote-card {
-      background-color: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out);
-    }
-
-    .quote-card:hover {
-      border-color: var(--color-ink-black);
-      transform: translateY(-2px);
-    }
-
-    .quote-text {
-      font-family: var(--font-os-chronik);
-      font-size: 22px;
-      font-weight: 300;
-      line-height: 1.35;
-      color: var(--color-ink-black);
-      margin-bottom: 20px;
-    }
-
-    .quote-author {
-      font-size: 13px;
-      color: var(--color-slate-gray);
-      border-top: 1px solid var(--color-fog-gray);
-      padding-top: 12px;
-    }
-
     /* ==========================================================================
        07. BUTTER-SMOOTH FAQ ACCORDION (CSS GRID TECHNIQUE)
        ========================================================================== */
@@ -927,19 +897,18 @@
     <nav class="floating-nav" role="navigation" aria-label="Main Navigation">
       <a href="#" class="brand-logo">
         <div class="brand-icon"><div class="brand-icon-inner"></div></div>
-        <span>BrandName</span>
+        <span>AiM</span>
       </a>
 
       <ul class="nav-links">
         <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
         <li><a href="#the-3-pillars" class="nav-link">The 3 Pillars</a></li>
-        <li><a href="#results" class="nav-link">Results</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="ai-search-grader.html" class="nav-link">Free AI Grader</a></li>
       </ul>
 
       <div>
-        <a href="#audit" class="btn-violet">
+        <a href="ai-search-grader.html" class="btn-violet">
           View your AI Audit →
         </a>
       </div>
@@ -972,7 +941,7 @@
       </p>
 
       <div class="hero-btn-row reveal">
-        <a href="#audit" class="btn-violet">
+        <a href="ai-search-grader.html" class="btn-violet">
           View your AI Audit →
         </a>
         <a href="#how-it-works" class="btn-ghost">
@@ -1033,7 +1002,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <a href="#audit" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
+            <a href="ai-search-grader.html" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
               Get Recommended →
             </a>
             <span class="btn-expand">+</span>
@@ -1188,80 +1157,34 @@
   <!-- SECTION DIVIDER STRIPE -->
   <div class="section-divider-stripe"></div>
 
-  <!-- 5. THE NUMBERS GRID -->
-  <section class="section-pad" id="results">
+  <!-- 5. FREE GRADER TEASER -->
+  <section class="section-pad" id="grader">
     <div class="container">
       <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">What happens when AI knows your brand.</h2>
-        <p class="section-subtext">Real improvements across ChatGPT, Claude, and Perplexity.</p>
+        <h2 class="editorial-h2">See where you stand before you spend a dollar.</h2>
+        <p class="section-subtext">Our free AI Search Grader asks ChatGPT, Claude, and Perplexity about your brand and scores what they say, out of 100.</p>
       </div>
 
       <div class="numbers-grid">
         <div class="number-card reveal">
-          <div class="stat-number">+314%</div>
-          <div class="stat-label">AI Citation Rate</div>
-          <div class="stat-desc">More times your product gets recommended when buyers ask AI what to buy.</div>
+          <div class="stat-number">3</div>
+          <div class="stat-label">AI engines checked</div>
+          <div class="stat-desc">ChatGPT, Claude, and Perplexity, asked the same buyer questions.</div>
         </div>
         <div class="number-card reveal">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Hallucinations</div>
-          <div class="stat-desc">No more wrong pricing, broken feature lists, or made-up info in AI answers.</div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">Things we score</div>
+          <div class="stat-desc">Sentiment, presence, recognition, share of voice, and market position.</div>
         </div>
         <div class="number-card reveal">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Clean Site Data</div>
-          <div class="stat-desc">Every page structured so AI crawlers can read and verify your product instantly.</div>
+          <div class="stat-number">$0</div>
+          <div class="stat-label">To find out</div>
+          <div class="stat-desc">Free, one time, no account. Your report goes straight to your inbox.</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 6. SOCIAL PROOF -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">What our clients say.</h2>
-      </div>
-
-      <div class="quotes-grid">
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “We finally appear when users ask Claude for the best tools in our category.”
-          </p>
-          <div class="quote-author">
-            <strong>— Head of Growth, SaaS</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “Perplexity used to recommend our competitor by default. Now it recommends us first.”
-          </p>
-          <div class="quote-author">
-            <strong>— Marketing Lead, B2B App</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “We're getting new signups from people who said ChatGPT told them to check us out.”
-          </p>
-          <div class="quote-author">
-            <strong>— Co-founder, Tech Startup</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “ChatGPT was telling people our pricing was 3x higher than it actually is. That's completely fixed now.”
-          </p>
-          <div class="quote-author">
-            <strong>— Product Lead</strong>
-          </div>
-        </div>
+      <div class="hero-btn-row reveal" style="margin-top: 36px;">
+        <a href="ai-search-grader.html" class="btn-violet">Grade my brand free →</a>
       </div>
     </div>
   </section>
@@ -1327,7 +1250,7 @@
           See where your brand shows up in ChatGPT, Claude, and Perplexity—and where competitors are beating you.
         </p>
         <div class="hero-btn-row">
-          <a href="mailto:audit@aim-aeo.com?subject=AI%20Audit%20Request" class="btn-violet">
+          <a href="ai-search-grader.html" class="btn-violet">
             View your AI Audit →
           </a>
           <a href="#how-it-works" class="btn-ghost">
@@ -1349,19 +1272,18 @@
     <div class="container">
       <div class="footer-flex">
         <div style="font-weight: 500; font-size: 15px; color: var(--color-ink-black);">
-          BrandName
+          AiM
         </div>
 
         <ul class="footer-links-row">
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#the-3-pillars">The 3 Pillars</a></li>
-          <li><a href="#results">Results</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="ai-search-grader.html">AI Grader</a></li>
         </ul>
 
         <div style="font-size: 13px; color: var(--color-slate-gray);">
-          © 2026 BrandName. All rights reserved.
+          © 2026 AiM. All rights reserved.
         </div>
       </div>
     </div>
