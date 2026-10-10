@@ -6,11 +6,11 @@
 
 ## Navigation Header
 
-* **Logo:** BrandName
+* **Logo:** AiM
 * **Links:**
   * How It Works
   * The 3 Pillars
-  * Results
+  * Free AI Grader
   * FAQ
 * **Header Button:** View your AI Audit →
 
@@ -103,42 +103,17 @@ AI models update all the time. We track your mentions every week so you stay at 
 
 ---
 
-## 5. The Numbers Grid
+## 5. Free Grader Teaser
+*(Replaces the old numbers grid and testimonials until real client results exist.)*
 
 * **Headline:**
-  ## What happens when AI knows your brand.
-* **Sub-headline:** Real improvements across ChatGPT, Claude, and Perplexity.
+  ## See where you stand before you spend a dollar.
+* **Sub-headline:** Our free AI Search Grader asks ChatGPT, Claude, and Perplexity about your brand and scores what they say, out of 100.
 
-* **+314%**  
-  **AI Citation Rate**  
-  More times your product gets recommended when buyers ask AI what to buy.
-
-* **0**  
-  **Hallucinations**  
-  No more wrong pricing, broken feature lists, or made-up info in AI answers.
-
-* **100%**  
-  **Clean Site Data**  
-  Every page structured so AI crawlers can read and verify your product instantly.
-
----
-
-## 6. Social Proof
-
-* **Headline:**
-  ## What our clients say.
-
-* *"We finally appear when users ask Claude for the best tools in our category."*  
-  **— Head of Growth, SaaS**
-
-* *"Perplexity used to recommend our competitor by default. Now it recommends us first."*  
-  **— Marketing Lead, B2B App**
-
-* *"We're getting new signups from people who said ChatGPT told them to check us out."*  
-  **— Co-founder, Tech Startup**
-
-* *"ChatGPT was telling people our pricing was 3x higher than it actually is. That's completely fixed now."*  
-  **— Product Lead**
+* **3** · **AI engines checked** · ChatGPT, Claude, and Perplexity, asked the same buyer questions.
+* **5** · **Things we score** · Sentiment, presence, recognition, share of voice, and market position.
+* **$0** · **To find out** · Free, one time, no account. Your report goes straight to your inbox.
+* **Button:** Grade my brand free → (links to ai-search-grader.html)
 
 ---
 
@@ -172,6 +147,6 @@ Trackers only show you a chart of how often you get mentioned. They don't fix yo
 
 ## 9. Footer
 
-* **Brand:** BrandName
-* **Links:** How It Works · The 3 Pillars · Results · FAQ
-* **Copyright:** © 2026 BrandName. All rights reserved.
+* **Brand:** AiM
+* **Links:** How It Works · The 3 Pillars · FAQ · AI Grader
+* **Copyright:** © 2026 AiM. All rights reserved.

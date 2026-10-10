@@ -3,8 +3,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Get recommended when people ask AI — AiM AEO</title>
-  <meta name="description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer."/>
+  <title>Get recommended when people ask AI | AiM</title>
+  <meta name="description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, AiM makes sure your brand is the answer."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="AiM"/>
+  <meta property="og:title" content="Get recommended when people ask AI | AiM"/>
+  <meta property="og:description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, AiM makes sure your brand is the answer."/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="theme-color" content="#5f79ff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27black%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%235f79ff%27/%3E%3C/svg%3E"/>
   
   <!-- Fonts: Cormorant Garamond 300 (OS Chronik) & Inter 400 (OS Studio Grotesk) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -287,6 +294,17 @@
 
     .nav-link:hover::after {
       transform: scaleX(1);
+    }
+
+    @media (max-width: 760px) {
+      .nav-wrapper { padding: 0 12px; top: 12px; }
+      .floating-nav { padding: 10px 14px; }
+      .nav-links { display: none; }
+      .footer-links-row { flex-wrap: wrap; gap: 12px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
     }
 
     /* ==========================================================================
@@ -574,49 +592,407 @@
       border-top: 1px solid var(--color-fog-gray);
     }
 
-    /* 03. 3-Step Setup */
-    .steps-grid {
+    /* 03. Process: sticky split with step tracker */
+    .process-split {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 36px;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 64px;
+      align-items: start;
     }
 
-    @media (max-width: 860px) {
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
+    .process-aside {
+      position: sticky;
+      top: 120px;
     }
 
-    .step-number {
-      font-family: var(--font-os-chronik);
-      font-size: 48px;
-      font-weight: 300;
-      line-height: 1;
+    .process-nav {
+      list-style: none;
+      margin: 32px 0 28px 0;
+      border-left: 1px solid #e6e6e6;
+    }
+
+    .process-nav a {
+      position: relative;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 12px 0 12px 20px;
+      font-size: 16px;
+      color: var(--color-slate-gray);
+      transition: color 200ms ease;
+    }
+
+    .process-nav a::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-signal-violet);
+      transform: scaleY(0);
+      transition: transform 260ms var(--ease-out);
+    }
+
+    .process-nav .num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .process-nav a:hover,
+    .process-nav li.active a {
+      color: var(--color-ink-black);
+    }
+
+    .process-nav li.active a::before {
+      transform: scaleY(1);
+    }
+
+    .process-nav li.active .num {
       color: var(--color-signal-violet);
-      margin-bottom: 12px;
-      transition: transform 260ms var(--ease-spring);
     }
 
-    .flat-card:hover .step-number {
-      transform: scale(1.06);
-    }
-
-    /* 04. 3 Pillars */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .process-steps {
+      display: flex;
+      flex-direction: column;
       gap: 24px;
-      margin-top: 36px;
     }
 
-    @media (max-width: 880px) {
-      .pillars-grid {
-        grid-template-columns: 1fr;
-      }
+    .process-step {
+      background: var(--color-pure-white);
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      padding: clamp(24px, 3.5vw, 36px);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      scroll-margin-top: 120px;
+      transition: border-color 240ms ease, box-shadow 240ms ease;
+    }
+
+    .process-step.active {
+      border-color: var(--color-ink-black);
+      box-shadow: 0 16px 36px -16px rgba(95, 121, 255, 0.25);
+    }
+
+    .step-head {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+    }
+
+    .step-numeral {
+      font-family: var(--font-os-chronik);
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 300;
+      line-height: 0.85;
+      color: var(--color-signal-violet);
+    }
+
+    .step-title {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.017em;
+    }
+
+    .step-body {
+      color: var(--color-ash-gray);
+      line-height: 1.55;
+    }
+
+    .step-visual {
+      background: var(--color-fog-gray);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+    }
+
+    .visual-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--color-slate-gray);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .deliverable {
+      font-size: 14px;
+      color: var(--color-slate-gray);
+      padding-top: 14px;
+      border-top: 1px solid var(--color-fog-gray);
+    }
+
+    .deliverable strong {
+      color: var(--color-ink-black);
+      font-weight: 500;
+    }
+
+    /* Step 1 visual: audit table */
+    .audit-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) repeat(3, 40px);
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .audit-row:last-child { border-bottom: none; }
+
+    .audit-row.head {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-slate-gray);
+      padding-top: 0;
+    }
+
+    .audit-row > span:not(:first-child) { text-align: center; }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-mist-gray);
+    }
+
+    .dot.hit {
+      background: var(--color-mint-pulse);
+      border-color: #00c774;
+    }
+
+    /* Step 2 visual: structured data snippet */
+    .code-snip {
+      background: var(--color-ink-black);
+      color: #e8e8e8;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.65;
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .code-snip .k { color: #9fb0ff; }
+    .code-snip .s { color: var(--color-mint-pulse); }
+
+    /* Step 3 visual: trend line */
+    .trend svg { display: block; width: 100%; height: auto; }
+
+    .trend-axis {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-slate-gray);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .process-split { grid-template-columns: 1fr; gap: 32px; }
+      .process-aside { position: static; }
+      .process-nav { display: none; }
+    }
+
+    /* 04. Pillars: bento grid */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--color-pure-white);
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      padding: clamp(24px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
+    }
+
+    .bento-card:hover {
+      border-color: var(--color-ink-black);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.08);
+    }
+
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+    .span-2 { grid-column: span 2; }
+
+    .bento-card .grotesk-h3 { margin-bottom: 0; }
+
+    .bento-q {
+      font-style: italic;
+      color: var(--color-slate-gray);
+    }
+
+    .bento-card p.copy {
+      color: var(--color-ash-gray);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .bento-card p.copy strong {
+      color: var(--color-ink-black);
+      font-weight: 500;
+    }
+
+    .bento-visual { margin-top: auto; }
+
+    .bento-card.dark {
+      background: var(--color-ink-black);
+      border-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    .bento-card.dark .grotesk-h3 { color: var(--color-pure-white); }
+    .bento-card.dark .bento-q { color: var(--color-mist-gray); }
+    .bento-card.dark p.copy { color: #cfcfcf; }
+    .bento-card.dark p.copy strong { color: var(--color-pure-white); }
+    .bento-card.dark:hover { box-shadow: 0 16px 40px -12px rgba(95, 121, 255, 0.45); }
+
+    .bento-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .bento-card.tint {
+      background: var(--surface-tint-wash);
+      border-color: var(--surface-tint-wash);
+    }
+
+    .bento-card.tint:hover { border-color: var(--color-signal-violet); }
+
+    /* Visibility visual: mock AI answer */
+    .mock-answer {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mock-answer .ask {
+      align-self: flex-end;
+      background: #2a2a2a;
+      color: #f0f0f0;
+      padding: 8px 12px;
+      border-radius: 12px 12px 4px 12px;
+      max-width: 90%;
+    }
+
+    .mock-answer .reply { color: #cfcfcf; }
+
+    .chip {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .chip.you {
+      background: rgba(1, 254, 147, 0.18);
+      color: var(--color-mint-pulse);
+      border: 1px solid rgba(1, 254, 147, 0.45);
+    }
+
+    .chip.other {
+      background: #262626;
+      color: #bdbdbd;
+      border: 1px solid #333;
+    }
+
+    /* Position visual: ranked list */
+    .rank-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rank-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-xl);
+      background: var(--color-fog-gray);
+      color: var(--color-ash-gray);
+    }
+
+    .rank-list li.you {
+      background: rgba(95, 121, 255, 0.1);
+      color: var(--color-ink-black);
+      border: 1px solid rgba(95, 121, 255, 0.35);
+    }
+
+    .rank-list .pos {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      width: 18px;
+      color: var(--color-slate-gray);
+    }
+
+    .rank-list li.you .pos { color: var(--color-signal-violet); }
+
+    /* Sentiment visual: before / after */
+    .fix-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .fix-pair div {
+      padding: 10px 14px;
+      border-radius: var(--radius-xl);
+      line-height: 1.45;
+    }
+
+    .fix-pair .before {
+      background: var(--color-fog-gray);
+      color: var(--color-slate-gray);
+    }
+
+    .fix-pair .before s { text-decoration-color: #c0354d; }
+
+    .fix-pair .after {
+      background: rgba(1, 254, 147, 0.12);
+      border: 1px solid rgba(1, 254, 147, 0.4);
+      color: var(--color-ink-black);
+    }
+
+    .fix-pair .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .bento { grid-template-columns: 1fr; }
+      .span-4, .span-3, .span-2 { grid-column: auto; }
+      .bento-split { grid-template-columns: 1fr; }
     }
 
     .pillar-goal-badge {
+      align-self: flex-start;
       display: inline-block;
       font-family: var(--font-mono);
       font-size: 12px;
@@ -625,12 +1001,11 @@
       background: rgba(1, 254, 147, 0.15);
       color: #00874e;
       border: 1px solid rgba(1, 254, 147, 0.4);
-      margin-bottom: 16px;
-      transition: background-color 200ms ease;
     }
 
-    .flat-card:hover .pillar-goal-badge {
-      background-color: rgba(1, 254, 147, 0.25);
+    .bento-card.dark .pillar-goal-badge {
+      background: rgba(1, 254, 147, 0.12);
+      color: var(--color-mint-pulse);
     }
 
     /* 05. Numbers Grid (Benchmarks) */
@@ -689,54 +1064,6 @@
       font-size: 14px;
       color: var(--color-ash-gray);
       line-height: 1.45;
-    }
-
-    /* 06. Social Proof Quotes */
-    .quotes-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    @media (max-width: 768px) {
-      .quotes-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .quote-card {
-      background-color: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out);
-    }
-
-    .quote-card:hover {
-      border-color: var(--color-ink-black);
-      transform: translateY(-2px);
-    }
-
-    .quote-text {
-      font-family: var(--font-os-chronik);
-      font-size: 22px;
-      font-weight: 300;
-      line-height: 1.35;
-      color: var(--color-ink-black);
-      margin-bottom: 20px;
-    }
-
-    .quote-author {
-      font-size: 13px;
-      color: var(--color-slate-gray);
-      border-top: 1px solid var(--color-fog-gray);
-      padding-top: 12px;
     }
 
     /* ==========================================================================
@@ -913,6 +1240,9 @@
       }
       .flat-card,
       .number-card,
+      .process-step,
+      .process-nav a::before,
+      .bento-card,
       .btn-expand,
       .faq-arrow {
         transition: none !important;
@@ -927,18 +1257,18 @@
     <nav class="floating-nav" role="navigation" aria-label="Main Navigation">
       <a href="#" class="brand-logo">
         <div class="brand-icon"><div class="brand-icon-inner"></div></div>
-        <span>BrandName</span>
+        <span>AiM</span>
       </a>
 
       <ul class="nav-links">
         <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
         <li><a href="#the-3-pillars" class="nav-link">The 3 Pillars</a></li>
-        <li><a href="#results" class="nav-link">Results</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="ai-search-grader.html" class="nav-link">Free AI Grader</a></li>
       </ul>
 
       <div>
-        <a href="#audit" class="btn-violet">
+        <a href="ai-search-grader.html" class="btn-violet">
           View your AI Audit →
         </a>
       </div>
@@ -971,7 +1301,7 @@
       </p>
 
       <div class="hero-btn-row reveal">
-        <a href="#audit" class="btn-violet">
+        <a href="ai-search-grader.html" class="btn-violet">
           View your AI Audit →
         </a>
         <a href="#how-it-works" class="btn-ghost">
@@ -1032,7 +1362,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <a href="#audit" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
+            <a href="ai-search-grader.html" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
               Get Recommended →
             </a>
             <span class="btn-expand">+</span>
@@ -1045,63 +1375,90 @@
   <!-- SECTION DIVIDER STRIPE -->
   <div class="section-divider-stripe"></div>
 
-  <!-- 3. THE FRAMEWORK: 3-STEP SETUP -->
+  <!-- 3. THE FRAMEWORK: STICKY SPLIT PROCESS -->
   <section class="section-pad" id="how-it-works">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">How we get you recommended.</h2>
-        <p class="section-subtext">
-          A simple 3-step process to make sure AI models know who you are and recommend you first.
-        </p>
-      </div>
+      <div class="process-split">
+        <aside class="process-aside reveal">
+          <h2 class="editorial-h2">How we get you recommended.</h2>
+          <p class="section-subtext">
+            A simple 3-step process to make sure AI models know who you are and recommend you first.
+          </p>
+          <ol class="process-nav" aria-label="Process steps">
+            <li class="active"><a href="#step-1"><span class="num">01</span>Map &amp; Audit</a></li>
+            <li><a href="#step-2"><span class="num">02</span>Structure &amp; Feed</a></li>
+            <li><a href="#step-3"><span class="num">03</span>Monitor &amp; Defend</a></li>
+          </ol>
+          <a href="ai-search-grader.html" class="btn-violet">Start with a free grade →</a>
+        </aside>
 
-      <div class="steps-grid">
-        <!-- Step 1 -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <div class="step-number">Step 1</div>
-            <h3 class="grotesk-h3">Map &amp; Audit</h3>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+        <div class="process-steps">
+          <!-- Step 1 -->
+          <article class="process-step active reveal" id="step-1">
+            <div class="step-head">
+              <span class="step-numeral">01</span>
+              <h3 class="step-title">Map &amp; Audit</h3>
+            </div>
+            <p class="step-body">
               We test what ChatGPT, Claude, and Perplexity say when people ask for products like yours. We find out where you're missing, where competitors show up instead, and what the AI gets wrong about you.
             </p>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 01 // Audit</span>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+            <div class="step-visual" aria-hidden="true">
+              <div class="visual-caption">Example audit</div>
+              <div class="audit-row head"><span>Buyer question</span><span>GPT</span><span>Claude</span><span>Pplx</span></div>
+              <div class="audit-row"><span>Best tool for a 20-person agency?</span><span><i class="dot hit"></i></span><span><i class="dot"></i></span><span><i class="dot hit"></i></span></div>
+              <div class="audit-row"><span>Cheaper alternatives to the market leader?</span><span><i class="dot"></i></span><span><i class="dot"></i></span><span><i class="dot hit"></i></span></div>
+              <div class="audit-row"><span>Is your brand worth it?</span><span><i class="dot hit"></i></span><span><i class="dot hit"></i></span><span><i class="dot"></i></span></div>
+            </div>
+            <div class="deliverable">You get: <strong>a visibility report with every gap mapped</strong></div>
+          </article>
 
-        <!-- Step 2 -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <div class="step-number">Step 2</div>
-            <h3 class="grotesk-h3">Structure &amp; Feed</h3>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+          <!-- Step 2 -->
+          <article class="process-step reveal" id="step-2">
+            <div class="step-head">
+              <span class="step-numeral">02</span>
+              <h3 class="step-title">Structure &amp; Feed</h3>
+            </div>
+            <p class="step-body">
               We clean up your site code so AI crawlers can easily read what you sell, what it costs, and why you're better. Then we make sure the sources AI checks for answers have the right information about you.
             </p>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 02 // Feed</span>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+            <div aria-hidden="true">
+              <div class="visual-caption">Example structured data</div>
+<pre class="code-snip">{
+  <span class="k">"@type"</span>: <span class="s">"Product"</span>,
+  <span class="k">"name"</span>: <span class="s">"Your product"</span>,
+  <span class="k">"offers"</span>: { <span class="k">"price"</span>: <span class="s">"49.00"</span> },
+  <span class="k">"audience"</span>: <span class="s">"Agencies, 10–50 people"</span>
+}</pre>
+            </div>
+            <div class="deliverable">You get: <strong>site markup and source fixes, shipped</strong></div>
+          </article>
 
-        <!-- Step 3 -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <div class="step-number">Step 3</div>
-            <h3 class="grotesk-h3">Monitor &amp; Defend</h3>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+          <!-- Step 3 -->
+          <article class="process-step reveal" id="step-3">
+            <div class="step-head">
+              <span class="step-numeral">03</span>
+              <h3 class="step-title">Monitor &amp; Defend</h3>
+            </div>
+            <p class="step-body">
               AI models update all the time. We track your mentions every week so you stay at the top and competitors don't take your spot.
             </p>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 03 // Defend</span>
-            <span class="btn-expand">+</span>
-          </div>
+            <div class="step-visual trend" aria-hidden="true">
+              <div class="visual-caption">Weekly mention rate · example</div>
+              <svg viewBox="0 0 300 80" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#5f79ff" stop-opacity="0.28"/>
+                    <stop offset="1" stop-color="#5f79ff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <polygon fill="url(#trendFill)" points="0,80 0,66 43,62 86,64 129,50 172,44 215,30 258,26 300,14 300,80"/>
+                <polyline fill="none" stroke="#5f79ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="0,66 43,62 86,64 129,50 172,44 215,30 258,26 300,14"/>
+                <circle cx="296" cy="14" r="4" fill="#01fe93" stroke="#000" stroke-width="1.5"/>
+              </svg>
+              <div class="trend-axis"><span>W1</span><span>W4</span><span>W8</span></div>
+            </div>
+            <div class="deliverable">You get: <strong>weekly tracking and fixes when answers drift</strong></div>
+          </article>
         </div>
       </div>
     </div>
@@ -1110,7 +1467,7 @@
   <!-- SECTION DIVIDER STRIPE -->
   <div class="section-divider-stripe"></div>
 
-  <!-- 4. THE 3 PILLARS OF AI SHARE OF VOICE -->
+  <!-- 4. THE 3 PILLARS: BENTO GRID -->
   <section class="section-pad" id="the-3-pillars">
     <div class="container">
       <div class="section-intro-block reveal">
@@ -1120,66 +1477,60 @@
         </p>
       </div>
 
-      <div class="pillars-grid">
-        <!-- Column 1: Visibility -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <span class="pillar-goal-badge">100% Mention Rate</span>
-            <h3 class="grotesk-h3">Visibility</h3>
-            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Are you in the room?</p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
-              <strong>The Problem:</strong> If ChatGPT or Perplexity doesn't know you exist, you lose the lead before a Google search even happens.
-            </p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
-              <strong>The Work:</strong> We audit your brand's current mention rate across high-intent buyer prompts and rebuild your digital footprint until you consistently appear in the answers.
-            </p>
+      <div class="bento">
+        <!-- Visibility: feature card -->
+        <article class="bento-card dark span-4 reveal">
+          <div class="bento-split">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span class="pillar-goal-badge">Goal: 100% mention rate</span>
+              <h3 class="grotesk-h3">Visibility</h3>
+              <p class="bento-q">Are you in the room?</p>
+              <p class="copy"><strong>The problem:</strong> If ChatGPT or Perplexity doesn't know you exist, you lose the lead before a Google search even happens.</p>
+              <p class="copy"><strong>The work:</strong> We audit your brand's current mention rate across high-intent buyer prompts and rebuild your digital footprint until you consistently appear in the answers.</p>
+            </div>
+            <div class="mock-answer" aria-hidden="true">
+              <div class="ask">Which tools should a 20-person agency use?</div>
+              <div class="reply">
+                Most agencies that size shortlist <span class="chip you">Your brand</span>, <span class="chip other">Competitor A</span> and <span class="chip other">Competitor B</span>. Your brand stands out for…
+              </div>
+            </div>
           </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 01</span>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+        </article>
 
-        <!-- Column 2: Position -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <span class="pillar-goal-badge">Top 2 Placement</span>
-            <h3 class="grotesk-h3">Position</h3>
-            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Are you the primary recommendation?</p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
-              <strong>The Problem:</strong> Being listed fifth as a generic "alternative" doesn't drive revenue. Buyers take the top two picks and move on.
-            </p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
-              <strong>The Work:</strong> We restructure your site's data architecture so models prioritize your solution over legacy competitors when answering buyer queries.
-            </p>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 02</span>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+        <!-- Position -->
+        <article class="bento-card span-2 reveal">
+          <span class="pillar-goal-badge">Goal: top 2 placement</span>
+          <h3 class="grotesk-h3">Position</h3>
+          <p class="bento-q">Are you the primary recommendation?</p>
+          <p class="copy">Being listed fifth as a generic "alternative" doesn't drive revenue. We restructure your site's data so models put you first.</p>
+          <ol class="rank-list bento-visual" aria-hidden="true">
+            <li class="you"><span class="pos">1</span>Your brand</li>
+            <li><span class="pos">2</span>Competitor A</li>
+            <li><span class="pos">3</span>Competitor B</li>
+          </ol>
+        </article>
 
-        <!-- Column 3: Sentiment -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <span class="pillar-goal-badge">Zero Hallucinations</span>
-            <h3 class="grotesk-h3">Sentiment</h3>
-            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Does the AI actually sell you?</p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
-              <strong>The Problem:</strong> A mention is useless if the AI gets your value proposition wrong or uses an outdated boilerplate.
-            </p>
-            <p style="color: var(--color-ash-gray); line-height: 1.5;">
-              <strong>The Work:</strong> We control the narrative by feeding AI the exact features, use cases, and competitive advantages you want buyers to read.
-            </p>
+        <!-- Sentiment -->
+        <article class="bento-card span-3 reveal">
+          <span class="pillar-goal-badge">Goal: zero hallucinations</span>
+          <h3 class="grotesk-h3">Sentiment</h3>
+          <p class="bento-q">Does the AI actually sell you?</p>
+          <p class="copy">A mention is useless if the AI gets your value proposition wrong. We feed AI the exact features, use cases, and advantages you want buyers to read.</p>
+          <div class="fix-pair bento-visual" aria-hidden="true">
+            <div class="before"><span class="tag">Before</span><s>"Plans start at $300 a month."</s></div>
+            <div class="after"><span class="tag">After</span>"Plans start at $99 a month, with a free trial."</div>
           </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 03</span>
-            <span class="btn-expand">+</span>
+        </article>
+
+        <!-- Grader CTA -->
+        <article class="bento-card tint span-3 reveal">
+          <span class="pillar-goal-badge">Free</span>
+          <h3 class="grotesk-h3">Where do you stand today?</h3>
+          <p class="copy">Run the free grader to see your visibility, position, and sentiment across ChatGPT, Claude, and Perplexity, scored out of 100.</p>
+          <div class="bento-visual">
+            <a href="ai-search-grader.html" class="btn-violet">Grade my brand free →</a>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1187,80 +1538,34 @@
   <!-- SECTION DIVIDER STRIPE -->
   <div class="section-divider-stripe"></div>
 
-  <!-- 5. THE NUMBERS GRID -->
-  <section class="section-pad" id="results">
+  <!-- 5. FREE GRADER TEASER -->
+  <section class="section-pad" id="grader">
     <div class="container">
       <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">What happens when AI knows your brand.</h2>
-        <p class="section-subtext">Real improvements across ChatGPT, Claude, and Perplexity.</p>
+        <h2 class="editorial-h2">See where you stand before you spend a dollar.</h2>
+        <p class="section-subtext">Our free AI Search Grader asks ChatGPT, Claude, and Perplexity about your brand and scores what they say, out of 100.</p>
       </div>
 
       <div class="numbers-grid">
         <div class="number-card reveal">
-          <div class="stat-number">+314%</div>
-          <div class="stat-label">AI Citation Rate</div>
-          <div class="stat-desc">More times your product gets recommended when buyers ask AI what to buy.</div>
+          <div class="stat-number">3</div>
+          <div class="stat-label">AI engines checked</div>
+          <div class="stat-desc">ChatGPT, Claude, and Perplexity, asked the same buyer questions.</div>
         </div>
         <div class="number-card reveal">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Hallucinations</div>
-          <div class="stat-desc">No more wrong pricing, broken feature lists, or made-up info in AI answers.</div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">Things we score</div>
+          <div class="stat-desc">Sentiment, presence, recognition, share of voice, and market position.</div>
         </div>
         <div class="number-card reveal">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Clean Site Data</div>
-          <div class="stat-desc">Every page structured so AI crawlers can read and verify your product instantly.</div>
+          <div class="stat-number">$0</div>
+          <div class="stat-label">To find out</div>
+          <div class="stat-desc">Free, one time, no account. Your report goes straight to your inbox.</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 6. SOCIAL PROOF -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">What our clients say.</h2>
-      </div>
-
-      <div class="quotes-grid">
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “We finally appear when users ask Claude for the best tools in our category.”
-          </p>
-          <div class="quote-author">
-            <strong>— Head of Growth, SaaS</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “Perplexity used to recommend our competitor by default. Now it recommends us first.”
-          </p>
-          <div class="quote-author">
-            <strong>— Marketing Lead, B2B App</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “We're getting new signups from people who said ChatGPT told them to check us out.”
-          </p>
-          <div class="quote-author">
-            <strong>— Co-founder, Tech Startup</strong>
-          </div>
-        </div>
-
-        <div class="quote-card reveal">
-          <p class="quote-text">
-            “ChatGPT was telling people our pricing was 3x higher than it actually is. That's completely fixed now.”
-          </p>
-          <div class="quote-author">
-            <strong>— Product Lead</strong>
-          </div>
-        </div>
+      <div class="hero-btn-row reveal" style="margin-top: 36px;">
+        <a href="ai-search-grader.html" class="btn-violet">Grade my brand free →</a>
       </div>
     </div>
   </section>
@@ -1326,7 +1631,7 @@
           See where your brand shows up in ChatGPT, Claude, and Perplexity—and where competitors are beating you.
         </p>
         <div class="hero-btn-row">
-          <a href="mailto:audit@aim-aeo.com?subject=AI%20Audit%20Request" class="btn-violet">
+          <a href="ai-search-grader.html" class="btn-violet">
             View your AI Audit →
           </a>
           <a href="#how-it-works" class="btn-ghost">
@@ -1348,18 +1653,18 @@
     <div class="container">
       <div class="footer-flex">
         <div style="font-weight: 500; font-size: 15px; color: var(--color-ink-black);">
-          BrandName
+          AiM
         </div>
 
         <ul class="footer-links-row">
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#the-3-pillars">The 3 Pillars</a></li>
-          <li><a href="#results">Results</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="ai-search-grader.html">AI Grader</a></li>
         </ul>
 
         <div style="font-size: 13px; color: var(--color-slate-gray);">
-          © 2026 BrandName. All rights reserved.
+          © 2026 AiM. All rights reserved.
         </div>
       </div>
     </div>
@@ -1411,6 +1716,18 @@
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
+    // 4. Process tracker: highlight the step currently in view
+    const steps = document.querySelectorAll('.process-step');
+    const navItems = document.querySelectorAll('.process-nav li');
+    const stepObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const index = [...steps].indexOf(entry.target);
+        steps.forEach((step, i) => step.classList.toggle('active', i === index));
+        navItems.forEach((item, i) => item.classList.toggle('active', i === index));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach(step => stepObserver.observe(step));
   </script>
 </body>
 </html>
