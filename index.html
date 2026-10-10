@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Get recommended when people ask AI — AiM AEO</title>
+  <meta name="description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer."/>
+  
+  <!-- Fonts: Cormorant Garamond 300 (OS Chronik) & Inter 400 (OS Studio Grotesk) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ==========================================================================
+       OPENSERV DESIGN SYSTEM TOKENS & MICRO-INTERACTION TIMING
+       ========================================================================== */
+    :root {
+      --color-signal-violet: #5f79ff;
+      --color-signal-violet-hover: #4a66f0;
+      --color-signal-violet-glow: rgba(95, 121, 255, 0.24);
+      --color-mint-pulse: #01fe93;
+      --color-mint-pulse-glow: rgba(1, 254, 147, 0.28);
+      --color-pure-white: #ffffff;
+      --color-ink-black: #000000;
+      --color-fog-gray: #f5f5f5;
+      --color-mist-gray: #a6a6a6;
+      --color-ash-gray: #4d4d4d;
+      --color-smoke-gray: #9c9c9c;
+      --color-slate-gray: #707070;
+      --surface-canvas: #ffffff;
+      --surface-card: #ffffff;
+      --surface-tint-wash: #d9defc;
+
+      --font-os-studio-grotesk: 'OS Studio Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+      --font-os-chronik: 'OS Chronik', 'Cormorant Garamond', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --page-max-width: 1200px;
+      --radius-xl: 12px;
+      --radius-2xl: 16px;
+      --radius-full: 100px;
+      --shadow-nav: 0px 0px 48px 0px rgba(0, 0, 0, 0.09);
+      --shadow-card-hover: 0 16px 36px -8px rgba(95, 121, 255, 0.12), 0 0 0 1px rgba(95, 121, 255, 0.25);
+
+      /* Micro-interaction timing curves */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--surface-canvas);
+      color: var(--color-ink-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-os-studio-grotesk);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 400;
+      color: var(--color-ink-black);
+      background: var(--surface-canvas);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    ::selection {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 180ms ease;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .container {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    /* Keyboard Accessibility */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--color-signal-violet);
+      outline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       MOTION DESIGN: AMBIENT GRADIENT MESH
+       ========================================================================== */
+    .hero-gradient-mesh {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1000px, 94vw);
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 42%, 
+        rgba(95, 121, 255, 0.16) 0%, 
+        rgba(1, 254, 147, 0.10) 34%, 
+        rgba(217, 222, 252, 0.22) 64%, 
+        transparent 100%
+      );
+      filter: blur(72px);
+      pointer-events: none;
+      z-index: 0;
+      animation: ambient-gradient-drift 14s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    @keyframes ambient-gradient-drift {
+      0% {
+        transform: translateX(-52%) scale(1) rotate(0deg);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translateX(-48%) scale(1.06) rotate(5deg);
+        opacity: 0.9;
+        filter: blur(80px);
+      }
+      100% {
+        transform: translateX(-50%) scale(0.97) rotate(-4deg);
+        opacity: 0.7;
+      }
+    }
+
+    .final-cta-mesh {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(880px, 92vw);
+      height: 440px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
+        rgba(95, 121, 255, 0.14) 0%, 
+        rgba(1, 254, 147, 0.08) 40%, 
+        transparent 70%
+      );
+      filter: blur(64px);
+      pointer-events: none;
+      z-index: 0;
+      animation: ambient-gradient-drift 16s ease-in-out infinite alternate-reverse;
+    }
+
+    /* Living Shimmer Section Divider Stripe */
+    .section-divider-stripe {
+      width: 100%;
+      height: 3px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, 
+        var(--color-mint-pulse) 0%, 
+        var(--color-signal-violet) 26%, 
+        var(--color-ink-black) 50%, 
+        var(--color-signal-violet) 74%, 
+        var(--color-mint-pulse) 100%
+      );
+      background-size: 200% 100%;
+      animation: stripe-shimmer 11s linear infinite;
+      will-change: background-position;
+    }
+
+    @keyframes stripe-shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* ==========================================================================
+       FLOATING NAVIGATION BAR (COMPRESSION ON SCROLL + MICRO-INTERACTIONS)
+       ========================================================================== */
+    .nav-wrapper {
+      position: sticky;
+      top: 20px;
+      z-index: 1000;
+      padding: 0 20px;
+      margin-bottom: 40px;
+      transition: top 240ms var(--ease-out);
+    }
+
+    .floating-nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-nav);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: padding 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+    }
+
+    .nav-wrapper.scrolled .floating-nav {
+      padding: 8px 20px;
+      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-os-studio-grotesk);
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--color-ink-black);
+    }
+
+    .brand-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 300ms var(--ease-spring);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(90deg) scale(1.08);
+    }
+
+    .brand-icon-inner {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-signal-violet);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      font-size: 15px;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 4px 0;
+      color: var(--color-ink-black);
+      transition: color 150ms ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 1.5px;
+      background: var(--color-signal-violet);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 220ms var(--ease-out);
+    }
+
+    .nav-link:hover {
+      color: var(--color-signal-violet);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ==========================================================================
+       BUTTONS & STAGGER MICRO-INTERACTIONS
+       ========================================================================== */
+    .btn-violet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--color-signal-violet);
+      color: var(--color-pure-white);
+      font-family: var(--font-os-studio-grotesk);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      transition: background-color 200ms ease, transform 180ms var(--ease-out), box-shadow 200ms ease;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .btn-violet:hover {
+      background-color: var(--color-signal-violet-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px -4px var(--color-signal-violet-glow);
+    }
+
+    .btn-violet:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 2px 8px rgba(95, 121, 255, 0.2);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: transparent;
+      color: var(--color-ink-black);
+      border: 1px solid var(--color-mist-gray);
+      font-family: var(--font-os-studio-grotesk);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      transition: border-color 200ms ease, color 200ms ease, transform 180ms var(--ease-out), background-color 200ms ease;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--color-ink-black);
+      color: var(--color-signal-violet);
+      background-color: rgba(95, 121, 255, 0.03);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Circular 40px '+' expand button */
+    .btn-expand {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--color-mist-gray);
+      background-color: var(--color-pure-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--color-ink-black);
+      flex-shrink: 0;
+      transition: border-color 220ms ease, color 220ms ease, transform 280ms var(--ease-spring), background-color 200ms ease;
+    }
+
+    .flat-card:hover .btn-expand {
+      border-color: var(--color-signal-violet);
+      color: var(--color-signal-violet);
+      transform: rotate(90deg) scale(1.05);
+      background-color: rgba(95, 121, 255, 0.05);
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY
+       ========================================================================== */
+    .display-h1 {
+      font-family: var(--font-os-chronik);
+      font-size: clamp(44px, 6.5vw, 72px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -1.44px;
+      color: var(--color-ink-black);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .editorial-h2 {
+      font-family: var(--font-os-chronik);
+      font-size: clamp(28px, 4.2vw, 40px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-black);
+      margin-bottom: 16px;
+    }
+
+    .grotesk-h3 {
+      font-family: var(--font-os-studio-grotesk);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.017em;
+      color: var(--color-ink-black);
+      margin-bottom: 12px;
+    }
+
+    .section-pad {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-intro-block {
+      max-width: 840px;
+      margin-bottom: 40px;
+    }
+
+    .section-subtext {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--color-ash-gray);
+      margin-top: 14px;
+    }
+
+    /* Sparkle Floating Animation */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.75;
+      animation: sparkle-float 6s ease-in-out infinite alternate;
+    }
+
+    .sparkle-left {
+      top: 20px;
+      left: 14%;
+      animation-delay: 0s;
+    }
+
+    .sparkle-right {
+      top: 50px;
+      right: 12%;
+      animation-delay: -3s;
+    }
+
+    @keyframes sparkle-float {
+      0% { transform: translateY(0px) rotate(0deg) scale(0.95); opacity: 0.55; }
+      50% { opacity: 0.9; }
+      100% { transform: translateY(-8px) rotate(10deg) scale(1.05); opacity: 0.65; }
+    }
+
+    /* 01. Hero Section */
+    .hero-section {
+      padding: 60px 0 80px 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2.2vw, 20px);
+      line-height: 1.45;
+      color: var(--color-ash-gray);
+      max-width: 760px;
+      margin: 24px auto 32px auto;
+    }
+
+    .hero-btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .hero-proof-note {
+      font-size: 13px;
+      color: var(--color-slate-gray);
+      font-family: var(--font-os-studio-grotesk);
+    }
+
+    /* ==========================================================================
+       CARDS & INTERACTION CONTAINERS
+       ========================================================================== */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .flat-card {
+      background-color: var(--color-pure-white);
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
+    }
+
+    .flat-card:hover {
+      border-color: var(--color-ink-black);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Card Top Shimmer Hairline on Hover */
+    .gradient-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-mint-pulse), var(--color-signal-violet));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 260ms var(--ease-out);
+    }
+
+    .flat-card:hover .gradient-accent-bar {
+      transform: scaleX(1);
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--color-ash-gray);
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 20px;
+      line-height: 1.4;
+      transition: transform 160ms ease, color 160ms ease;
+    }
+
+    .card-list li:hover {
+      color: var(--color-ink-black);
+      transform: translateX(2px);
+    }
+
+    .card-list li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: var(--color-slate-gray);
+      font-size: 16px;
+    }
+
+    .card-list.active li::before {
+      color: var(--color-signal-violet);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-fog-gray);
+    }
+
+    /* 03. 3-Step Setup */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 860px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-number {
+      font-family: var(--font-os-chronik);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--color-signal-violet);
+      margin-bottom: 12px;
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .flat-card:hover .step-number {
+      transform: scale(1.06);
+    }
+
+    /* 04. 3 Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 880px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-goal-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(1, 254, 147, 0.15);
+      color: #00874e;
+      border: 1px solid rgba(1, 254, 147, 0.4);
+      margin-bottom: 16px;
+      transition: background-color 200ms ease;
+    }
+
+    .flat-card:hover .pillar-goal-badge {
+      background-color: rgba(1, 254, 147, 0.25);
+    }
+
+    /* 05. Numbers Grid (Benchmarks) */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .numbers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .number-card {
+      background-color: var(--surface-card);
+      border: 1px solid #ebebeb;
+      border-radius: var(--radius-2xl);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
+    }
+
+    .number-card:hover {
+      border-color: var(--color-signal-violet);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -8px rgba(95, 121, 255, 0.12);
+    }
+
+    .stat-number {
+      font-family: var(--font-os-chronik);
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--color-ink-black);
+      transition: color 220ms ease;
+    }
+
+    .number-card:hover .stat-number {
+      color: var(--color-signal-violet);
+    }
+
+    .stat-label {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--color-ink-black);
+    }
+
+    .stat-desc {
+      font-size: 14px;
+      color: var(--color-ash-gray);
+      line-height: 1.45;
+    }
+
+    /* 06. Social Proof Quotes */
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .quotes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quote-card {
+      background-color: var(--color-pure-white);
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 220ms ease, transform 240ms var(--ease-out);
+    }
+
+    .quote-card:hover {
+      border-color: var(--color-ink-black);
+      transform: translateY(-2px);
+    }
+
+    .quote-text {
+      font-family: var(--font-os-chronik);
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--color-ink-black);
+      margin-bottom: 20px;
+    }
+
+    .quote-author {
+      font-size: 13px;
+      color: var(--color-slate-gray);
+      border-top: 1px solid var(--color-fog-gray);
+      padding-top: 12px;
+    }
+
+    /* ==========================================================================
+       07. BUTTER-SMOOTH FAQ ACCORDION (CSS GRID TECHNIQUE)
+       ========================================================================== */
+    .faq-accordion {
+      max-width: 880px;
+      margin: 36px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background-color: var(--color-pure-white);
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: border-color 220ms ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--color-ink-black);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--color-ink-black);
+      cursor: pointer;
+      background: none;
+      transition: color 180ms ease;
+    }
+
+    .faq-trigger:hover {
+      color: var(--color-signal-violet);
+    }
+
+    .faq-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--color-mist-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: transform 260ms var(--ease-spring), border-color 200ms ease, color 200ms ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-arrow {
+      transform: rotate(45deg);
+      border-color: var(--color-signal-violet);
+      color: var(--color-signal-violet);
+      background-color: rgba(95, 121, 255, 0.06);
+    }
+
+    .faq-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 280ms var(--ease-out);
+      padding: 0 24px;
+      color: var(--color-ash-gray);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-content {
+      grid-template-rows: 1fr;
+      padding-bottom: 24px;
+    }
+
+    .faq-content-inner {
+      overflow: hidden;
+      border-top: 1px solid transparent;
+      transition: border-color 220ms ease;
+    }
+
+    .faq-item.active .faq-content-inner {
+      border-top-color: var(--color-fog-gray);
+      padding-top: 16px;
+    }
+
+    /* 08. Final CTA */
+    .cta-card {
+      border: 1px solid var(--color-mist-gray);
+      border-radius: var(--radius-2xl);
+      padding: clamp(36px, 5vw, 64px);
+      text-align: center;
+      background: var(--color-pure-white);
+      position: relative;
+      z-index: 1;
+      transition: border-color 240ms ease;
+    }
+
+    .cta-card:hover {
+      border-color: var(--color-ink-black);
+    }
+
+    .cta-sub {
+      font-size: 17px;
+      color: var(--color-ash-gray);
+      max-width: 680px;
+      margin: 18px auto 28px auto;
+      line-height: 1.5;
+    }
+
+    /* 09. Footer */
+    .footer-section {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-fog-gray);
+      background: var(--color-pure-white);
+    }
+
+    .footer-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--color-ash-gray);
+    }
+
+    .footer-links-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links-row a {
+      transition: color 150ms ease;
+    }
+
+    .footer-links-row a:hover {
+      color: var(--color-signal-violet);
+    }
+
+    /* ==========================================================================
+       SCROLL REVEAL UTILITIES
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 440ms var(--ease-out), transform 440ms var(--ease-out);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-gradient-mesh,
+      .final-cta-mesh,
+      .section-divider-stripe,
+      .sparkle {
+        animation: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .flat-card,
+      .number-card,
+      .btn-expand,
+      .faq-arrow {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING NAVIGATION BAR (Clean, no top banner) -->
+  <div class="nav-wrapper" id="navbarWrapper">
+    <nav class="floating-nav" role="navigation" aria-label="Main Navigation">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon"><div class="brand-icon-inner"></div></div>
+        <span>BrandName</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#the-3-pillars" class="nav-link">The 3 Pillars</a></li>
+        <li><a href="#results" class="nav-link">Results</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div>
+        <a href="#audit" class="btn-violet">
+          View your AI Audit →
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- SECTION DIVIDER STRIPE (Living Shimmer Band) -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 1. HERO -->
+  <header class="hero-section">
+    <!-- Living Ambient Mesh Drift -->
+    <div class="hero-gradient-mesh"></div>
+
+    <!-- Atmospheric Sparkles in #d9defc -->
+    <svg class="sparkle sparkle-left" width="34" height="34" viewBox="0 0 34 34" fill="#d9defc">
+      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
+    </svg>
+    <svg class="sparkle sparkle-right" width="24" height="24" viewBox="0 0 34 34" fill="#d9defc">
+      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
+    </svg>
+
+    <div class="container">
+      <h1 class="display-h1 reveal">
+        Get recommended when people ask AI.
+      </h1>
+
+      <p class="hero-sub reveal">
+        When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer.
+      </p>
+
+      <div class="hero-btn-row reveal">
+        <a href="#audit" class="btn-violet">
+          View your AI Audit →
+        </a>
+        <a href="#how-it-works" class="btn-ghost">
+          See how it works
+        </a>
+      </div>
+
+      <div class="hero-proof-note reveal">
+        Tested across real buyer questions on ChatGPT, Claude, and Perplexity.
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 2. THE SHIFT IN SEARCH -->
+  <section class="section-pad" id="shift">
+    <div class="container">
+      <div class="section-intro-block reveal">
+        <h2 class="editorial-h2">
+          People are asking AI instead of searching Google. If the AI doesn't know you, you don't get picked.
+        </h2>
+        <p class="section-subtext">
+          Search has changed. Instead of clicking through links, buyers ask AI for direct recommendations. If ChatGPT or Perplexity doesn't know what you do, you lose the lead before they ever see your website.
+        </p>
+      </div>
+
+      <div class="comparison-grid">
+        <!-- Old Google Search -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <h3 class="grotesk-h3">Old Google Search</h3>
+            <ul class="card-list">
+              <li><strong>14% click rate</strong>, buried under ads and spam</li>
+              <li>Stuffed with keywords to game the algorithm</li>
+              <li>Buyers skim three different blog posts and bounce</li>
+              <li>Declining traffic every month</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Legacy link search</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+
+        <!-- New AI Search -->
+        <div class="flat-card reveal" style="border-color: var(--color-ink-black);">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <h3 class="grotesk-h3">New AI Search (ChatGPT, Claude, Perplexity)</h3>
+            <ul class="card-list active">
+              <li><strong>Direct recommendation</strong> with links back to you</li>
+              <li>Based on clean site data and verified sources</li>
+              <li>Buyers get one clear answer and go straight to your product</li>
+              <li>100% of the buyer's attention</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#audit" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
+              Get Recommended →
+            </a>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 3. THE FRAMEWORK: 3-STEP SETUP -->
+  <section class="section-pad" id="how-it-works">
+    <div class="container">
+      <div class="section-intro-block reveal">
+        <h2 class="editorial-h2">How we get you recommended.</h2>
+        <p class="section-subtext">
+          A simple 3-step process to make sure AI models know who you are and recommend you first.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <div class="step-number">Step 1</div>
+            <h3 class="grotesk-h3">Map &amp; Audit</h3>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              We test what ChatGPT, Claude, and Perplexity say when people ask for products like yours. We find out where you're missing, where competitors show up instead, and what the AI gets wrong about you.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 01 // Audit</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <div class="step-number">Step 2</div>
+            <h3 class="grotesk-h3">Structure &amp; Feed</h3>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              We clean up your site code so AI crawlers can easily read what you sell, what it costs, and why you're better. Then we make sure the sources AI checks for answers have the right information about you.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 02 // Feed</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <div class="step-number">Step 3</div>
+            <h3 class="grotesk-h3">Monitor &amp; Defend</h3>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              AI models update all the time. We track your mentions every week so you stay at the top and competitors don't take your spot.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Step 03 // Defend</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 4. THE 3 PILLARS OF AI SHARE OF VOICE -->
+  <section class="section-pad" id="the-3-pillars">
+    <div class="container">
+      <div class="section-intro-block reveal">
+        <h2 class="editorial-h2">Dashboards only show the problem. We actually fix it.</h2>
+        <p class="section-subtext">
+          Tools show you when your numbers drop. We do the work to get you recommended again.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Column 1: Visibility -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <span class="pillar-goal-badge">100% Mention Rate</span>
+            <h3 class="grotesk-h3">Visibility</h3>
+            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Are you in the room?</p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
+              <strong>The Problem:</strong> If ChatGPT or Perplexity doesn't know you exist, you lose the lead before a Google search even happens.
+            </p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              <strong>The Work:</strong> We audit your brand's current mention rate across high-intent buyer prompts and rebuild your digital footprint until you consistently appear in the answers.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 01</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Position -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <span class="pillar-goal-badge">Top 2 Placement</span>
+            <h3 class="grotesk-h3">Position</h3>
+            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Are you the primary recommendation?</p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
+              <strong>The Problem:</strong> Being listed fifth as a generic "alternative" doesn't drive revenue. Buyers take the top two picks and move on.
+            </p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              <strong>The Work:</strong> We restructure your site's data architecture so models prioritize your solution over legacy competitors when answering buyer queries.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 02</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+
+        <!-- Column 3: Sentiment -->
+        <div class="flat-card reveal">
+          <div class="gradient-accent-bar"></div>
+          <div>
+            <span class="pillar-goal-badge">Zero Hallucinations</span>
+            <h3 class="grotesk-h3">Sentiment</h3>
+            <p style="font-style: italic; color: var(--color-slate-gray); margin-bottom: 12px;">Does the AI actually sell you?</p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5; margin-bottom: 14px;">
+              <strong>The Problem:</strong> A mention is useless if the AI gets your value proposition wrong or uses an outdated boilerplate.
+            </p>
+            <p style="color: var(--color-ash-gray); line-height: 1.5;">
+              <strong>The Work:</strong> We control the narrative by feeding AI the exact features, use cases, and competitive advantages you want buyers to read.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 13px; color: var(--color-slate-gray);">Column 03</span>
+            <span class="btn-expand">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 5. THE NUMBERS GRID -->
+  <section class="section-pad" id="results">
+    <div class="container">
+      <div class="section-intro-block reveal">
+        <h2 class="editorial-h2">What happens when AI knows your brand.</h2>
+        <p class="section-subtext">Real improvements across ChatGPT, Claude, and Perplexity.</p>
+      </div>
+
+      <div class="numbers-grid">
+        <div class="number-card reveal">
+          <div class="stat-number">+314%</div>
+          <div class="stat-label">AI Citation Rate</div>
+          <div class="stat-desc">More times your product gets recommended when buyers ask AI what to buy.</div>
+        </div>
+        <div class="number-card reveal">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Hallucinations</div>
+          <div class="stat-desc">No more wrong pricing, broken feature lists, or made-up info in AI answers.</div>
+        </div>
+        <div class="number-card reveal">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Clean Site Data</div>
+          <div class="stat-desc">Every page structured so AI crawlers can read and verify your product instantly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 6. SOCIAL PROOF -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-intro-block reveal">
+        <h2 class="editorial-h2">What our clients say.</h2>
+      </div>
+
+      <div class="quotes-grid">
+        <div class="quote-card reveal">
+          <p class="quote-text">
+            “We finally appear when users ask Claude for the best tools in our category.”
+          </p>
+          <div class="quote-author">
+            <strong>— Head of Growth, SaaS</strong>
+          </div>
+        </div>
+
+        <div class="quote-card reveal">
+          <p class="quote-text">
+            “Perplexity used to recommend our competitor by default. Now it recommends us first.”
+          </p>
+          <div class="quote-author">
+            <strong>— Marketing Lead, B2B App</strong>
+          </div>
+        </div>
+
+        <div class="quote-card reveal">
+          <p class="quote-text">
+            “We're getting new signups from people who said ChatGPT told them to check us out.”
+          </p>
+          <div class="quote-author">
+            <strong>— Co-founder, Tech Startup</strong>
+          </div>
+        </div>
+
+        <div class="quote-card reveal">
+          <p class="quote-text">
+            “ChatGPT was telling people our pricing was 3x higher than it actually is. That's completely fixed now.”
+          </p>
+          <div class="quote-author">
+            <strong>— Product Lead</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 7. SIMPLE FAQ -->
+  <section class="section-pad" id="faq">
+    <div class="container">
+      <h2 class="editorial-h2 reveal" style="text-align: center;">Frequently asked questions.</h2>
+
+      <div class="faq-accordion">
+        <div class="faq-item reveal">
+          <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>How is this different from normal SEO?</span>
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Normal SEO helps you rank on Google so people can click your link. AEO makes sure that when someone asks ChatGPT, Claude, or Perplexity "what's the best tool for X?", the AI names your product directly.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>How fast do AI answers update?</span>
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Tools that search the live web (like Perplexity and SearchGPT) usually update within 1 to 2 weeks once they crawl your updated site. Other models update as they refresh their data, which our setup helps speed up.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>Can't I just use a tracker like Peec AI myself?</span>
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Trackers only show you a chart of how often you get mentioned. They don't fix your code, update your data, or fix what the AI says about you. We do the hands-on work to improve your numbers.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 8. FINAL CALL TO ACTION -->
+  <section class="section-pad" id="audit">
+    <div class="container">
+      <div class="final-cta-mesh"></div>
+      <div class="cta-card reveal">
+        <h2 class="editorial-h2">Get recommended when people ask AI.</h2>
+        <p class="cta-sub">
+          See where your brand shows up in ChatGPT, Claude, and Perplexity—and where competitors are beating you.
+        </p>
+        <div class="hero-btn-row">
+          <a href="mailto:audit@aim-aeo.com?subject=AI%20Audit%20Request" class="btn-violet">
+            View your AI Audit →
+          </a>
+          <a href="#how-it-works" class="btn-ghost">
+            See how it works
+          </a>
+        </div>
+        <div style="font-size: 13px; color: var(--color-slate-gray); margin-top: 14px;">
+          View how ChatGPT, Claude, and Perplexity see your site.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER STRIPE -->
+  <div class="section-divider-stripe"></div>
+
+  <!-- 9. FOOTER -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-flex">
+        <div style="font-weight: 500; font-size: 15px; color: var(--color-ink-black);">
+          BrandName
+        </div>
+
+        <ul class="footer-links-row">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#the-3-pillars">The 3 Pillars</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <div style="font-size: 13px; color: var(--color-slate-gray);">
+          © 2026 BrandName. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Micro-interactions & Motion JavaScript -->
+  <script>
+    // 1. Navigation Sticky Compression on Scroll
+    const navWrapper = document.getElementById('navbarWrapper');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) {
+        navWrapper.classList.add('scrolled');
+      } else {
+        navWrapper.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // 2. Butter-Smooth FAQ Accordion Toggle
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+        const trigger = el.querySelector('.faq-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // 3. Scroll Reveal via IntersectionObserver
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    };
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
