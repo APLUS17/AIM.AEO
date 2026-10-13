@@ -10,1098 +10,56 @@
   <meta property="og:title" content="Free AI Search Grader | AiM"/>
   <meta property="og:description" content="Find out what ChatGPT, Claude, and Perplexity say about your brand. A free, one-time grade across five dimensions, scored out of 100."/>
   <meta name="twitter:card" content="summary"/>
-  <meta name="theme-color" content="#5f79ff"/>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27black%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%235f79ff%27/%3E%3C/svg%3E"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27%23202020%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%23ff682c%27/%3E%3C/svg%3E"/>
 
-  <!-- Fonts: Cormorant Garamond 300 (OS Chronik) & Inter 400 (OS Studio Grotesk) -->
+  <!-- Ember Ledger design system: fonts, tokens, components. Page layout lives in site.css. -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
-  <style>
-    /* ==========================================================================
-       OPENSERV DESIGN SYSTEM TOKENS & MICRO-INTERACTION TIMING
-       (mirrors index.html)
-       ========================================================================== */
-    :root {
-      --color-signal-violet: #5f79ff;
-      --color-signal-violet-hover: #4a66f0;
-      --color-signal-violet-glow: rgba(95, 121, 255, 0.24);
-      --color-mint-pulse: #01fe93;
-      --color-mint-pulse-glow: rgba(1, 254, 147, 0.28);
-      --color-pure-white: #ffffff;
-      --color-ink-black: #000000;
-      --color-fog-gray: #f5f5f5;
-      --color-mist-gray: #a6a6a6;
-      --color-ash-gray: #4d4d4d;
-      --color-smoke-gray: #9c9c9c;
-      --color-slate-gray: #707070;
-      --surface-canvas: #ffffff;
-      --surface-card: #ffffff;
-      --surface-tint-wash: #d9defc;
-
-      --font-os-studio-grotesk: 'OS Studio Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
-      --font-os-chronik: 'OS Chronik', 'Cormorant Garamond', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --page-max-width: 1200px;
-      --radius-xl: 12px;
-      --radius-2xl: 16px;
-      --radius-full: 100px;
-      --shadow-nav: 0px 0px 48px 0px rgba(0, 0, 0, 0.09);
-
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--surface-canvas);
-      color: var(--color-ink-black);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-os-studio-grotesk);
-      font-size: 15px;
-      line-height: 1.45;
-      font-weight: 400;
-      color: var(--color-ink-black);
-      background: var(--surface-canvas);
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    ::selection {
-      background-color: var(--color-ink-black);
-      color: var(--color-pure-white);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 180ms ease;
-    }
-
-    button {
-      font-family: inherit;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: inherit;
-    }
-
-    .container {
-      max-width: var(--page-max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-    }
-
-    @media (max-width: 480px) {
-      .container { padding: 0 16px; }
-    }
-
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 2px solid var(--color-signal-violet);
-      outline-offset: 3px;
-    }
-
-    /* ==========================================================================
-       AMBIENT MOTION
-       ========================================================================== */
-    .hero-gradient-mesh {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(1000px, 94vw);
-      height: 560px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 45% 42%,
-        rgba(95, 121, 255, 0.16) 0%,
-        rgba(1, 254, 147, 0.10) 34%,
-        rgba(217, 222, 252, 0.22) 64%,
-        transparent 100%
-      );
-      filter: blur(72px);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambient-gradient-drift 14s ease-in-out infinite alternate;
-      will-change: transform, opacity;
-    }
-
-    @keyframes ambient-gradient-drift {
-      0% { transform: translateX(-52%) scale(1) rotate(0deg); opacity: 0.65; }
-      50% { transform: translateX(-48%) scale(1.06) rotate(5deg); opacity: 0.9; filter: blur(80px); }
-      100% { transform: translateX(-50%) scale(0.97) rotate(-4deg); opacity: 0.7; }
-    }
-
-    .final-cta-mesh {
-      position: absolute;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(880px, 92vw);
-      height: 440px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 50% 50%,
-        rgba(95, 121, 255, 0.14) 0%,
-        rgba(1, 254, 147, 0.08) 40%,
-        transparent 70%
-      );
-      filter: blur(64px);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambient-gradient-drift 16s ease-in-out infinite alternate-reverse;
-    }
-
-    .section-divider-stripe {
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg,
-        var(--color-mint-pulse) 0%,
-        var(--color-signal-violet) 26%,
-        var(--color-ink-black) 50%,
-        var(--color-signal-violet) 74%,
-        var(--color-mint-pulse) 100%
-      );
-      background-size: 200% 100%;
-      animation: stripe-shimmer 11s linear infinite;
-      will-change: background-position;
-    }
-
-    @keyframes stripe-shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    .sparkle {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.75;
-      animation: sparkle-float 6s ease-in-out infinite alternate;
-    }
-
-    .sparkle-left { top: 20px; left: 8%; }
-    .sparkle-right { top: 50px; right: 8%; animation-delay: -3s; }
-
-    @keyframes sparkle-float {
-      0% { transform: translateY(0px) rotate(0deg) scale(0.95); opacity: 0.55; }
-      50% { opacity: 0.9; }
-      100% { transform: translateY(-8px) rotate(10deg) scale(1.05); opacity: 0.65; }
-    }
-
-    /* ==========================================================================
-       FLOATING NAVIGATION
-       ========================================================================== */
-    .nav-wrapper {
-      position: sticky;
-      top: 20px;
-      z-index: 1000;
-      padding: 0 20px;
-      margin-bottom: 40px;
-    }
-
-    .floating-nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-2xl);
-      box-shadow: var(--shadow-nav);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      transition: padding 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
-    }
-
-    .nav-wrapper.scrolled .floating-nav {
-      padding: 8px 20px;
-      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 500;
-      font-size: 16px;
-      color: var(--color-ink-black);
-    }
-
-    .brand-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 1.5px solid #000000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 300ms var(--ease-spring);
-    }
-
-    .brand-logo:hover .brand-icon { transform: rotate(90deg) scale(1.08); }
-
-    .brand-icon-inner {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-signal-violet);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-      font-size: 15px;
-    }
-
-    .nav-link {
-      position: relative;
-      padding: 4px 0;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -2px;
-      height: 1.5px;
-      background: var(--color-signal-violet);
-      transform: scaleX(0);
-      transition: transform 220ms var(--ease-out);
-    }
-
-    .nav-link:hover { color: var(--color-signal-violet); }
-    .nav-link:hover::after { transform: scaleX(1); }
-
-    @media (max-width: 760px) {
-      .nav-wrapper { padding: 0 12px; top: 12px; }
-      .floating-nav { padding: 10px 14px; }
-      .nav-links { display: none; }
-    }
-
-    /* ==========================================================================
-       BUTTONS
-       ========================================================================== */
-    .btn-violet {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background-color: var(--color-signal-violet);
-      color: var(--color-pure-white);
-      font-size: 15px;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      transition: background-color 200ms ease, transform 180ms var(--ease-out), box-shadow 200ms ease;
-      white-space: nowrap;
-    }
-
-    .btn-violet:hover {
-      background-color: var(--color-signal-violet-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px -4px var(--color-signal-violet-glow);
-    }
-
-    .btn-violet:active {
-      transform: translateY(1px) scale(0.98);
-    }
-
-    .btn-violet[disabled] {
-      opacity: 0.6;
-      cursor: progress;
-      transform: none;
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--color-ink-black);
-      border: 1px solid var(--color-mist-gray);
-      font-size: 15px;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      transition: border-color 200ms ease, color 200ms ease, transform 180ms var(--ease-out);
-      white-space: nowrap;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--color-ink-black);
-      color: var(--color-signal-violet);
-      transform: translateY(-1px);
-    }
-
-    .btn-block {
-      width: 100%;
-      padding: 14px 22px;
-      font-size: 16px;
-    }
-
-    /* ==========================================================================
-       TYPOGRAPHY
-       ========================================================================== */
-    .eyebrow {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(1, 254, 147, 0.15);
-      color: #00874e;
-      border: 1px solid rgba(1, 254, 147, 0.4);
-      margin-bottom: 20px;
-    }
-
-    .display-h1 {
-      font-family: var(--font-os-chronik);
-      font-size: clamp(40px, 6vw, 68px);
-      font-weight: 300;
-      line-height: 0.98;
-      letter-spacing: -1.44px;
-    }
-
-    .editorial-h2 {
-      font-family: var(--font-os-chronik);
-      font-size: clamp(28px, 4.2vw, 40px);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    .grotesk-h3 {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.25;
-      letter-spacing: -0.017em;
-      margin-bottom: 12px;
-    }
-
-    .section-pad {
-      padding: 80px 0;
-      position: relative;
-    }
-
-    @media (max-width: 600px) {
-      .section-pad { padding: 56px 0; }
-    }
-
-    .section-intro-block {
-      max-width: 840px;
-      margin-bottom: 40px;
-    }
-
-    .section-subtext {
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--color-ash-gray);
-      margin-top: 14px;
-    }
-
-    .body-copy {
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--color-ash-gray);
-    }
-
-    .body-copy + .body-copy { margin-top: 16px; }
-
-    /* ==========================================================================
-       01. HERO + GRADER FORM
-       ========================================================================== */
-    .hero-section {
-      padding: 40px 0 80px 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 56px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 920px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-    }
-
-    .hero-copy { padding-top: 24px; }
-
-    .hero-sub {
-      font-size: clamp(17px, 2.2vw, 19px);
-      line-height: 1.5;
-      color: var(--color-ash-gray);
-      margin: 24px 0 28px 0;
-      max-width: 560px;
-    }
-
-    .hero-checklist {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 15px;
-      color: var(--color-ash-gray);
-    }
-
-    .hero-checklist li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .check-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: rgba(1, 254, 147, 0.18);
-      border: 1px solid rgba(1, 254, 147, 0.5);
-      color: #00874e;
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* Grader card */
-    .grader-card {
-      background: var(--color-pure-white);
-      border: 1px solid var(--color-ink-black);
-      border-radius: var(--radius-2xl);
-      padding: clamp(24px, 4vw, 36px);
-      box-shadow: 0 24px 60px -20px rgba(95, 121, 255, 0.22);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .grader-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-mint-pulse), var(--color-signal-violet));
-    }
-
-    .grader-title {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .grader-hint {
-      font-size: 14px;
-      color: var(--color-slate-gray);
-      margin-bottom: 24px;
-    }
-
-    .field { margin-bottom: 18px; }
-
-    .field-label-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .field-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-ink-black);
-    }
-
-    .req { color: var(--color-signal-violet); }
-
-    .field-input {
-      width: 100%;
-      font-family: inherit;
-      font-size: 16px;
-      color: var(--color-ink-black);
-      background: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-xl);
-      padding: 13px 16px;
-      transition: border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .field-input::placeholder { color: var(--color-smoke-gray); }
-
-    .field-input:hover { border-color: var(--color-ink-black); }
-
-    .field-input:focus {
-      outline: none;
-      border-color: var(--color-signal-violet);
-      box-shadow: 0 0 0 4px var(--color-signal-violet-glow);
-    }
-
-    .field.has-error .field-input { border-color: #d6455d; }
-
-    .field-error {
-      display: none;
-      font-size: 13px;
-      color: #c0354d;
-      margin-top: 6px;
-    }
-
-    .field.has-error .field-error { display: block; }
-
-    /* Info tooltip */
-    .tip {
-      position: relative;
-      display: inline-flex;
-    }
-
-    .tip-btn {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1px solid var(--color-mist-gray);
-      font-family: var(--font-os-chronik);
-      font-size: 13px;
-      font-style: italic;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-slate-gray);
-      transition: border-color 160ms ease, color 160ms ease;
-    }
-
-    .tip-btn:hover, .tip.open .tip-btn {
-      border-color: var(--color-signal-violet);
-      color: var(--color-signal-violet);
-    }
-
-    .tip-panel {
-      position: absolute;
-      left: 50%;
-      bottom: calc(100% + 10px);
-      transform: translateX(-50%) translateY(4px);
-      width: min(260px, 70vw);
-      background: var(--color-ink-black);
-      color: var(--color-pure-white);
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 10px 12px;
-      border-radius: var(--radius-xl);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 160ms ease, transform 200ms var(--ease-out), visibility 160ms;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .tip:hover .tip-panel,
-    .tip.open .tip-panel {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (max-width: 480px) {
-      .tip-panel { left: auto; right: -40px; transform: translateY(4px); }
-      .tip:hover .tip-panel, .tip.open .tip-panel { transform: translateY(0); }
-    }
-
-    .grader-submit { margin-top: 10px; }
-
-    .hp-field {
-      position: absolute;
-      left: -10000px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-
-    .form-error {
-      font-size: 14px;
-      color: #c0354d;
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    .form-error:empty { display: none; }
-
-    .powered-by {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--color-fog-gray);
-      text-align: center;
-    }
-
-    .powered-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-slate-gray);
-      margin-bottom: 12px;
-    }
-
-    .engine-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .engine-chip {
-      font-size: 14px;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      border: 1px solid #ebebeb;
-      background: var(--color-fog-gray);
-      color: var(--color-ink-black);
-    }
-
-    .disclaimer {
-      font-size: 12px;
-      line-height: 1.55;
-      color: var(--color-slate-gray);
-      margin-top: 18px;
-    }
-
-    /* Submitted state */
-    .grader-done { display: none; text-align: center; padding: 24px 0 8px 0; }
-    .grader-card.submitted form { display: none; }
-    .grader-card.submitted .grader-done { display: block; }
-
-    .done-ring {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      margin: 0 auto 20px auto;
-      border: 1px solid rgba(1, 254, 147, 0.5);
-      background: rgba(1, 254, 147, 0.15);
-      color: #00874e;
-      font-size: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .done-title {
-      font-family: var(--font-os-chronik);
-      font-size: 30px;
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    /* ==========================================================================
-       02. WHY MEASURE — split layout with zero-click illustration
-       ========================================================================== */
-    .split-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-
-    @media (max-width: 880px) {
-      .split-grid { grid-template-columns: 1fr; gap: 36px; }
-    }
-
-    .chat-mock {
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: 22px;
-      background: var(--color-pure-white);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .chat-bubble {
-      font-size: 14px;
-      line-height: 1.5;
-      padding: 12px 16px;
-      border-radius: 14px;
-      max-width: 88%;
-    }
-
-    .chat-bubble.user {
-      align-self: flex-end;
-      background: var(--color-ink-black);
-      color: var(--color-pure-white);
-      border-bottom-right-radius: 4px;
-    }
-
-    .chat-bubble.ai {
-      align-self: flex-start;
-      background: var(--color-fog-gray);
-      color: var(--color-ink-black);
-      border-bottom-left-radius: 4px;
-    }
-
-    .chat-bubble.ai mark {
-      background: rgba(95, 121, 255, 0.14);
-      color: var(--color-signal-violet-hover);
-      padding: 0 4px;
-      border-radius: 4px;
-    }
-
-    .chat-meta {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--color-slate-gray);
-      text-align: center;
-      letter-spacing: 0.04em;
-    }
-
-    /* ==========================================================================
-       03. FIVE DIMENSIONS
-       ========================================================================== */
-    .score-bar-wrap {
-      border: 1px solid #ebebeb;
-      border-radius: var(--radius-2xl);
-      padding: 22px;
-      margin-bottom: 28px;
-    }
-
-    .score-bar-head {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--color-slate-gray);
-      margin-bottom: 12px;
-      font-family: var(--font-mono);
-    }
-
-    .score-bar {
-      display: flex;
-      height: 14px;
-      border-radius: var(--radius-full);
-      overflow: hidden;
-      gap: 3px;
-    }
-
-    .score-seg { height: 100%; }
-    .seg-1 { flex: 40; background: var(--color-signal-violet); }
-    .seg-2 { flex: 20; background: #8a9cff; }
-    .seg-3 { flex: 20; background: #b3c0ff; }
-    .seg-4 { flex: 10; background: #5fe0a8; }
-    .seg-5 { flex: 10; background: var(--color-mint-pulse); }
-
-    .score-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      margin-top: 14px;
-      font-size: 13px;
-      color: var(--color-ash-gray);
-    }
-
-    .score-legend span { display: inline-flex; align-items: center; gap: 6px; }
-    .legend-dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
-
-    .dimensions-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .dimensions-grid { grid-template-columns: 1fr; }
-    }
-
-    .flat-card {
-      background-color: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
-    }
-
-    .flat-card:hover {
-      border-color: var(--color-ink-black);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.06);
-    }
-
-    .flat-card.wide { grid-column: 1 / -1; }
-
-    @media (max-width: 768px) {
-      .flat-card.wide { grid-column: auto; }
-    }
-
-    .gradient-accent-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-mint-pulse), var(--color-signal-violet));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 260ms var(--ease-out);
-    }
-
-    .flat-card:hover .gradient-accent-bar { transform: scaleX(1); }
-
-    .dim-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 4px;
-    }
-
-    .dim-num {
-      font-family: var(--font-os-chronik);
-      font-size: 40px;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--color-signal-violet);
-      transition: transform 260ms var(--ease-spring);
-    }
-
-    .flat-card:hover .dim-num { transform: scale(1.06); }
-
-    .points-badge {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(1, 254, 147, 0.15);
-      color: #00874e;
-      border: 1px solid rgba(1, 254, 147, 0.4);
-      white-space: nowrap;
-    }
-
-    .dim-desc {
-      color: var(--color-ash-gray);
-      line-height: 1.55;
-    }
-
-    .card-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 16px;
-      font-size: 15px;
-      color: var(--color-ash-gray);
-    }
-
-    .card-list li {
-      position: relative;
-      padding-left: 20px;
-      line-height: 1.45;
-    }
-
-    .card-list li::before {
-      content: '•';
-      position: absolute;
-      left: 4px;
-      color: var(--color-signal-violet);
-    }
-
-    .card-list strong { color: var(--color-ink-black); font-weight: 500; }
-
-    .dim-note {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--color-fog-gray);
-      font-size: 14px;
-      color: var(--color-slate-gray);
-      line-height: 1.5;
-    }
-
-    /* ==========================================================================
-       04. HOW IT WORKS — 4 steps
-       ========================================================================== */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 1020px) {
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .steps-grid { grid-template-columns: 1fr; }
-    }
-
-    .step-number {
-      font-family: var(--font-os-chronik);
-      font-size: 44px;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--color-signal-violet);
-      margin-bottom: 12px;
-    }
-
-    /* ==========================================================================
-       05. FINAL CTA + FOOTER
-       ========================================================================== */
-    .cta-card {
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: clamp(32px, 5vw, 64px);
-      text-align: center;
-      background: var(--color-pure-white);
-      position: relative;
-      z-index: 1;
-      transition: border-color 240ms ease;
-    }
-
-    .cta-card:hover { border-color: var(--color-ink-black); }
-
-    .cta-sub {
-      font-size: 17px;
-      color: var(--color-ash-gray);
-      max-width: 680px;
-      margin: 18px auto 28px auto;
-      line-height: 1.5;
-    }
-
-    .btn-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-section {
-      padding: 40px 0;
-      border-top: 1px solid var(--color-fog-gray);
-    }
-
-    .footer-flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--color-ash-gray);
-    }
-
-    .footer-links-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      list-style: none;
-    }
-
-    .footer-links-row a:hover { color: var(--color-signal-violet); }
-
-    /* ==========================================================================
-       SCROLL REVEAL + REDUCED MOTION
-       ========================================================================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 440ms var(--ease-out), transform 440ms var(--ease-out);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-gradient-mesh,
-      .final-cta-mesh,
-      .section-divider-stripe,
-      .sparkle {
-        animation: none !important;
-      }
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-      .flat-card, .tip-panel { transition: none !important; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="design-system/tokens.css"/>
+  <link rel="stylesheet" href="design-system/components/bundle.css"/>
+  <link rel="stylesheet" href="site.css"/>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
-<body>
+<body class="el-root">
 
-  <!-- FLOATING NAVIGATION -->
-  <div class="nav-wrapper" id="navbarWrapper">
-    <nav class="floating-nav" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="brand-logo">
-        <div class="brand-icon"><div class="brand-icon-inner"></div></div>
-        <span>AiM</span>
-      </a>
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="el-nav" aria-label="Main navigation">
+        <a class="el-nav__brand" href="index.html">AiM</a>
+        <div class="el-nav__pill">
+          <a class="el-nav__item" href="#why">Why It Matters</a>
+          <a class="el-nav__item" href="#report">Your Report</a>
+          <a class="el-nav__item" href="#how-it-works">How It Works</a>
+          <a class="el-nav__item" href="index.html">Our Services</a>
+        </div>
+        <div class="el-nav__end">
+          <a class="el-btn el-btn--primary" href="#grader">Grade my brand →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-      <ul class="nav-links">
-        <li><a href="#why" class="nav-link">Why It Matters</a></li>
-        <li><a href="#report" class="nav-link">Your Report</a></li>
-        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-        <li><a href="index.html" class="nav-link">Our Services</a></li>
-      </ul>
-
-      <div>
-        <a href="#grader" class="btn-violet">Grade my brand →</a>
-      </div>
-    </nav>
-  </div>
-
-  <div class="section-divider-stripe"></div>
-
+  <main>
   <!-- 1. HERO + GRADER FORM -->
-  <header class="hero-section">
-    <div class="hero-gradient-mesh"></div>
-
-    <svg class="sparkle sparkle-left" width="34" height="34" viewBox="0 0 34 34" fill="#d9defc" aria-hidden="true">
-      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
-    </svg>
-    <svg class="sparkle sparkle-right" width="24" height="24" viewBox="0 0 34 34" fill="#d9defc" aria-hidden="true">
-      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
-    </svg>
-
+  <section class="hero">
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow reveal">Free AI Search Grader</span>
-          <h1 class="display-h1 reveal">What does AI say about your brand?</h1>
-          <p class="hero-sub reveal">
-            Find out how ChatGPT, Claude, and Perplexity describe you when buyers ask. You get one score out of 100, broken down across five areas, with a plain-English read on what it means. Free, one time, no account needed.
-          </p>
+        <div>
+          <span class="el-tag reveal">Free AI Search Grader</span>
+          <h1 class="el-hero__title reveal">What does AI say about your brand?</h1>
+          <p class="el-hero__lead reveal">Find out how ChatGPT, Claude, and Perplexity describe you when buyers ask. You get one score out of 100, broken down across five areas, with a plain-English read on what it means. Free, one time, no account needed.</p>
           <ul class="hero-checklist reveal">
-            <li><span class="check-dot">✓</span> Checked across ChatGPT, Claude, and Perplexity</li>
-            <li><span class="check-dot">✓</span> Five scored dimensions, 100 points total</li>
-            <li><span class="check-dot">✓</span> Works for your brand or a competitor's</li>
+            <li><span class="check-dot" aria-hidden="true">✓</span> Checked across ChatGPT, Claude, and Perplexity</li>
+            <li><span class="check-dot" aria-hidden="true">✓</span> Five scored dimensions, 100 points total</li>
+            <li><span class="check-dot" aria-hidden="true">✓</span> Works for your brand or a competitor's</li>
           </ul>
         </div>
 
         <!-- Grader Card -->
-        <div class="grader-card reveal" id="grader">
+        <div class="el-feature el-feature--compact grader-card reveal" id="grader">
           <form id="graderForm" novalidate>
             <div class="grader-title">Enter the brand you want to grade</div>
             <div class="grader-hint">All fields are required.</div>
@@ -1116,38 +74,14 @@
 
             <div class="field">
               <div class="field-label-row">
-                <label class="field-label" for="location">Location <span class="req">*</span></label>
+                <label class="field-label" for="url">Website URL <span class="req">*</span></label>
                 <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About location" aria-describedby="tip-location">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-location">The main country or region you sell in. AI answers change by market, so we ask the way a local buyer would.</span>
+                  <button type="button" class="tip-btn" aria-label="About website URL" aria-describedby="tip-url">i</button>
+                  <span class="tip-panel" role="tooltip" id="tip-url">Your homepage. We read it to work out what you sell and who you compete with, so you don't have to tell us.</span>
                 </span>
               </div>
-              <input class="field-input" id="location" name="location" type="text" placeholder="United States" autocomplete="country-name" required/>
-              <div class="field-error">Add a location.</div>
-            </div>
-
-            <div class="field">
-              <div class="field-label-row">
-                <label class="field-label" for="product">Product or service <span class="req">*</span></label>
-                <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About product or service" aria-describedby="tip-product">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-product">What you sell, in the words a buyer would type. "Project management software" beats a product name.</span>
-                </span>
-              </div>
-              <input class="field-input" id="product" name="product" type="text" placeholder="Project management software" required/>
-              <div class="field-error">Add what you sell.</div>
-            </div>
-
-            <div class="field">
-              <div class="field-label-row">
-                <label class="field-label" for="industry">Industry <span class="req">*</span></label>
-                <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About industry" aria-describedby="tip-industry">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-industry">The category you compete in. We use it to pick which competitors you're scored against.</span>
-                </span>
-              </div>
-              <input class="field-input" id="industry" name="industry" type="text" placeholder="Technology" required/>
-              <div class="field-error">Add your industry.</div>
+              <input class="field-input" id="url" name="url" type="text" inputmode="url" placeholder="acme.com" autocomplete="url" required/>
+              <div class="field-error">Add your website address.</div>
             </div>
 
             <div class="field">
@@ -1164,97 +98,79 @@
 
             <!-- Honeypot: hidden from people, bots fill it in -->
             <div class="hp-field" aria-hidden="true">
-              <label for="website">Website</label>
-              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+              <label for="fax">Fax</label>
+              <input id="fax" name="fax" type="text" tabindex="-1" autocomplete="off"/>
             </div>
 
             <div class="grader-submit">
-              <button type="submit" class="btn-violet btn-block" id="graderSubmit">Grade my brand →</button>
+              <button type="submit" class="el-btn el-btn--primary btn-block" id="graderSubmit">Grade my brand →</button>
             </div>
             <p class="form-error" id="formError" role="alert"></p>
 
             <div class="powered-by">
-              <div class="powered-label">Checked across</div>
+              <div class="overline">Checked across</div>
               <div class="engine-row">
-                <span class="engine-chip">ChatGPT</span>
-                <span class="engine-chip">Claude</span>
-                <span class="engine-chip">Perplexity</span>
+                <span class="el-tag">ChatGPT</span>
+                <span class="el-tag">Claude</span>
+                <span class="el-tag">Perplexity</span>
               </div>
             </div>
 
-            <p class="disclaimer">
-              Scores are generated by AI models and reflect what they say at the time of your check. Results aren't guaranteed and aren't a substitute for professional advice.
-            </p>
+            <p class="disclaimer">Scores are generated by AI models and reflect what they say at the time of your check. Results aren't guaranteed and aren't a substitute for professional advice.</p>
           </form>
 
           <div class="grader-done" role="status" aria-live="polite">
-            <div class="done-ring">✓</div>
+            <div class="done-ring" aria-hidden="true">✓</div>
             <div class="done-title">Your grade is on the way.</div>
-            <p class="body-copy">
-              We're running <strong id="doneCompany">your brand</strong> through ChatGPT, Claude, and Perplexity now. Your full report goes to <strong id="doneEmail">your inbox</strong> in about two minutes. Check spam if you don't see it.
-            </p>
-            <div class="btn-row" style="margin-top: 24px;">
-              <a href="#report" class="btn-ghost">See what's in the report</a>
+            <p class="copy">We're running <strong id="doneCompany">your brand</strong> through ChatGPT, Claude, and Perplexity now. Your full report goes to <strong id="doneEmail">your inbox</strong> in about two minutes. Check spam if you don't see it.</p>
+            <div class="btn-row btn-row--center" style="margin-top: var(--spacing-20);">
+              <a class="el-btn el-btn--ghost" href="#report">See what's in the report</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <div class="section-divider-stripe"></div>
+  </section>
 
   <!-- 2. WHY MEASURE -->
-  <section class="section-pad" id="why">
+  <section class="band band--ash" id="why">
     <div class="container">
       <div class="split-grid">
         <div class="reveal">
-          <h2 class="editorial-h2">Buyers ask AI first. Most never click a link.</h2>
-          <p class="body-copy">
-            When someone asks ChatGPT "what's the best tool for X?" or "is this company legit?", they get one written answer. Often they never visit a single website. That answer is now your first impression, and sometimes your only one.
-          </p>
-          <p class="body-copy">
-            Google rankings and click-through rates can't tell you what that answer says. This grader can. It shows how AI describes you today, how you stack up against competitors, and where the gaps are.
-          </p>
-          <p class="body-copy">
-            Don't let AI tell your story without you. Run a free check now. When you're ready to fix what it finds, <a href="index.html" style="color: var(--color-signal-violet); text-decoration: underline;">we do the work</a> to get you recommended.
-          </p>
+          <h2 class="section-title">Buyers ask AI first. Most never click a link.</h2>
+          <p class="copy">When someone asks ChatGPT "what's the best tool for X?" or "is this company legit?", they get one written answer. Often they never visit a single website. That answer is now your first impression, and sometimes your only one.</p>
+          <p class="copy">Google rankings and click-through rates can't tell you what that answer says. This grader can. It shows how AI describes you today, how you stack up against competitors, and where the gaps are.</p>
+          <p class="copy">Don't let AI tell your story without you. Run a free check now. When you're ready to fix what it finds, <a class="el-link" href="index.html">we do the work</a> to get you recommended.</p>
         </div>
 
-        <div class="chat-mock reveal" aria-hidden="true">
+        <div class="el-data chat-mock reveal" aria-hidden="true">
           <div class="chat-meta">A typical buyer question</div>
           <div class="chat-bubble user">What's the best project management tool for a 20-person agency?</div>
-          <div class="chat-bubble ai">
-            For a team that size, most agencies go with <mark>Brand A</mark> or <mark>Brand B</mark>. Brand A is known for easy client sharing. Brand B is cheaper but harder to set up…
-          </div>
+          <div class="chat-bubble ai">For a team that size, most agencies go with <mark>Brand A</mark> or <mark>Brand B</mark>. Brand A is known for easy client sharing. Brand B is cheaper but harder to set up…</div>
           <div class="chat-meta">Not in the answer? You weren't in the running.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider-stripe"></div>
-
   <!-- 3. WHAT YOU GET: FIVE DIMENSIONS -->
-  <section class="section-pad" id="report">
+  <section class="band" id="report">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">What's in your report.</h2>
-        <p class="section-subtext">
-          We grade your brand on five things. Each one adds up to your total score out of 100.
-        </p>
+      <div class="section-intro reveal">
+        <h2 class="section-title">What's in your report.</h2>
+        <p class="copy">We grade your brand on five things. Each one adds up to your total score out of 100.</p>
       </div>
 
-      <div class="score-bar-wrap reveal" aria-label="Score breakdown out of 100">
+      <div class="score-bar-wrap reveal" role="img" aria-label="Score breakdown out of 100: sentiment 40, presence quality 20, brand recognition 20, share of voice 10, market position 10">
         <div class="score-bar-head"><span>Score breakdown</span><span>100 pts</span></div>
-        <div class="score-bar">
+        <div class="score-bar" aria-hidden="true">
           <div class="score-seg seg-1"></div>
           <div class="score-seg seg-2"></div>
           <div class="score-seg seg-3"></div>
           <div class="score-seg seg-4"></div>
           <div class="score-seg seg-5"></div>
         </div>
-        <div class="score-legend">
+        <div class="score-legend" aria-hidden="true">
           <span><i class="legend-dot seg-1"></i>Sentiment · 40</span>
           <span><i class="legend-dot seg-2"></i>Presence quality · 20</span>
           <span><i class="legend-dot seg-3"></i>Brand recognition · 20</span>
@@ -1263,15 +179,14 @@
         </div>
       </div>
 
-      <div class="dimensions-grid">
+      <div class="grid-2">
         <!-- 1. Sentiment -->
-        <div class="flat-card wide reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-feature el-feature--compact span-all reveal">
           <div class="dim-head">
             <span class="dim-num">01</span>
-            <span class="points-badge">Up to 40 pts</span>
+            <span class="el-tag">Up to 40 pts</span>
           </div>
-          <h3 class="grotesk-h3">Sentiment</h3>
+          <h3 class="el-feature__title">Sentiment</h3>
           <p class="dim-desc">The biggest piece of your score. Is the AI saying good things about you, bad things, or nothing much at all? We look at three layers:</p>
           <ul class="card-list">
             <li><strong>Overall tone:</strong> whether AI describes you positively, negatively, or neutrally.</li>
@@ -1279,155 +194,135 @@
             <li><strong>Source trust:</strong> how reliable the sources behind those opinions are.</li>
           </ul>
           <p class="dim-note">Good sign: "known for great onboarding." Red flag: AI repeating old complaints or outdated reviews.</p>
-        </div>
+        </article>
 
         <!-- 2. Presence Quality -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-feature el-feature--compact reveal">
           <div class="dim-head">
             <span class="dim-num">02</span>
-            <span class="points-badge">Up to 20 pts</span>
+            <span class="el-tag">Up to 20 pts</span>
           </div>
-          <h3 class="grotesk-h3">Presence quality</h3>
+          <h3 class="el-feature__title">Presence quality</h3>
           <p class="dim-desc">Does AI actually know you, or just your name?</p>
           <ul class="card-list">
             <li><strong>Depth:</strong> how much real detail AI gives about you.</li>
             <li><strong>Source authority:</strong> how credible the sources that shaped that view are.</li>
             <li><strong>Data richness:</strong> how complete the picture is (features, pricing, use cases).</li>
           </ul>
-        </div>
+        </article>
 
         <!-- 3. Brand Recognition -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-feature el-feature--compact reveal">
           <div class="dim-head">
             <span class="dim-num">03</span>
-            <span class="points-badge">Up to 20 pts</span>
+            <span class="el-tag">Up to 20 pts</span>
           </div>
-          <h3 class="grotesk-h3">Brand recognition</h3>
+          <h3 class="el-feature__title">Brand recognition</h3>
           <p class="dim-desc">How well-known you are to the AI. A high score means it can talk about you with real specifics, not just confirm you exist.</p>
-        </div>
+        </article>
 
         <!-- 4. Share of Voice -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-feature el-feature--compact reveal">
           <div class="dim-head">
             <span class="dim-num">04</span>
-            <span class="points-badge">Up to 10 pts</span>
+            <span class="el-tag">Up to 10 pts</span>
           </div>
-          <h3 class="grotesk-h3">Share of voice</h3>
+          <h3 class="el-feature__title">Share of voice</h3>
           <p class="dim-desc">Where you rank against competitors when AI answers questions in your category. You get your estimated share of mentions, plus a bonus for ranking near the top.</p>
-          <p class="dim-note">Want this tracked every week instead of once? <a href="index.html" style="color: var(--color-signal-violet);">That's what we do.</a></p>
-        </div>
+          <p class="dim-note">Want this tracked every week instead of once? <a class="el-link" href="index.html">That's what we do.</a></p>
+        </article>
 
         <!-- 5. Market Position -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-feature el-feature--compact reveal">
           <div class="dim-head">
             <span class="dim-num">05</span>
-            <span class="points-badge">Up to 10 pts</span>
+            <span class="el-tag">Up to 10 pts</span>
           </div>
-          <h3 class="grotesk-h3">Market position</h3>
+          <h3 class="el-feature__title">Market position</h3>
           <p class="dim-desc">How AI places you in your market. We check two things:</p>
           <ul class="card-list">
             <li><strong>Category role:</strong> leader, challenger, or niche player.</li>
             <li><strong>Reputation:</strong> innovator, disruptor, or traditional.</li>
           </ul>
           <p class="dim-note">A low score usually means AI is getting mixed or thin signals about where you stand. Now you'll know which ones to fix.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
-
-  <div class="section-divider-stripe"></div>
 
   <!-- 4. HOW IT WORKS -->
-  <section class="section-pad" id="how-it-works">
+  <section class="band band--ash" id="how-it-works">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">How the grader works.</h2>
-        <p class="section-subtext">
-          Four steps, about two minutes of your time.
-        </p>
+      <div class="section-intro reveal">
+        <h2 class="section-title">How the grader works.</h2>
+        <p class="copy">Four steps, about two minutes of your time.</p>
       </div>
 
-      <div class="steps-grid">
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+      <div class="grid-4">
+        <article class="el-data reveal">
           <div class="step-number">01</div>
-          <h3 class="grotesk-h3">Tell us the brand</h3>
-          <p class="dim-desc">Enter the company name, location, industry, and what it sells. Grade your own brand or size up a competitor.</p>
-        </div>
+          <h3 class="card-title">Tell us the brand</h3>
+          <p class="copy" style="margin-top: var(--spacing-12);">Enter the company name, its website, and your email. We read the site to work out what it sells. Grade your own brand or size up a competitor.</p>
+        </article>
 
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-data reveal">
           <div class="step-number">02</div>
-          <h3 class="grotesk-h3">We ask the AI</h3>
-          <p class="dim-desc">We put your brand in front of ChatGPT, Claude, and Perplexity and ask each one how it sees you.</p>
-        </div>
+          <h3 class="card-title">We ask the AI</h3>
+          <p class="copy" style="margin-top: var(--spacing-12);">We put your brand in front of ChatGPT, Claude, and Perplexity and ask each one how it sees you.</p>
+        </article>
 
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-data reveal">
           <div class="step-number">03</div>
-          <h3 class="grotesk-h3">We score the answers</h3>
-          <p class="dim-desc">Every answer is scored the same way across all five dimensions, so you get one consistent total out of 100.</p>
-        </div>
+          <h3 class="card-title">We score the answers</h3>
+          <p class="copy" style="margin-top: var(--spacing-12);">Every answer is scored the same way across all five dimensions, so you get one consistent total out of 100.</p>
+        </article>
 
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
+        <article class="el-data reveal">
           <div class="step-number">04</div>
-          <h3 class="grotesk-h3">You get the full read</h3>
-          <p class="dim-desc">Your score, the breakdown, and what it means in plain English. Want ongoing tracking and fixes? That's where we come in.</p>
-        </div>
+          <h3 class="card-title">You get the full read</h3>
+          <p class="copy" style="margin-top: var(--spacing-12);">Your score, the breakdown, and what it means in plain English. Want ongoing tracking and fixes? That's where we come in.</p>
+        </article>
       </div>
     </div>
   </section>
-
-  <div class="section-divider-stripe"></div>
 
   <!-- 5. FINAL CTA -->
-  <section class="section-pad">
+  <section class="band">
     <div class="container">
-      <div class="final-cta-mesh"></div>
-      <div class="cta-card reveal">
-        <h2 class="editorial-h2">See what AI says about you.</h2>
-        <p class="cta-sub">
-          Free, one-time grade across ChatGPT, Claude, and Perplexity. No account needed.
-        </p>
-        <div class="btn-row">
-          <a href="#grader" class="btn-violet">Grade my brand →</a>
-          <a href="index.html" class="btn-ghost">See how we fix it</a>
+      <div class="el-feature el-feature--compact cta-card reveal">
+        <h2 class="section-title">See what AI says about you.</h2>
+        <p class="el-feature__body">Free, one-time grade across ChatGPT, Claude, and Perplexity. No account needed.</p>
+        <div class="btn-row btn-row--center">
+          <a class="el-btn el-btn--primary" href="#grader">Grade my brand →</a>
+          <a class="el-btn el-btn--ghost" href="index.html">See how we fix it</a>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="section-divider-stripe"></div>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="footer-section">
+  <footer class="site-footer band--ash">
     <div class="container">
       <div class="footer-flex">
-        <div style="font-weight: 500; font-size: 15px; color: var(--color-ink-black);">AiM</div>
-
-        <ul class="footer-links-row">
-          <li><a href="index.html#how-it-works">How It Works</a></li>
-          <li><a href="index.html#the-3-pillars">The 3 Pillars</a></li>
-          <li><a href="index.html#results">Results</a></li>
-          <li><a href="ai-search-grader.html">AI Grader</a></li>
+        <a class="el-nav__brand" href="index.html">AiM</a>
+        <ul class="footer-links">
+          <li><a class="el-link--utility" href="index.html#how-it-works">How It Works</a></li>
+          <li><a class="el-link--utility" href="index.html#the-3-pillars">The 3 Pillars</a></li>
+          <li><a class="el-link--utility" href="index.html#faq">FAQ</a></li>
+          <li><a class="el-link--utility" href="ai-search-grader.html">AI Grader</a></li>
         </ul>
-
-        <div style="font-size: 13px; color: var(--color-slate-gray);">© 2026 AiM. All rights reserved.</div>
+        <div class="small">© 2026 AiM. All rights reserved.</div>
       </div>
     </div>
   </footer>
 
   <script>
-    // 1. Navigation compression on scroll
-    const navWrapper = document.getElementById('navbarWrapper');
-    window.addEventListener('scroll', () => {
-      navWrapper.classList.toggle('scrolled', window.scrollY > 24);
-    }, { passive: true });
+    // 1. Header lifts off the page once you scroll
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
 
     // 2. Tooltips: tap to toggle on touch, Escape or outside tap to close
     document.querySelectorAll('.tip-btn').forEach(btn => {

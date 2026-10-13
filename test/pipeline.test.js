@@ -3,9 +3,13 @@ import assert from 'node:assert/strict';
 import { gradeBrand } from '../lib/report.js';
 import { renderReportEmail } from '../lib/email.js';
 import { processGrade } from '../api/grade.js';
+import { profileBrand, extractPageText } from '../lib/profile.js';
+import { isPrivateAddress, fetchHtml } from '../lib/safe-fetch.js';
 import handler from '../api/grade.js';
 
-const input = { company: 'Acme', location: 'United States', product: 'CRM software', industry: 'Technology', email: 'owner@acme.test' };
+// What the form sends, and the same brand once the profile step has filled in what it sells.
+const input = { company: 'Acme', url: 'https://acme.test', email: 'owner@acme.test' };
+const profiled = { ...input, product: 'CRM software', industry: 'Technology', location: 'United States' };
 const quiet = { error() {}, warn() {}, info() {} };
 const realFetch = globalThis.fetch;
 
@@ -48,6 +52,9 @@ function installFakeNetwork({ rejectFallbackBeta = false } = {}) {
       if (format?.schema?.required?.includes('growth_areas')) {
         return json(anthropicMessage(JSON.stringify({ summary: 'Solid start.', strengths: ['Good sentiment'], growth_areas: ['Get cited more'] })));
       }
+      if (format?.schema?.required?.includes('industry')) {
+        return json(anthropicMessage(JSON.stringify({ product: 'crm software', industry: 'software', location: 'United States' })));
+      }
       if (format) return json(anthropicMessage(JSON.stringify(JUDGMENT)));
       return json(anthropicMessage('Acme and Globex are popular choices.'));
     }
@@ -74,13 +81,13 @@ const liveEnv = {
 };
 
 test('mock mode runs end to end without keys and labels the output', async () => {
-  const report = await gradeBrand(input, {}, quiet);
+  const report = await gradeBrand(profiled, {}, quiet);
   assert.equal(report.mode, 'mock');
   assert.equal(report.checks.attempted, 15); // 5 prompts x 3 engines
   assert.equal(report.checks.succeeded, 15);
   assert.ok(report.score.total >= 0 && report.score.total <= 100);
 
-  const again = await gradeBrand(input, {}, quiet);
+  const again = await gradeBrand(profiled, {}, quiet);
   assert.equal(again.score.total, report.score.total, 'mock scores are deterministic');
 
   const email = renderReportEmail(report, {});
@@ -90,7 +97,7 @@ test('mock mode runs end to end without keys and labels the output', async () =>
 
 test('live mode queries all three engines, judges every answer, and summarizes', async () => {
   const calls = installFakeNetwork();
-  const report = await gradeBrand(input, liveEnv, quiet);
+  const report = await gradeBrand(profiled, liveEnv, quiet);
 
   assert.equal(report.mode, 'live');
   assert.deepEqual(report.engines, ['ChatGPT', 'Claude', 'Perplexity']);
@@ -110,7 +117,7 @@ test('live mode queries all three engines, judges every answer, and summarizes',
 
 test('Claude calls retry without fallbacks when the beta is rejected', async () => {
   const calls = installFakeNetwork({ rejectFallbackBeta: true });
-  const report = await gradeBrand(input, { ANTHROPIC_API_KEY: 'sk-ant-test' }, quiet);
+  const report = await gradeBrand(profiled, { ANTHROPIC_API_KEY: 'sk-ant-test' }, quiet);
   assert.equal(report.mode, 'live');
   assert.deepEqual(report.skippedEngines, ['ChatGPT', 'Perplexity']);
   assert.equal(report.checks.succeeded, 5);
@@ -122,17 +129,17 @@ test('engine failures are tolerated up to half; beyond that the grade fails', as
   const wrapped = globalThis.fetch;
   globalThis.fetch = async (url, init) =>
     String(url).includes('openai.com') ? new Response('boom', { status: 500 }) : wrapped(url, init);
-  const report = await gradeBrand(input, liveEnv, quiet);
+  const report = await gradeBrand(profiled, liveEnv, quiet);
   assert.equal(report.checks.succeeded, 10);
   assert.equal(report.failures.length, 5);
 
   globalThis.fetch = async () => new Response('down', { status: 503 });
-  await assert.rejects(gradeBrand(input, { ...liveEnv }, quiet), /checks succeeded/);
+  await assert.rejects(gradeBrand(profiled, { ...liveEnv }, quiet), /checks succeeded/);
 });
 
 test('processGrade emails the report to the requester and the lead to the owner', async () => {
   const calls = installFakeNetwork();
-  const { emailed } = await processGrade(input, liveEnv, quiet);
+  const { emailed } = await processGrade(profiled, liveEnv, quiet);
   assert.equal(emailed, true);
   assert.equal(calls.resend.length, 2);
 
@@ -147,7 +154,7 @@ test('processGrade emails the report to the requester and the lead to the owner'
 });
 
 test('report email escapes user and AI text', async () => {
-  const report = await gradeBrand({ ...input, company: '<script>x</script>' }, {}, quiet);
+  const report = await gradeBrand({ ...profiled, company: '<script>x</script>' }, {}, quiet);
   const { html } = renderReportEmail(report, {});
   assert.ok(!html.includes('<script>x</script>'));
   assert.ok(html.includes('&lt;script&gt;'));
@@ -174,11 +181,86 @@ test('handler: rejects GET, bad input, honeypot, and rate-limits', async () => {
   assert.equal(bad.status, 400);
   assert.ok(bad.body.fields.email);
 
-  const bot = await call('POST', { ...input, website: 'spam.example' }, '3.3.3.3');
+  const bot = await call('POST', { ...input, fax: 'spam.example' }, '3.3.3.3');
   assert.equal(bot.status, 202);
 
   const ip = '4.4.4.4';
   const statuses = [];
   for (let i = 0; i < 6; i++) statuses.push((await call('POST', input, ip)).status);
   assert.deepEqual(statuses, [202, 202, 202, 202, 202, 429]);
+});
+
+const PAGE = `<!doctype html><html><head><title>Acme CRM</title>
+<meta name="description" content="CRM software for small teams">
+<style>.x{color:red}</style><script>var secret = 1;</script></head>
+<body><h1>Close more deals</h1><p>Acme &amp; friends build a CRM.</p></body></html>`;
+
+test('profile step reads the site and Claude works out what the company sells', async () => {
+  const calls = installFakeNetwork();
+  const fetched = [];
+  const report = await gradeBrand(input, liveEnv, quiet, {
+    fetchPage: async url => {
+      fetched.push(url);
+      return { url, html: PAGE };
+    }
+  });
+
+  assert.deepEqual(fetched, ['https://acme.test']);
+  assert.equal(report.input.product, 'crm software');
+  assert.equal(report.input.industry, 'software');
+  assert.equal(report.input.location, 'United States');
+  assert.equal(report.input.profileSource, 'site');
+  assert.ok(report.results.some(r => r.question.includes('crm software')));
+  // 1 profile + 5 Claude answers + 15 judgments + 1 summary
+  assert.equal(calls.anthropic.length, 22);
+  const profileCall = calls.anthropic[0].body.messages[0].content;
+  assert.match(profileCall, /Title: Acme CRM/);
+  assert.match(profileCall, /CRM software for small teams/);
+  assert.match(profileCall, /Acme & friends build a CRM/);
+  assert.ok(!profileCall.includes('secret'), 'scripts are stripped');
+});
+
+test('profile step falls back to what Claude knows when the site cannot be read', async () => {
+  const calls = installFakeNetwork();
+  const profile = await profileBrand(input, liveEnv, {
+    mode: 'live',
+    log: quiet,
+    fetchPage: async () => {
+      throw new Error('boom');
+    }
+  });
+  assert.equal(profile.profileSource, 'model');
+  assert.equal(profile.product, 'crm software');
+  assert.match(calls.anthropic[0].body.messages[0].content, /could not be read/);
+});
+
+test('mock mode never touches the network for the profile', async () => {
+  const report = await gradeBrand(input, {}, quiet, {
+    fetchPage: async () => {
+      throw new Error('should not fetch in mock mode');
+    }
+  });
+  assert.equal(report.mode, 'mock');
+  assert.equal(report.input.profileSource, 'sample');
+  assert.equal(report.checks.succeeded, 15);
+});
+
+test('page text extraction keeps the signal and drops scripts and styles', () => {
+  const text = extractPageText(PAGE);
+  assert.match(text, /Title: Acme CRM/);
+  assert.match(text, /Headings: Close more deals/);
+  assert.ok(!text.includes('secret') && !text.includes('color:red'));
+});
+
+test('safe fetch refuses private, loopback and metadata addresses', async () => {
+  for (const ip of ['127.0.0.1', '10.1.2.3', '172.16.0.1', '192.168.1.1', '169.254.169.254', '100.64.0.1', '0.0.0.0', '::1', 'fd00::1', 'fe80::1', '::ffff:127.0.0.1', '::ffff:7f00:1', '::ffff:a00:1', 'not-an-ip']) {
+    assert.equal(isPrivateAddress(ip), true, ip);
+  }
+  for (const ip of ['8.8.8.8', '93.184.216.34', '2606:4700:4700::1111', '::ffff:808:808']) {
+    assert.equal(isPrivateAddress(ip), false, ip);
+  }
+
+  for (const url of ['http://127.0.0.1/', 'http://localhost/', 'http://169.254.169.254/latest/meta-data/', 'http://[::1]/', 'http://acme.test:8080/', 'ftp://acme.test/', 'https://user:pw@acme.test/', 'http://printer.local/']) {
+    await assert.rejects(fetchHtml(url), /Blocked|allowed|credentials/, url);
+  }
 });

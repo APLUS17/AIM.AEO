@@ -5,9 +5,22 @@
 - `api/grade.js`: grading endpoint (Vercel serverless function)
 - `lib/`: grading pipeline (prompts → engines → judge → scoring → email)
 
+## Design system: Ember Ledger
+
+The site is built on the Ember Ledger design system, pulled from Claude Design (see
+`design-system/SOURCE.md` for the project and what was copied).
+
+- `design-system/tokens.json` → `npm run tokens` → `design-system/tokens.css` (custom properties + `.ts-*` type classes)
+- `design-system/components/bundle.css`: the `el-*` component classes (buttons, nav pill, tags, feature and data cards, hero)
+- `site.css`: page layout only, token values only. No raw hex, gradients or divider lines. It adds one soft depth layer (`--lift-1`, `--lift-2`, `--sink`) on top of the flat system; set them to `none` for the original flat look (see `design-system/SOURCE.md`)
+- `design-system/README.md` has the rules: ember is an accent never a fill, buttons are square, sections alternate white and ash bands
+
+To update the design: re-pull the files from the Claude Design project, run `npm run tokens`, and re-check both pages.
+The grader report email (`lib/email.js`) inlines the same palette because email clients can't read CSS variables.
+
 ## How the grader works
 
-1. The form posts company, location, product, industry and email to `/api/grade`.
+1. The form posts company, website URL and email to `/api/grade`. The grader reads the site (SSRF-guarded, `lib/safe-fetch.js`) and has Claude work out what the company sells, its industry and market (`lib/profile.js`).
 2. The API answers `202` right away and keeps working in the background.
 3. Five buyer questions go to ChatGPT, Claude and Perplexity (2 unbranded, 3 that name the brand).
 4. Claude grades every answer against a fixed rubric (mentioned? rank, tone, depth, sources, competitors).

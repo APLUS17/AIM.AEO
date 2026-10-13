@@ -69,8 +69,8 @@ export default async function handler(req, res) {
     return send(res, 400, { error: 'Invalid JSON' });
   }
 
-  // Honeypot: real users never fill the hidden "website" field. Pretend success for bots.
-  if (body && typeof body.website === 'string' && body.website.trim()) {
+  // Honeypot: real users never fill the hidden "fax" field. Pretend success for bots.
+  if (body && typeof body.fax === 'string' && body.fax.trim()) {
     return send(res, 202, { ok: true });
   }
 

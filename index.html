@@ -10,1398 +10,147 @@
   <meta property="og:title" content="Get recommended when people ask AI | AiM"/>
   <meta property="og:description" content="When your buyers use ChatGPT, Claude, or Perplexity instead of Google, AiM makes sure your brand is the answer."/>
   <meta name="twitter:card" content="summary"/>
-  <meta name="theme-color" content="#5f79ff"/>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27black%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%235f79ff%27/%3E%3C/svg%3E"/>
-  
-  <!-- Fonts: Cormorant Garamond 300 (OS Chronik) & Inter 400 (OS Studio Grotesk) -->
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27%23202020%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%23ff682c%27/%3E%3C/svg%3E"/>
+
+  <!-- Ember Ledger design system: fonts, tokens, components. Page layout lives in site.css. -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
-  <style>
-    /* ==========================================================================
-       OPENSERV DESIGN SYSTEM TOKENS & MICRO-INTERACTION TIMING
-       ========================================================================== */
-    :root {
-      --color-signal-violet: #5f79ff;
-      --color-signal-violet-hover: #4a66f0;
-      --color-signal-violet-glow: rgba(95, 121, 255, 0.24);
-      --color-mint-pulse: #01fe93;
-      --color-mint-pulse-glow: rgba(1, 254, 147, 0.28);
-      --color-pure-white: #ffffff;
-      --color-ink-black: #000000;
-      --color-fog-gray: #f5f5f5;
-      --color-mist-gray: #a6a6a6;
-      --color-ash-gray: #4d4d4d;
-      --color-smoke-gray: #9c9c9c;
-      --color-slate-gray: #707070;
-      --surface-canvas: #ffffff;
-      --surface-card: #ffffff;
-      --surface-tint-wash: #d9defc;
-
-      --font-os-studio-grotesk: 'OS Studio Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
-      --font-os-chronik: 'OS Chronik', 'Cormorant Garamond', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --page-max-width: 1200px;
-      --radius-xl: 12px;
-      --radius-2xl: 16px;
-      --radius-full: 100px;
-      --shadow-nav: 0px 0px 48px 0px rgba(0, 0, 0, 0.09);
-      --shadow-card-hover: 0 16px 36px -8px rgba(95, 121, 255, 0.12), 0 0 0 1px rgba(95, 121, 255, 0.25);
-
-      /* Micro-interaction timing curves */
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--surface-canvas);
-      color: var(--color-ink-black);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-os-studio-grotesk);
-      font-size: 15px;
-      line-height: 1.45;
-      font-weight: 400;
-      color: var(--color-ink-black);
-      background: var(--surface-canvas);
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    ::selection {
-      background-color: var(--color-ink-black);
-      color: var(--color-pure-white);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 180ms ease;
-    }
-
-    button {
-      font-family: inherit;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: inherit;
-    }
-
-    .container {
-      max-width: var(--page-max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-    }
-
-    /* Keyboard Accessibility */
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--color-signal-violet);
-      outline-offset: 3px;
-    }
-
-    /* ==========================================================================
-       MOTION DESIGN: AMBIENT GRADIENT MESH
-       ========================================================================== */
-    .hero-gradient-mesh {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(1000px, 94vw);
-      height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 45% 42%, 
-        rgba(95, 121, 255, 0.16) 0%, 
-        rgba(1, 254, 147, 0.10) 34%, 
-        rgba(217, 222, 252, 0.22) 64%, 
-        transparent 100%
-      );
-      filter: blur(72px);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambient-gradient-drift 14s ease-in-out infinite alternate;
-      will-change: transform, opacity;
-    }
-
-    @keyframes ambient-gradient-drift {
-      0% {
-        transform: translateX(-52%) scale(1) rotate(0deg);
-        opacity: 0.65;
-      }
-      50% {
-        transform: translateX(-48%) scale(1.06) rotate(5deg);
-        opacity: 0.9;
-        filter: blur(80px);
-      }
-      100% {
-        transform: translateX(-50%) scale(0.97) rotate(-4deg);
-        opacity: 0.7;
-      }
-    }
-
-    .final-cta-mesh {
-      position: absolute;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(880px, 92vw);
-      height: 440px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 50% 50%, 
-        rgba(95, 121, 255, 0.14) 0%, 
-        rgba(1, 254, 147, 0.08) 40%, 
-        transparent 70%
-      );
-      filter: blur(64px);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambient-gradient-drift 16s ease-in-out infinite alternate-reverse;
-    }
-
-    /* Living Shimmer Section Divider Stripe */
-    .section-divider-stripe {
-      width: 100%;
-      height: 3px;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(90deg, 
-        var(--color-mint-pulse) 0%, 
-        var(--color-signal-violet) 26%, 
-        var(--color-ink-black) 50%, 
-        var(--color-signal-violet) 74%, 
-        var(--color-mint-pulse) 100%
-      );
-      background-size: 200% 100%;
-      animation: stripe-shimmer 11s linear infinite;
-      will-change: background-position;
-    }
-
-    @keyframes stripe-shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    /* ==========================================================================
-       FLOATING NAVIGATION BAR (COMPRESSION ON SCROLL + MICRO-INTERACTIONS)
-       ========================================================================== */
-    .nav-wrapper {
-      position: sticky;
-      top: 20px;
-      z-index: 1000;
-      padding: 0 20px;
-      margin-bottom: 40px;
-      transition: top 240ms var(--ease-out);
-    }
-
-    .floating-nav {
-      max-width: 1120px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-2xl);
-      box-shadow: var(--shadow-nav);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      transition: padding 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
-    }
-
-    .nav-wrapper.scrolled .floating-nav {
-      padding: 8px 20px;
-      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-os-studio-grotesk);
-      font-weight: 500;
-      font-size: 16px;
-      color: var(--color-ink-black);
-    }
-
-    .brand-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 1.5px solid #000000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 300ms var(--ease-spring);
-    }
-
-    .brand-logo:hover .brand-icon {
-      transform: rotate(90deg) scale(1.08);
-    }
-
-    .brand-icon-inner {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--color-signal-violet);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-      font-size: 15px;
-    }
-
-    .nav-link {
-      position: relative;
-      padding: 4px 0;
-      color: var(--color-ink-black);
-      transition: color 150ms ease;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -2px;
-      height: 1.5px;
-      background: var(--color-signal-violet);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 220ms var(--ease-out);
-    }
-
-    .nav-link:hover {
-      color: var(--color-signal-violet);
-    }
-
-    .nav-link:hover::after {
-      transform: scaleX(1);
-    }
-
-    @media (max-width: 760px) {
-      .nav-wrapper { padding: 0 12px; top: 12px; }
-      .floating-nav { padding: 10px 14px; }
-      .nav-links { display: none; }
-      .footer-links-row { flex-wrap: wrap; gap: 12px 20px; }
-    }
-
-    @media (max-width: 480px) {
-      .container { padding: 0 16px; }
-    }
-
-    /* ==========================================================================
-       BUTTONS & STAGGER MICRO-INTERACTIONS
-       ========================================================================== */
-    .btn-violet {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background-color: var(--color-signal-violet);
-      color: var(--color-pure-white);
-      font-family: var(--font-os-studio-grotesk);
-      font-size: 15px;
-      font-weight: 400;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      transition: background-color 200ms ease, transform 180ms var(--ease-out), box-shadow 200ms ease;
-      white-space: nowrap;
-      position: relative;
-    }
-
-    .btn-violet:hover {
-      background-color: var(--color-signal-violet-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px -4px var(--color-signal-violet-glow);
-    }
-
-    .btn-violet:active {
-      transform: translateY(1px) scale(0.98);
-      box-shadow: 0 2px 8px rgba(95, 121, 255, 0.2);
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background-color: transparent;
-      color: var(--color-ink-black);
-      border: 1px solid var(--color-mist-gray);
-      font-family: var(--font-os-studio-grotesk);
-      font-size: 15px;
-      font-weight: 400;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      transition: border-color 200ms ease, color 200ms ease, transform 180ms var(--ease-out), background-color 200ms ease;
-      white-space: nowrap;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--color-ink-black);
-      color: var(--color-signal-violet);
-      background-color: rgba(95, 121, 255, 0.03);
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost:active {
-      transform: translateY(1px) scale(0.98);
-    }
-
-    /* Circular 40px '+' expand button */
-    .btn-expand {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid var(--color-mist-gray);
-      background-color: var(--color-pure-white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: var(--color-ink-black);
-      flex-shrink: 0;
-      transition: border-color 220ms ease, color 220ms ease, transform 280ms var(--ease-spring), background-color 200ms ease;
-    }
-
-    .flat-card:hover .btn-expand {
-      border-color: var(--color-signal-violet);
-      color: var(--color-signal-violet);
-      transform: rotate(90deg) scale(1.05);
-      background-color: rgba(95, 121, 255, 0.05);
-    }
-
-    /* ==========================================================================
-       TYPOGRAPHY
-       ========================================================================== */
-    .display-h1 {
-      font-family: var(--font-os-chronik);
-      font-size: clamp(44px, 6.5vw, 72px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -1.44px;
-      color: var(--color-ink-black);
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    .editorial-h2 {
-      font-family: var(--font-os-chronik);
-      font-size: clamp(28px, 4.2vw, 40px);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--color-ink-black);
-      margin-bottom: 16px;
-    }
-
-    .grotesk-h3 {
-      font-family: var(--font-os-studio-grotesk);
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.25;
-      letter-spacing: -0.017em;
-      color: var(--color-ink-black);
-      margin-bottom: 12px;
-    }
-
-    .section-pad {
-      padding: 80px 0;
-      position: relative;
-    }
-
-    .section-intro-block {
-      max-width: 840px;
-      margin-bottom: 40px;
-    }
-
-    .section-subtext {
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--color-ash-gray);
-      margin-top: 14px;
-    }
-
-    /* Sparkle Floating Animation */
-    .sparkle {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.75;
-      animation: sparkle-float 6s ease-in-out infinite alternate;
-    }
-
-    .sparkle-left {
-      top: 20px;
-      left: 14%;
-      animation-delay: 0s;
-    }
-
-    .sparkle-right {
-      top: 50px;
-      right: 12%;
-      animation-delay: -3s;
-    }
-
-    @keyframes sparkle-float {
-      0% { transform: translateY(0px) rotate(0deg) scale(0.95); opacity: 0.55; }
-      50% { opacity: 0.9; }
-      100% { transform: translateY(-8px) rotate(10deg) scale(1.05); opacity: 0.65; }
-    }
-
-    /* 01. Hero Section */
-    .hero-section {
-      padding: 60px 0 80px 0;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-sub {
-      font-size: clamp(17px, 2.2vw, 20px);
-      line-height: 1.45;
-      color: var(--color-ash-gray);
-      max-width: 760px;
-      margin: 24px auto 32px auto;
-    }
-
-    .hero-btn-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .hero-proof-note {
-      font-size: 13px;
-      color: var(--color-slate-gray);
-      font-family: var(--font-os-studio-grotesk);
-    }
-
-    /* ==========================================================================
-       CARDS & INTERACTION CONTAINERS
-       ========================================================================== */
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    @media (max-width: 768px) {
-      .comparison-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .flat-card {
-      background-color: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
-    }
-
-    .flat-card:hover {
-      border-color: var(--color-ink-black);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.06);
-    }
-
-    /* Card Top Shimmer Hairline on Hover */
-    .gradient-accent-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-mint-pulse), var(--color-signal-violet));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 260ms var(--ease-out);
-    }
-
-    .flat-card:hover .gradient-accent-bar {
-      transform: scaleX(1);
-    }
-
-    .card-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 18px;
-      font-size: 15px;
-      color: var(--color-ash-gray);
-    }
-
-    .card-list li {
-      position: relative;
-      padding-left: 20px;
-      line-height: 1.4;
-      transition: transform 160ms ease, color 160ms ease;
-    }
-
-    .card-list li:hover {
-      color: var(--color-ink-black);
-      transform: translateX(2px);
-    }
-
-    .card-list li::before {
-      content: '•';
-      position: absolute;
-      left: 4px;
-      color: var(--color-slate-gray);
-      font-size: 16px;
-    }
-
-    .card-list.active li::before {
-      color: var(--color-signal-violet);
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 28px;
-      padding-top: 16px;
-      border-top: 1px solid var(--color-fog-gray);
-    }
-
-    /* 03. Process: sticky split with step tracker */
-    .process-split {
-      display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-      gap: 64px;
-      align-items: start;
-    }
-
-    .process-aside {
-      position: sticky;
-      top: 120px;
-    }
-
-    .process-nav {
-      list-style: none;
-      margin: 32px 0 28px 0;
-      border-left: 1px solid #e6e6e6;
-    }
-
-    .process-nav a {
-      position: relative;
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      padding: 12px 0 12px 20px;
-      font-size: 16px;
-      color: var(--color-slate-gray);
-      transition: color 200ms ease;
-    }
-
-    .process-nav a::before {
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--color-signal-violet);
-      transform: scaleY(0);
-      transition: transform 260ms var(--ease-out);
-    }
-
-    .process-nav .num {
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-
-    .process-nav a:hover,
-    .process-nav li.active a {
-      color: var(--color-ink-black);
-    }
-
-    .process-nav li.active a::before {
-      transform: scaleY(1);
-    }
-
-    .process-nav li.active .num {
-      color: var(--color-signal-violet);
-    }
-
-    .process-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .process-step {
-      background: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: clamp(24px, 3.5vw, 36px);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      scroll-margin-top: 120px;
-      transition: border-color 240ms ease, box-shadow 240ms ease;
-    }
-
-    .process-step.active {
-      border-color: var(--color-ink-black);
-      box-shadow: 0 16px 36px -16px rgba(95, 121, 255, 0.25);
-    }
-
-    .step-head {
-      display: flex;
-      align-items: baseline;
-      gap: 18px;
-    }
-
-    .step-numeral {
-      font-family: var(--font-os-chronik);
-      font-size: clamp(48px, 6vw, 72px);
-      font-weight: 300;
-      line-height: 0.85;
-      color: var(--color-signal-violet);
-    }
-
-    .step-title {
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: -0.017em;
-    }
-
-    .step-body {
-      color: var(--color-ash-gray);
-      line-height: 1.55;
-    }
-
-    .step-visual {
-      background: var(--color-fog-gray);
-      border-radius: var(--radius-xl);
-      padding: 18px;
-    }
-
-    .visual-caption {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--color-slate-gray);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
-
-    .deliverable {
-      font-size: 14px;
-      color: var(--color-slate-gray);
-      padding-top: 14px;
-      border-top: 1px solid var(--color-fog-gray);
-    }
-
-    .deliverable strong {
-      color: var(--color-ink-black);
-      font-weight: 500;
-    }
-
-    /* Step 1 visual: audit table */
-    .audit-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) repeat(3, 40px);
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      padding: 9px 0;
-      border-bottom: 1px solid #e3e3e3;
-    }
-
-    .audit-row:last-child { border-bottom: none; }
-
-    .audit-row.head {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--color-slate-gray);
-      padding-top: 0;
-    }
-
-    .audit-row > span:not(:first-child) { text-align: center; }
-
-    .dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1.5px solid var(--color-mist-gray);
-    }
-
-    .dot.hit {
-      background: var(--color-mint-pulse);
-      border-color: #00c774;
-    }
-
-    /* Step 2 visual: structured data snippet */
-    .code-snip {
-      background: var(--color-ink-black);
-      color: #e8e8e8;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      line-height: 1.65;
-      border-radius: var(--radius-xl);
-      padding: 18px;
-      overflow-x: auto;
-      white-space: pre;
-    }
-
-    .code-snip .k { color: #9fb0ff; }
-    .code-snip .s { color: var(--color-mint-pulse); }
-
-    /* Step 3 visual: trend line */
-    .trend svg { display: block; width: 100%; height: auto; }
-
-    .trend-axis {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--color-slate-gray);
-      margin-top: 6px;
-    }
-
-    @media (max-width: 900px) {
-      .process-split { grid-template-columns: 1fr; gap: 32px; }
-      .process-aside { position: static; }
-      .process-nav { display: none; }
-    }
-
-    /* 04. Pillars: bento grid */
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .bento-card {
-      background: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: clamp(24px, 3vw, 32px);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
-    }
-
-    .bento-card:hover {
-      border-color: var(--color-ink-black);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.08);
-    }
-
-    .span-4 { grid-column: span 4; }
-    .span-3 { grid-column: span 3; }
-    .span-2 { grid-column: span 2; }
-
-    .bento-card .grotesk-h3 { margin-bottom: 0; }
-
-    .bento-q {
-      font-style: italic;
-      color: var(--color-slate-gray);
-    }
-
-    .bento-card p.copy {
-      color: var(--color-ash-gray);
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .bento-card p.copy strong {
-      color: var(--color-ink-black);
-      font-weight: 500;
-    }
-
-    .bento-visual { margin-top: auto; }
-
-    .bento-card.dark {
-      background: var(--color-ink-black);
-      border-color: var(--color-ink-black);
-      color: var(--color-pure-white);
-    }
-
-    .bento-card.dark .grotesk-h3 { color: var(--color-pure-white); }
-    .bento-card.dark .bento-q { color: var(--color-mist-gray); }
-    .bento-card.dark p.copy { color: #cfcfcf; }
-    .bento-card.dark p.copy strong { color: var(--color-pure-white); }
-    .bento-card.dark:hover { box-shadow: 0 16px 40px -12px rgba(95, 121, 255, 0.45); }
-
-    .bento-split {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: center;
-    }
-
-    .bento-card.tint {
-      background: var(--surface-tint-wash);
-      border-color: var(--surface-tint-wash);
-    }
-
-    .bento-card.tint:hover { border-color: var(--color-signal-violet); }
-
-    /* Visibility visual: mock AI answer */
-    .mock-answer {
-      background: #141414;
-      border: 1px solid #2a2a2a;
-      border-radius: var(--radius-xl);
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .mock-answer .ask {
-      align-self: flex-end;
-      background: #2a2a2a;
-      color: #f0f0f0;
-      padding: 8px 12px;
-      border-radius: 12px 12px 4px 12px;
-      max-width: 90%;
-    }
-
-    .mock-answer .reply { color: #cfcfcf; }
-
-    .chip {
-      display: inline-block;
-      padding: 1px 8px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .chip.you {
-      background: rgba(1, 254, 147, 0.18);
-      color: var(--color-mint-pulse);
-      border: 1px solid rgba(1, 254, 147, 0.45);
-    }
-
-    .chip.other {
-      background: #262626;
-      color: #bdbdbd;
-      border: 1px solid #333;
-    }
-
-    /* Position visual: ranked list */
-    .rank-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .rank-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: var(--radius-xl);
-      background: var(--color-fog-gray);
-      color: var(--color-ash-gray);
-    }
-
-    .rank-list li.you {
-      background: rgba(95, 121, 255, 0.1);
-      color: var(--color-ink-black);
-      border: 1px solid rgba(95, 121, 255, 0.35);
-    }
-
-    .rank-list .pos {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      width: 18px;
-      color: var(--color-slate-gray);
-    }
-
-    .rank-list li.you .pos { color: var(--color-signal-violet); }
-
-    /* Sentiment visual: before / after */
-    .fix-pair {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 14px;
-    }
-
-    .fix-pair div {
-      padding: 10px 14px;
-      border-radius: var(--radius-xl);
-      line-height: 1.45;
-    }
-
-    .fix-pair .before {
-      background: var(--color-fog-gray);
-      color: var(--color-slate-gray);
-    }
-
-    .fix-pair .before s { text-decoration-color: #c0354d; }
-
-    .fix-pair .after {
-      background: rgba(1, 254, 147, 0.12);
-      border: 1px solid rgba(1, 254, 147, 0.4);
-      color: var(--color-ink-black);
-    }
-
-    .fix-pair .tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-right: 8px;
-    }
-
-    @media (max-width: 960px) {
-      .bento { grid-template-columns: 1fr; }
-      .span-4, .span-3, .span-2 { grid-column: auto; }
-      .bento-split { grid-template-columns: 1fr; }
-    }
-
-    .pillar-goal-badge {
-      align-self: flex-start;
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(1, 254, 147, 0.15);
-      color: #00874e;
-      border: 1px solid rgba(1, 254, 147, 0.4);
-    }
-
-    .bento-card.dark .pillar-goal-badge {
-      background: rgba(1, 254, 147, 0.12);
-      color: var(--color-mint-pulse);
-    }
-
-    /* 05. Numbers Grid (Benchmarks) */
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    @media (max-width: 768px) {
-      .numbers-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .number-card {
-      background-color: var(--surface-card);
-      border: 1px solid #ebebeb;
-      border-radius: var(--radius-2xl);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 220ms ease, transform 240ms var(--ease-out), box-shadow 240ms ease;
-    }
-
-    .number-card:hover {
-      border-color: var(--color-signal-violet);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -8px rgba(95, 121, 255, 0.12);
-    }
-
-    .stat-number {
-      font-family: var(--font-os-chronik);
-      font-size: 56px;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--color-ink-black);
-      transition: color 220ms ease;
-    }
-
-    .number-card:hover .stat-number {
-      color: var(--color-signal-violet);
-    }
-
-    .stat-label {
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--color-ink-black);
-    }
-
-    .stat-desc {
-      font-size: 14px;
-      color: var(--color-ash-gray);
-      line-height: 1.45;
-    }
-
-    /* ==========================================================================
-       07. BUTTER-SMOOTH FAQ ACCORDION (CSS GRID TECHNIQUE)
-       ========================================================================== */
-    .faq-accordion {
-      max-width: 880px;
-      margin: 36px auto 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .faq-item {
-      background-color: var(--color-pure-white);
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      overflow: hidden;
-      transition: border-color 220ms ease;
-    }
-
-    .faq-item:hover {
-      border-color: var(--color-ink-black);
-    }
-
-    .faq-trigger {
-      width: 100%;
-      padding: 22px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-align: left;
-      font-size: 17px;
-      font-weight: 400;
-      color: var(--color-ink-black);
-      cursor: pointer;
-      background: none;
-      transition: color 180ms ease;
-    }
-
-    .faq-trigger:hover {
-      color: var(--color-signal-violet);
-    }
-
-    .faq-arrow {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--color-mist-gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: transform 260ms var(--ease-spring), border-color 200ms ease, color 200ms ease;
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-arrow {
-      transform: rotate(45deg);
-      border-color: var(--color-signal-violet);
-      color: var(--color-signal-violet);
-      background-color: rgba(95, 121, 255, 0.06);
-    }
-
-    .faq-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 280ms var(--ease-out);
-      padding: 0 24px;
-      color: var(--color-ash-gray);
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .faq-item.active .faq-content {
-      grid-template-rows: 1fr;
-      padding-bottom: 24px;
-    }
-
-    .faq-content-inner {
-      overflow: hidden;
-      border-top: 1px solid transparent;
-      transition: border-color 220ms ease;
-    }
-
-    .faq-item.active .faq-content-inner {
-      border-top-color: var(--color-fog-gray);
-      padding-top: 16px;
-    }
-
-    /* 08. Final CTA */
-    .cta-card {
-      border: 1px solid var(--color-mist-gray);
-      border-radius: var(--radius-2xl);
-      padding: clamp(36px, 5vw, 64px);
-      text-align: center;
-      background: var(--color-pure-white);
-      position: relative;
-      z-index: 1;
-      transition: border-color 240ms ease;
-    }
-
-    .cta-card:hover {
-      border-color: var(--color-ink-black);
-    }
-
-    .cta-sub {
-      font-size: 17px;
-      color: var(--color-ash-gray);
-      max-width: 680px;
-      margin: 18px auto 28px auto;
-      line-height: 1.5;
-    }
-
-    /* 09. Footer */
-    .footer-section {
-      padding: 40px 0;
-      border-top: 1px solid var(--color-fog-gray);
-      background: var(--color-pure-white);
-    }
-
-    .footer-flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--color-ash-gray);
-    }
-
-    .footer-links-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .footer-links-row a {
-      transition: color 150ms ease;
-    }
-
-    .footer-links-row a:hover {
-      color: var(--color-signal-violet);
-    }
-
-    /* ==========================================================================
-       SCROLL REVEAL UTILITIES
-       ========================================================================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 440ms var(--ease-out), transform 440ms var(--ease-out);
-      will-change: opacity, transform;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Accessibility: Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-gradient-mesh,
-      .final-cta-mesh,
-      .section-divider-stripe,
-      .sparkle {
-        animation: none !important;
-      }
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-      .flat-card,
-      .number-card,
-      .process-step,
-      .process-nav a::before,
-      .bento-card,
-      .btn-expand,
-      .faq-arrow {
-        transition: none !important;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="design-system/tokens.css"/>
+  <link rel="stylesheet" href="design-system/components/bundle.css"/>
+  <link rel="stylesheet" href="site.css"/>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
-<body>
+<body class="el-root">
 
-  <!-- FLOATING NAVIGATION BAR (Clean, no top banner) -->
-  <div class="nav-wrapper" id="navbarWrapper">
-    <nav class="floating-nav" role="navigation" aria-label="Main Navigation">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon"><div class="brand-icon-inner"></div></div>
-        <span>AiM</span>
-      </a>
-
-      <ul class="nav-links">
-        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-        <li><a href="#the-3-pillars" class="nav-link">The 3 Pillars</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-        <li><a href="ai-search-grader.html" class="nav-link">Free AI Grader</a></li>
-      </ul>
-
-      <div>
-        <a href="ai-search-grader.html" class="btn-violet">
-          View your AI Audit →
-        </a>
-      </div>
-    </nav>
-  </div>
-
-  <!-- SECTION DIVIDER STRIPE (Living Shimmer Band) -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 1. HERO -->
-  <header class="hero-section">
-    <!-- Living Ambient Mesh Drift -->
-    <div class="hero-gradient-mesh"></div>
-
-    <!-- Atmospheric Sparkles in #d9defc -->
-    <svg class="sparkle sparkle-left" width="34" height="34" viewBox="0 0 34 34" fill="#d9defc">
-      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
-    </svg>
-    <svg class="sparkle sparkle-right" width="24" height="24" viewBox="0 0 34 34" fill="#d9defc">
-      <path d="M17 0C17 9.38 9.38 17 0 17C9.38 17 17 24.61 17 34C17 24.61 24.61 17 34 17C24.61 17 17 9.38 17 0Z"/>
-    </svg>
-
+  <!-- NAVIGATION -->
+  <header class="site-header">
     <div class="container">
-      <h1 class="display-h1 reveal">
-        Get recommended when people ask AI.
-      </h1>
-
-      <p class="hero-sub reveal">
-        When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer.
-      </p>
-
-      <div class="hero-btn-row reveal">
-        <a href="ai-search-grader.html" class="btn-violet">
-          View your AI Audit →
-        </a>
-        <a href="#how-it-works" class="btn-ghost">
-          See how it works
-        </a>
-      </div>
-
-      <div class="hero-proof-note reveal">
-        Tested across real buyer questions on ChatGPT, Claude, and Perplexity.
-      </div>
+      <nav class="el-nav" aria-label="Main navigation">
+        <a class="el-nav__brand" href="#">AiM</a>
+        <div class="el-nav__pill">
+          <a class="el-nav__item" href="#how-it-works">How It Works</a>
+          <a class="el-nav__item" href="#the-3-pillars">The 3 Pillars</a>
+          <a class="el-nav__item" href="#faq">FAQ</a>
+          <a class="el-nav__item" href="ai-search-grader.html">Free AI Grader</a>
+        </div>
+        <div class="el-nav__end">
+          <a class="el-btn el-btn--primary" href="ai-search-grader.html">View your AI Audit →</a>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
+  <main>
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="el-hero">
+        <div>
+          <h1 class="el-hero__title reveal">Get recommended when people ask AI.</h1>
+          <p class="el-hero__lead reveal">When your buyers use ChatGPT, Claude, or Perplexity instead of Google, we make sure your brand is the answer.</p>
+          <div class="el-hero__actions reveal">
+            <a class="el-btn el-btn--primary" href="ai-search-grader.html">View your AI Audit →</a>
+            <a class="el-btn el-btn--ghost" href="#how-it-works">See how it works</a>
+          </div>
+          <p class="caption reveal">Tested across real buyer questions on ChatGPT, Claude, and Perplexity.</p>
+        </div>
+
+        <!-- Data cluster: labelled examples, plus facts about the grader -->
+        <div class="cluster reveal">
+          <section class="el-data c1">
+            <div class="el-data__title">Weekly mention rate</div>
+            <svg class="el-chart" viewBox="0 0 200 70" width="100%" role="img" aria-label="Example: mention rate rising over eight weeks">
+              <line class="grid" x1="0" y1="35" x2="200" y2="35"/>
+              <polyline class="secondary" points="0,56 50,50 100,44 150,38 200,32"/>
+              <polyline class="primary" points="0,60 40,52 80,54 120,36 160,28 200,12"/>
+            </svg>
+            <div class="el-data__meta">Example</div>
+          </section>
+          <section class="el-data c2">
+            <div class="el-data__meta">Scored out of</div>
+            <div class="el-data__value">100</div>
+            <div class="el-data__delta">5 dimensions</div>
+          </section>
+          <section class="el-data c3">
+            <svg class="el-chart" viewBox="0 0 60 60" width="48" height="48" role="img" aria-label="Three of three engines checked">
+              <circle class="track" cx="30" cy="30" r="24" stroke-width="6"/>
+              <circle class="primary" cx="30" cy="30" r="24" stroke-dasharray="151 151" transform="rotate(-90 30 30)" style="stroke-width:6"/>
+            </svg>
+            <div>
+              <div class="el-data__meta">Engines checked</div>
+              <div class="card-title">ChatGPT, Claude, Perplexity</div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- 2. THE SHIFT IN SEARCH -->
-  <section class="section-pad" id="shift">
+  <section class="band band--ash" id="shift">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">
-          People are asking AI instead of searching Google. If the AI doesn't know you, you don't get picked.
-        </h2>
-        <p class="section-subtext">
-          Search has changed. Instead of clicking through links, buyers ask AI for direct recommendations. If ChatGPT or Perplexity doesn't know what you do, you lose the lead before they ever see your website.
-        </p>
+      <div class="section-intro reveal">
+        <h2 class="section-title">People are asking AI instead of searching Google. If the AI doesn't know you, you don't get picked.</h2>
+        <p class="copy">Search has changed. Instead of clicking through links, buyers ask AI for direct recommendations. If ChatGPT or Perplexity doesn't know what you do, you lose the lead before they ever see your website.</p>
       </div>
 
-      <div class="comparison-grid">
-        <!-- Old Google Search -->
-        <div class="flat-card reveal">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <h3 class="grotesk-h3">Old Google Search</h3>
+      <div class="grid-2">
+        <article class="el-data reveal">
+          <div class="card-stack">
+            <span class="el-tag el-tag--outline" style="align-self:flex-start">Legacy</span>
+            <h3 class="card-title">Old Google Search</h3>
             <ul class="card-list">
               <li><strong>14% click rate</strong>, buried under ads and spam</li>
               <li>Stuffed with keywords to game the algorithm</li>
               <li>Buyers skim three different blog posts and bounce</li>
               <li>Declining traffic every month</li>
             </ul>
+            <p class="caption push">Legacy link search</p>
           </div>
-          <div class="card-footer">
-            <span style="font-size: 13px; color: var(--color-slate-gray);">Legacy link search</span>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+        </article>
 
-        <!-- New AI Search -->
-        <div class="flat-card reveal" style="border-color: var(--color-ink-black);">
-          <div class="gradient-accent-bar"></div>
-          <div>
-            <h3 class="grotesk-h3">New AI Search (ChatGPT, Claude, Perplexity)</h3>
-            <ul class="card-list active">
+        <article class="el-data reveal">
+          <div class="card-stack">
+            <span class="el-tag el-tag--ink" style="align-self:flex-start">Now</span>
+            <h3 class="card-title">New AI Search (ChatGPT, Claude, Perplexity)</h3>
+            <ul class="card-list">
               <li><strong>Direct recommendation</strong> with links back to you</li>
               <li>Based on clean site data and verified sources</li>
               <li>Buyers get one clear answer and go straight to your product</li>
               <li>100% of the buyer's attention</li>
             </ul>
+            <div class="push"><a class="el-btn el-btn--primary" href="ai-search-grader.html">Get Recommended →</a></div>
           </div>
-          <div class="card-footer">
-            <a href="ai-search-grader.html" class="btn-violet" style="padding: 6px 16px; font-size: 13px;">
-              Get Recommended →
-            </a>
-            <span class="btn-expand">+</span>
-          </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
   <!-- 3. THE FRAMEWORK: STICKY SPLIT PROCESS -->
-  <section class="section-pad" id="how-it-works">
+  <section class="band" id="how-it-works">
     <div class="container">
       <div class="process-split">
         <aside class="process-aside reveal">
-          <h2 class="editorial-h2">How we get you recommended.</h2>
-          <p class="section-subtext">
-            A simple 3-step process to make sure AI models know who you are and recommend you first.
-          </p>
+          <h2 class="section-title">How we get you recommended.</h2>
+          <p class="copy">A simple 3-step process to make sure AI models know who you are and recommend you first.</p>
           <ol class="process-nav" aria-label="Process steps">
             <li class="active"><a href="#step-1"><span class="num">01</span>Map &amp; Audit</a></li>
             <li><a href="#step-2"><span class="num">02</span>Structure &amp; Feed</a></li>
             <li><a href="#step-3"><span class="num">03</span>Monitor &amp; Defend</a></li>
           </ol>
-          <a href="ai-search-grader.html" class="btn-violet">Start with a free grade →</a>
+          <a class="el-btn el-btn--primary" href="ai-search-grader.html">Start with a free grade →</a>
         </aside>
 
         <div class="process-steps">
           <!-- Step 1 -->
-          <article class="process-step active reveal" id="step-1">
+          <article class="el-feature el-feature--compact process-step active reveal" id="step-1">
             <div class="step-head">
               <span class="step-numeral">01</span>
               <h3 class="step-title">Map &amp; Audit</h3>
             </div>
-            <p class="step-body">
-              We test what ChatGPT, Claude, and Perplexity say when people ask for products like yours. We find out where you're missing, where competitors show up instead, and what the AI gets wrong about you.
-            </p>
+            <p class="step-body">We test what ChatGPT, Claude, and Perplexity say when people ask for products like yours. We find out where you're missing, where competitors show up instead, and what the AI gets wrong about you.</p>
             <div class="step-visual" aria-hidden="true">
               <div class="visual-caption">Example audit</div>
               <div class="audit-row head"><span>Buyer question</span><span>GPT</span><span>Claude</span><span>Pplx</span></div>
@@ -1413,14 +162,12 @@
           </article>
 
           <!-- Step 2 -->
-          <article class="process-step reveal" id="step-2">
+          <article class="el-feature el-feature--compact process-step reveal" id="step-2">
             <div class="step-head">
               <span class="step-numeral">02</span>
               <h3 class="step-title">Structure &amp; Feed</h3>
             </div>
-            <p class="step-body">
-              We clean up your site code so AI crawlers can easily read what you sell, what it costs, and why you're better. Then we make sure the sources AI checks for answers have the right information about you.
-            </p>
+            <p class="step-body">We clean up your site code so AI crawlers can easily read what you sell, what it costs, and why you're better. Then we make sure the sources AI checks for answers have the right information about you.</p>
             <div aria-hidden="true">
               <div class="visual-caption">Example structured data</div>
 <pre class="code-snip">{
@@ -1434,26 +181,19 @@
           </article>
 
           <!-- Step 3 -->
-          <article class="process-step reveal" id="step-3">
+          <article class="el-feature el-feature--compact process-step reveal" id="step-3">
             <div class="step-head">
               <span class="step-numeral">03</span>
               <h3 class="step-title">Monitor &amp; Defend</h3>
             </div>
-            <p class="step-body">
-              AI models update all the time. We track your mentions every week so you stay at the top and competitors don't take your spot.
-            </p>
+            <p class="step-body">AI models update all the time. We track your mentions every week so you stay at the top and competitors don't take your spot.</p>
             <div class="step-visual trend" aria-hidden="true">
               <div class="visual-caption">Weekly mention rate · example</div>
-              <svg viewBox="0 0 300 80" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#5f79ff" stop-opacity="0.28"/>
-                    <stop offset="1" stop-color="#5f79ff" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <polygon fill="url(#trendFill)" points="0,80 0,66 43,62 86,64 129,50 172,44 215,30 258,26 300,14 300,80"/>
-                <polyline fill="none" stroke="#5f79ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="0,66 43,62 86,64 129,50 172,44 215,30 258,26 300,14"/>
-                <circle cx="296" cy="14" r="4" fill="#01fe93" stroke="#000" stroke-width="1.5"/>
+              <svg class="el-chart" viewBox="0 0 300 80">
+                <line class="grid" x1="0" y1="27" x2="300" y2="27"/>
+                <line class="grid" x1="0" y1="54" x2="300" y2="54"/>
+                <polyline class="primary" stroke-linejoin="round" stroke-linecap="round" points="0,66 43,62 86,64 129,50 172,44 215,30 258,26 300,14"/>
+                <circle class="end" cx="296" cy="14" r="4"/>
               </svg>
               <div class="trend-axis"><span>W1</span><span>W4</span><span>W8</span></div>
             </div>
@@ -1464,43 +204,36 @@
     </div>
   </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
   <!-- 4. THE 3 PILLARS: BENTO GRID -->
-  <section class="section-pad" id="the-3-pillars">
+  <section class="band band--ash" id="the-3-pillars">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">Dashboards only show the problem. We actually fix it.</h2>
-        <p class="section-subtext">
-          Tools show you when your numbers drop. We do the work to get you recommended again.
-        </p>
+      <div class="section-intro reveal">
+        <h2 class="section-title">Dashboards only show the problem. We actually fix it.</h2>
+        <p class="copy">Tools show you when your numbers drop. We do the work to get you recommended again.</p>
       </div>
 
       <div class="bento">
-        <!-- Visibility: feature card -->
-        <article class="bento-card dark span-4 reveal">
+        <!-- Visibility: the one featured (ivory) block on the page -->
+        <article class="el-feature el-feature--ivory span-4 reveal">
           <div class="bento-split">
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-              <span class="pillar-goal-badge">Goal: 100% mention rate</span>
-              <h3 class="grotesk-h3">Visibility</h3>
+            <div>
+              <span class="el-tag el-tag--ink">Goal: 100% mention rate</span>
+              <h3 class="el-feature__title">Visibility</h3>
               <p class="bento-q">Are you in the room?</p>
               <p class="copy"><strong>The problem:</strong> If ChatGPT or Perplexity doesn't know you exist, you lose the lead before a Google search even happens.</p>
               <p class="copy"><strong>The work:</strong> We audit your brand's current mention rate across high-intent buyer prompts and rebuild your digital footprint until you consistently appear in the answers.</p>
             </div>
             <div class="mock-answer" aria-hidden="true">
               <div class="ask">Which tools should a 20-person agency use?</div>
-              <div class="reply">
-                Most agencies that size shortlist <span class="chip you">Your brand</span>, <span class="chip other">Competitor A</span> and <span class="chip other">Competitor B</span>. Your brand stands out for…
-              </div>
+              <div class="reply">Most agencies that size shortlist <span class="el-tag el-tag--ink chip">Your brand</span>, <span class="el-tag el-tag--outline chip">Competitor A</span> and <span class="el-tag el-tag--outline chip">Competitor B</span>. Your brand stands out for…</div>
             </div>
           </div>
         </article>
 
         <!-- Position -->
-        <article class="bento-card span-2 reveal">
-          <span class="pillar-goal-badge">Goal: top 2 placement</span>
-          <h3 class="grotesk-h3">Position</h3>
+        <article class="el-data span-2 reveal">
+          <span class="el-tag">Goal: top 2 placement</span>
+          <h3 class="card-title">Position</h3>
           <p class="bento-q">Are you the primary recommendation?</p>
           <p class="copy">Being listed fifth as a generic "alternative" doesn't drive revenue. We restructure your site's data so models put you first.</p>
           <ol class="rank-list bento-visual" aria-hidden="true">
@@ -1511,9 +244,9 @@
         </article>
 
         <!-- Sentiment -->
-        <article class="bento-card span-3 reveal">
-          <span class="pillar-goal-badge">Goal: zero hallucinations</span>
-          <h3 class="grotesk-h3">Sentiment</h3>
+        <article class="el-data span-3 reveal">
+          <span class="el-tag">Goal: zero hallucinations</span>
+          <h3 class="card-title">Sentiment</h3>
           <p class="bento-q">Does the AI actually sell you?</p>
           <p class="copy">A mention is useless if the AI gets your value proposition wrong. We feed AI the exact features, use cases, and advantages you want buyers to read.</p>
           <div class="fix-pair bento-visual" aria-hidden="true">
@@ -1523,60 +256,54 @@
         </article>
 
         <!-- Grader CTA -->
-        <article class="bento-card tint span-3 reveal">
-          <span class="pillar-goal-badge">Free</span>
-          <h3 class="grotesk-h3">Where do you stand today?</h3>
+        <article class="el-data span-3 reveal">
+          <span class="el-tag">Free</span>
+          <h3 class="card-title">Where do you stand today?</h3>
           <p class="copy">Run the free grader to see your visibility, position, and sentiment across ChatGPT, Claude, and Perplexity, scored out of 100.</p>
           <div class="bento-visual">
-            <a href="ai-search-grader.html" class="btn-violet">Grade my brand free →</a>
+            <a class="el-btn el-btn--primary" href="ai-search-grader.html">Grade my brand free →</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
   <!-- 5. FREE GRADER TEASER -->
-  <section class="section-pad" id="grader">
+  <section class="band" id="grader">
     <div class="container">
-      <div class="section-intro-block reveal">
-        <h2 class="editorial-h2">See where you stand before you spend a dollar.</h2>
-        <p class="section-subtext">Our free AI Search Grader asks ChatGPT, Claude, and Perplexity about your brand and scores what they say, out of 100.</p>
+      <div class="section-intro reveal">
+        <h2 class="section-title">See where you stand before you spend a dollar.</h2>
+        <p class="copy">Our free AI Search Grader asks ChatGPT, Claude, and Perplexity about your brand and scores what they say, out of 100.</p>
       </div>
 
-      <div class="numbers-grid">
-        <div class="number-card reveal">
-          <div class="stat-number">3</div>
+      <div class="grid-3">
+        <article class="el-feature el-feature--compact stat reveal">
+          <div class="el-data__value">3</div>
           <div class="stat-label">AI engines checked</div>
           <div class="stat-desc">ChatGPT, Claude, and Perplexity, asked the same buyer questions.</div>
-        </div>
-        <div class="number-card reveal">
-          <div class="stat-number">5</div>
+        </article>
+        <article class="el-feature el-feature--compact stat reveal">
+          <div class="el-data__value">5</div>
           <div class="stat-label">Things we score</div>
           <div class="stat-desc">Sentiment, presence, recognition, share of voice, and market position.</div>
-        </div>
-        <div class="number-card reveal">
-          <div class="stat-number">$0</div>
+        </article>
+        <article class="el-feature el-feature--compact stat reveal">
+          <div class="el-data__value">$0</div>
           <div class="stat-label">To find out</div>
           <div class="stat-desc">Free, one time, no account. Your report goes straight to your inbox.</div>
-        </div>
+        </article>
       </div>
 
-      <div class="hero-btn-row reveal" style="margin-top: 36px;">
-        <a href="ai-search-grader.html" class="btn-violet">Grade my brand free →</a>
+      <div class="btn-row btn-row--center reveal" style="margin-top: var(--spacing-40);">
+        <a class="el-btn el-btn--primary" href="ai-search-grader.html">Grade my brand free →</a>
       </div>
     </div>
   </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 7. SIMPLE FAQ -->
-  <section class="section-pad" id="faq">
+  <!-- 6. FAQ -->
+  <section class="band band--ash" id="faq">
     <div class="container">
-      <h2 class="editorial-h2 reveal" style="text-align: center;">Frequently asked questions.</h2>
+      <h2 class="section-title reveal" style="text-align: center;">Frequently asked questions.</h2>
 
       <div class="faq-accordion">
         <div class="faq-item reveal">
@@ -1585,9 +312,7 @@
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-content">
-            <div class="faq-content-inner">
-              Normal SEO helps you rank on Google so people can click your link. AEO makes sure that when someone asks ChatGPT, Claude, or Perplexity "what's the best tool for X?", the AI names your product directly.
-            </div>
+            <div class="faq-content-inner">Normal SEO helps you rank on Google so people can click your link. AEO makes sure that when someone asks ChatGPT, Claude, or Perplexity "what's the best tool for X?", the AI names your product directly.</div>
           </div>
         </div>
 
@@ -1597,9 +322,7 @@
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-content">
-            <div class="faq-content-inner">
-              Tools that search the live web (like Perplexity and SearchGPT) usually update within 1 to 2 weeks once they crawl your updated site. Other models update as they refresh their data, which our setup helps speed up.
-            </div>
+            <div class="faq-content-inner">Tools that search the live web (like Perplexity and SearchGPT) usually update within 1 to 2 weeks once they crawl your updated site. Other models update as they refresh their data, which our setup helps speed up.</div>
           </div>
         </div>
 
@@ -1609,84 +332,57 @@
             <span class="faq-arrow">+</span>
           </button>
           <div class="faq-content">
-            <div class="faq-content-inner">
-              Trackers only show you a chart of how often you get mentioned. They don't fix your code, update your data, or fix what the AI says about you. We do the hands-on work to improve your numbers.
-            </div>
+            <div class="faq-content-inner">Trackers only show you a chart of how often you get mentioned. They don't fix your code, update your data, or fix what the AI says about you. We do the hands-on work to improve your numbers.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 8. FINAL CALL TO ACTION -->
-  <section class="section-pad" id="audit">
+  <!-- 7. FINAL CALL TO ACTION -->
+  <section class="band" id="audit">
     <div class="container">
-      <div class="final-cta-mesh"></div>
-      <div class="cta-card reveal">
-        <h2 class="editorial-h2">Get recommended when people ask AI.</h2>
-        <p class="cta-sub">
-          See where your brand shows up in ChatGPT, Claude, and Perplexity—and where competitors are beating you.
-        </p>
-        <div class="hero-btn-row">
-          <a href="ai-search-grader.html" class="btn-violet">
-            View your AI Audit →
-          </a>
-          <a href="#how-it-works" class="btn-ghost">
-            See how it works
-          </a>
+      <div class="el-feature el-feature--compact cta-card reveal">
+        <h2 class="section-title">Get recommended when people ask AI.</h2>
+        <p class="el-feature__body">See where your brand shows up in ChatGPT, Claude, and Perplexity—and where competitors are beating you.</p>
+        <div class="btn-row btn-row--center">
+          <a class="el-btn el-btn--primary" href="ai-search-grader.html">View your AI Audit →</a>
+          <a class="el-btn el-btn--ghost" href="#how-it-works">See how it works</a>
         </div>
-        <div style="font-size: 13px; color: var(--color-slate-gray); margin-top: 14px;">
-          View how ChatGPT, Claude, and Perplexity see your site.
-        </div>
+        <p class="caption">View how ChatGPT, Claude, and Perplexity see your site.</p>
       </div>
     </div>
   </section>
+  </main>
 
-  <!-- SECTION DIVIDER STRIPE -->
-  <div class="section-divider-stripe"></div>
-
-  <!-- 9. FOOTER -->
-  <footer class="footer-section">
+  <!-- FOOTER -->
+  <footer class="site-footer band--ash">
     <div class="container">
       <div class="footer-flex">
-        <div style="font-weight: 500; font-size: 15px; color: var(--color-ink-black);">
-          AiM
-        </div>
-
-        <ul class="footer-links-row">
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#the-3-pillars">The 3 Pillars</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="ai-search-grader.html">AI Grader</a></li>
+        <a class="el-nav__brand" href="#">AiM</a>
+        <ul class="footer-links">
+          <li><a class="el-link--utility" href="#how-it-works">How It Works</a></li>
+          <li><a class="el-link--utility" href="#the-3-pillars">The 3 Pillars</a></li>
+          <li><a class="el-link--utility" href="#faq">FAQ</a></li>
+          <li><a class="el-link--utility" href="ai-search-grader.html">AI Grader</a></li>
         </ul>
-
-        <div style="font-size: 13px; color: var(--color-slate-gray);">
-          © 2026 AiM. All rights reserved.
-        </div>
+        <div class="small">© 2026 AiM. All rights reserved.</div>
       </div>
     </div>
   </footer>
 
-  <!-- Micro-interactions & Motion JavaScript -->
   <script>
-    // 1. Navigation Sticky Compression on Scroll
-    const navWrapper = document.getElementById('navbarWrapper');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 24) {
-        navWrapper.classList.add('scrolled');
-      } else {
-        navWrapper.classList.remove('scrolled');
-      }
-    }, { passive: true });
+    // 1. Header lifts off the page once you scroll
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
 
-    // 2. Butter-Smooth FAQ Accordion Toggle
+    // 2. FAQ accordion toggle (one open at a time)
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
       const isActive = item.classList.contains('active');
-      
+
       document.querySelectorAll('.faq-item').forEach(el => {
         el.classList.remove('active');
         const trigger = el.querySelector('.faq-trigger');
@@ -1699,7 +395,7 @@
       }
     }
 
-    // 3. Scroll Reveal via IntersectionObserver
+    // 3. Scroll reveal via IntersectionObserver
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -40px 0px'
@@ -1716,6 +412,7 @@
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
+
     // 4. Process tracker: highlight the step currently in view
     const steps = document.querySelectorAll('.process-step');
     const navItems = document.querySelectorAll('.process-nav li');
