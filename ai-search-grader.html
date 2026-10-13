@@ -318,7 +318,13 @@
   </footer>
 
   <script>
-    // 1. Tooltips: tap to toggle on touch, Escape or outside tap to close
+    // 1. Header lifts off the page once you scroll
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
+
+    // 2. Tooltips: tap to toggle on touch, Escape or outside tap to close
     document.querySelectorAll('.tip-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -335,7 +341,7 @@
       if (e.key === 'Escape') document.querySelectorAll('.tip.open').forEach(t => t.classList.remove('open'));
     });
 
-    // 2. Grader form: validate, then submit to the grading API
+    // 3. Grader form: validate, then submit to the grading API
     const form = document.getElementById('graderForm');
     const card = document.getElementById('grader');
     const submitBtn = document.getElementById('graderSubmit');
@@ -408,7 +414,7 @@
       });
     });
 
-    // 3. Scroll reveal
+    // 4. Scroll reveal
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

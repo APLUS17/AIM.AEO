@@ -1,6 +1,17 @@
 /* AiM site layout — built on the Ember Ledger design system.
    Load after design-system/tokens.css and design-system/components/bundle.css.
-   Layout only: every colour, size and radius comes from a token. No shadows, gradients or divider lines. */
+   Layout only: colours, sizes and radii come from tokens. No gradients or divider lines.
+
+   DEPTH (a site-level extension; Ember Ledger itself is flat, shadow-none).
+   Three soft, graphite-tinted layers and nothing else. To return to the flat system, set all three to `none`.
+     --lift-1  a card resting one layer above its band
+     --lift-2  something floating over cards: hero cluster, form, sticky header, tooltips
+     --sink    a recessed well or field                                                              */
+:root {
+  --lift-1: 0 1px 2px rgb(32 32 32 / 0.05), 0 6px 16px -8px rgb(32 32 32 / 0.14);
+  --lift-2: 0 1px 2px rgb(32 32 32 / 0.06), 0 16px 32px -12px rgb(32 32 32 / 0.24);
+  --sink: inset 0 1px 3px rgb(32 32 32 / 0.12);
+}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,7 +31,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 @media (max-width: 480px) { .container { padding: 0 var(--spacing-16); } }
 
 /* ---- Header ---- */
-.site-header { position: sticky; top: 0; z-index: 100; background: var(--color-canvas-white); padding: var(--spacing-16) 0; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--color-canvas-white); padding: var(--spacing-16) 0; transition: box-shadow .2s ease; }
+.site-header.is-stuck { box-shadow: var(--lift-2); }
 @media (max-width: 900px) { .site-header .el-nav__pill { display: none; } }
 
 /* ---- Bands: sections alternate white and ash, separated by whitespace only ---- */
@@ -43,6 +55,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .btn-block { width: 100%; justify-content: center; padding: 14px var(--spacing-20); }
 
 /* ---- Cards ---- */
+/* Depth: cards rise one layer above their band; wells sink into the card they sit on */
+.el-data, .el-feature, .score-bar-wrap, .faq-item, .step-visual, .code-snip, .mock-answer { box-shadow: var(--lift-1); }
 .el-feature--compact { padding: var(--card-padding); }
 .el-feature--compact .el-feature__title { margin-bottom: var(--spacing-12); }
 @media (max-width: 720px) { .el-feature { padding: var(--spacing-40) var(--spacing-20); } }
@@ -71,16 +85,16 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hero .el-tag { margin-bottom: var(--spacing-20); }
 .hero .caption { margin-top: var(--spacing-20); }
 
-.cluster { position: relative; height: 340px; background: var(--color-ash); border-radius: var(--radius-2xl); }
-.cluster .el-data { position: absolute; padding: 24px; }
-.cluster .c1 { left: 32px; top: 32px; width: 250px; }
-.cluster .c2 { right: 32px; top: 120px; width: 170px; }
-.cluster .c3 { left: 96px; bottom: 28px; width: 232px; padding: 20px 24px; display: flex; align-items: center; gap: var(--spacing-16); }
+.cluster { position: relative; height: 340px; background: var(--color-ash); border-radius: var(--radius-2xl); box-shadow: var(--sink); }
+.cluster .el-data { position: absolute; padding: 24px; box-shadow: var(--lift-2); }
+.cluster .c1 { left: 28px; top: 28px; width: 290px; z-index: 1; }
+.cluster .c2 { right: 28px; top: 80px; width: 230px; z-index: 2; }
+.cluster .c3 { left: 112px; bottom: 52px; width: 250px; padding: 20px 24px; display: flex; align-items: center; gap: var(--spacing-16); z-index: 3; }
 .cluster .el-data__title { margin-bottom: var(--spacing-12); }
 .cluster svg { display: block; }
 @media (max-width: 720px) {
   .cluster { height: auto; display: flex; flex-direction: column; gap: var(--spacing-12); padding: var(--spacing-20); }
-  .cluster .el-data, .cluster .c1, .cluster .c2, .cluster .c3 { position: static; width: auto; }
+  .cluster .el-data, .cluster .c1, .cluster .c2, .cluster .c3 { position: static; width: auto; animation: none; }
 }
 
 /* ---- Process (sticky split) ---- */
@@ -152,13 +166,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .el-tag.chip { padding: 2px 10px; font-size: 11px; }
 
 .rank-list { display: flex; flex-direction: column; gap: 8px; }
-.rank-list li { display: flex; align-items: center; gap: var(--spacing-12); font-size: 14px; padding: 10px var(--spacing-12); border-radius: var(--radius-lg); background: var(--color-fog); color: var(--color-steel); border: 1px solid var(--color-fog); }
+.rank-list li { box-shadow: var(--sink); display: flex; align-items: center; gap: var(--spacing-12); font-size: 14px; padding: 10px var(--spacing-12); border-radius: var(--radius-lg); background: var(--color-fog); color: var(--color-steel); border: 1px solid var(--color-fog); }
 .rank-list li.you { background: var(--color-canvas-white); color: var(--color-graphite); border-color: var(--color-graphite); }
 .rank-list .pos { font-family: var(--font-polysans); font-size: 12px; width: 18px; }
 
 .fix-pair { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
 .fix-pair div { padding: 10px 14px; border-radius: var(--radius-lg); line-height: 1.45; }
-.fix-pair .before { background: var(--color-fog); color: var(--color-steel); }
+.fix-pair .before { box-shadow: var(--sink); background: var(--color-fog); color: var(--color-steel); }
 .fix-pair .before s { text-decoration-color: var(--color-ember-orange); text-decoration-thickness: 2px; }
 .fix-pair .after { background: var(--color-canvas-white); border: 1px solid var(--color-graphite); color: var(--color-graphite); }
 .fix-pair .tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-right: 8px; }
@@ -174,6 +188,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .faq-trigger { width: 100%; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-16); text-align: left; font-family: var(--font-polysans); font-size: 18px; line-height: 1.25; letter-spacing: -0.02em; }
 .faq-trigger:hover { background: var(--color-fog); }
 .faq-arrow { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--color-graphite); display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 1; flex-shrink: 0; transition: transform .2s ease, border-color .2s ease; }
+.faq-item.active { box-shadow: var(--lift-2); }
+.faq-item { transition: box-shadow .2s ease; }
 .faq-item.active .faq-arrow { transform: rotate(45deg); border-color: var(--color-ember-orange); }
 .faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; padding: 0 28px; color: var(--color-steel); font-size: 15px; line-height: 1.5; }
 .faq-item.active .faq-content { grid-template-rows: 1fr; padding-bottom: 24px; }
@@ -198,13 +214,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hero-checklist li { display: flex; align-items: center; gap: 10px; }
 .check-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--color-graphite); color: var(--color-canvas-white); font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
+.grader-card { box-shadow: var(--lift-2); }
 .grader-title { font-family: var(--font-polysans); font-size: 24px; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 6px; }
 .grader-hint { font-size: 14px; color: var(--color-steel); margin-bottom: var(--spacing-20); }
 .field { margin-bottom: 18px; }
 .field-label-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .field-label { font-size: 15px; line-height: 1.33; font-weight: 500; }
 .req { color: var(--color-brass); }
-.field-input { width: 100%; font-family: inherit; font-size: 16px; color: var(--color-graphite); background: var(--color-canvas-white); border: 1px solid var(--color-slate); border-radius: var(--radius-sm); padding: 13px var(--spacing-16); transition: border-color .15s ease; }
+.field-input { box-shadow: var(--sink); width: 100%; font-family: inherit; font-size: 16px; color: var(--color-graphite); background: var(--color-canvas-white); border: 1px solid var(--color-slate); border-radius: var(--radius-sm); padding: 13px var(--spacing-16); transition: border-color .15s ease; }
 .field-input::placeholder { color: var(--color-slate); }
 .field-input:hover, .field-input:focus { border-color: var(--color-graphite); }
 .field.has-error .field-input { border: 2px solid var(--color-ember-orange); padding: 12px 15px; }
@@ -217,7 +234,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .tip { position: relative; display: inline-flex; }
 .tip-btn { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--color-graphite); font-family: var(--font-polysans); font-size: 12px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; color: var(--color-graphite); }
 .tip-btn:hover, .tip.open .tip-btn { background: var(--color-graphite); color: var(--color-canvas-white); }
-.tip-panel { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: min(260px, 70vw); background: var(--color-graphite); color: var(--color-canvas-white); font-size: 13px; line-height: 1.45; padding: 10px var(--spacing-12); border-radius: var(--radius-sm); opacity: 0; visibility: hidden; transition: opacity .15s ease, transform .15s ease, visibility .15s; z-index: 5; pointer-events: none; }
+.tip-panel { box-shadow: var(--lift-2); position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); width: min(260px, 70vw); background: var(--color-graphite); color: var(--color-canvas-white); font-size: 13px; line-height: 1.45; padding: 10px var(--spacing-12); border-radius: var(--radius-sm); opacity: 0; visibility: hidden; transition: opacity .15s ease, transform .15s ease, visibility .15s; z-index: 5; pointer-events: none; }
 .tip:hover .tip-panel, .tip.open .tip-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 @media (max-width: 480px) {
   .tip-panel { left: auto; right: -40px; transform: translateY(4px); }
@@ -264,6 +281,17 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .dim-desc { color: var(--color-steel); }
 .dim-note { margin-top: var(--spacing-16); font-size: 14px; color: var(--color-steel); line-height: 1.5; }
 .step-number { font-family: var(--font-polysans); font-size: 40px; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: var(--spacing-12); }
+
+/* ---- Depth: the hero cluster's cards drift at different speeds as the page scrolls ---- */
+@keyframes drift { from { translate: 0 var(--drift); } to { translate: 0 calc(var(--drift) * -1); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cluster .el-data { animation: drift linear both; animation-timeline: view(); }
+    .cluster .c1 { --drift: 8px; }
+    .cluster .c2 { --drift: 18px; }
+    .cluster .c3 { --drift: 28px; }
+  }
+}
 
 /* ---- Scroll reveal ---- */
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity .4s ease, transform .4s ease; }

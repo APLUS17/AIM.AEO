@@ -19,6 +19,11 @@ reference tokens, never raw hex values.
 
 ## Deviations on this site
 
+- **Depth layer.** Ember Ledger is flat (`shadow-none`, "depth comes from surface contrast"), but its surfaces are close in
+  tone, so pages read 2D. `site.css` adds three soft, graphite-tinted layers as a site-level extension: `--lift-1` (cards one
+  layer above their band), `--lift-2` (hero cluster, form, sticky header, tooltips, open FAQ) and `--sink` (inputs and wells).
+  The hero cluster also overlaps and drifts slightly on scroll. To go back to the flat system, set the three variables in
+  `site.css` to `none`. If you want to keep it, add them to the Claude Design project as tokens so the system and the site agree.
 - **Code snippets** use the system monospace stack. The system ships no mono face and code needs one.
 - **PolySans** is not licensed here. Headings use the `Inter Tight` fallback the system specifies.
 - **Pale panels on white and ash bands** follow the README rule (ash cards on white, white cards on ash).

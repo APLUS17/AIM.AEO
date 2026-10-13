@@ -372,7 +372,13 @@
   </footer>
 
   <script>
-    // 1. FAQ accordion toggle (one open at a time)
+    // 1. Header lifts off the page once you scroll
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
+
+    // 2. FAQ accordion toggle (one open at a time)
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
       const isActive = item.classList.contains('active');
@@ -389,7 +395,7 @@
       }
     }
 
-    // 2. Scroll reveal via IntersectionObserver
+    // 3. Scroll reveal via IntersectionObserver
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -40px 0px'
@@ -407,7 +413,7 @@
       revealObserver.observe(el);
     });
 
-    // 3. Process tracker: highlight the step currently in view
+    // 4. Process tracker: highlight the step currently in view
     const steps = document.querySelectorAll('.process-step');
     const navItems = document.querySelectorAll('.process-nav li');
     const stepObserver = new IntersectionObserver(entries => {
