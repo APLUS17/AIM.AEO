@@ -74,38 +74,14 @@
 
             <div class="field">
               <div class="field-label-row">
-                <label class="field-label" for="location">Location <span class="req">*</span></label>
+                <label class="field-label" for="url">Website URL <span class="req">*</span></label>
                 <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About location" aria-describedby="tip-location">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-location">The main country or region you sell in. AI answers change by market, so we ask the way a local buyer would.</span>
+                  <button type="button" class="tip-btn" aria-label="About website URL" aria-describedby="tip-url">i</button>
+                  <span class="tip-panel" role="tooltip" id="tip-url">Your homepage. We read it to work out what you sell and who you compete with, so you don't have to tell us.</span>
                 </span>
               </div>
-              <input class="field-input" id="location" name="location" type="text" placeholder="United States" autocomplete="country-name" required/>
-              <div class="field-error">Add a location.</div>
-            </div>
-
-            <div class="field">
-              <div class="field-label-row">
-                <label class="field-label" for="product">Product or service <span class="req">*</span></label>
-                <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About product or service" aria-describedby="tip-product">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-product">What you sell, in the words a buyer would type. "Project management software" beats a product name.</span>
-                </span>
-              </div>
-              <input class="field-input" id="product" name="product" type="text" placeholder="Project management software" required/>
-              <div class="field-error">Add what you sell.</div>
-            </div>
-
-            <div class="field">
-              <div class="field-label-row">
-                <label class="field-label" for="industry">Industry <span class="req">*</span></label>
-                <span class="tip">
-                  <button type="button" class="tip-btn" aria-label="About industry" aria-describedby="tip-industry">i</button>
-                  <span class="tip-panel" role="tooltip" id="tip-industry">The category you compete in. We use it to pick which competitors you're scored against.</span>
-                </span>
-              </div>
-              <input class="field-input" id="industry" name="industry" type="text" placeholder="Technology" required/>
-              <div class="field-error">Add your industry.</div>
+              <input class="field-input" id="url" name="url" type="text" inputmode="url" placeholder="acme.com" autocomplete="url" required/>
+              <div class="field-error">Add your website address.</div>
             </div>
 
             <div class="field">
@@ -122,8 +98,8 @@
 
             <!-- Honeypot: hidden from people, bots fill it in -->
             <div class="hp-field" aria-hidden="true">
-              <label for="website">Website</label>
-              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+              <label for="fax">Fax</label>
+              <input id="fax" name="fax" type="text" tabindex="-1" autocomplete="off"/>
             </div>
 
             <div class="grader-submit">
@@ -286,7 +262,7 @@
         <article class="el-data reveal">
           <div class="step-number">01</div>
           <h3 class="card-title">Tell us the brand</h3>
-          <p class="copy" style="margin-top: var(--spacing-12);">Enter the company name, location, industry, and what it sells. Grade your own brand or size up a competitor.</p>
+          <p class="copy" style="margin-top: var(--spacing-12);">Enter the company name, its website, and your email. We read the site to work out what it sells. Grade your own brand or size up a competitor.</p>
         </article>
 
         <article class="el-data reveal">

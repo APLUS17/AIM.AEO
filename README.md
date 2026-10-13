@@ -20,7 +20,7 @@ The grader report email (`lib/email.js`) inlines the same palette because email 
 
 ## How the grader works
 
-1. The form posts company, location, product, industry and email to `/api/grade`.
+1. The form posts company, website URL and email to `/api/grade`. The grader reads the site (SSRF-guarded, `lib/safe-fetch.js`) and has Claude work out what the company sells, its industry and market (`lib/profile.js`).
 2. The API answers `202` right away and keeps working in the background.
 3. Five buyer questions go to ChatGPT, Claude and Perplexity (2 unbranded, 3 that name the brand).
 4. Claude grades every answer against a fixed rubric (mentioned? rank, tone, depth, sources, competitors).
