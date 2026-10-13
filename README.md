@@ -5,6 +5,19 @@
 - `api/grade.js`: grading endpoint (Vercel serverless function)
 - `lib/`: grading pipeline (prompts → engines → judge → scoring → email)
 
+## Design system: Ember Ledger
+
+The site is built on the Ember Ledger design system, pulled from Claude Design (see
+`design-system/SOURCE.md` for the project and what was copied).
+
+- `design-system/tokens.json` → `npm run tokens` → `design-system/tokens.css` (custom properties + `.ts-*` type classes)
+- `design-system/components/bundle.css`: the `el-*` component classes (buttons, nav pill, tags, feature and data cards, hero)
+- `site.css`: page layout only, token values only. No raw hex, shadows, gradients or divider lines
+- `design-system/README.md` has the rules: ember is an accent never a fill, buttons are square, sections alternate white and ash bands
+
+To update the design: re-pull the files from the Claude Design project, run `npm run tokens`, and re-check both pages.
+The grader report email (`lib/email.js`) inlines the same palette because email clients can't read CSS variables.
+
 ## How the grader works
 
 1. The form posts company, location, product, industry and email to `/api/grade`.
