@@ -27,7 +27,8 @@ http
     const url = new URL(req.url, `http://${req.headers.host}`);
     if (url.pathname === '/api/grade') return handler(req, res);
 
-    const rel = url.pathname === '/' ? 'index.html' : decodeURIComponent(url.pathname).replace(/^\/+/, '');
+    const pathname = url.pathname.endsWith('/') ? `${url.pathname}index.html` : url.pathname;
+    const rel = decodeURIComponent(pathname).replace(/^\/+/, '');
     const file = path.resolve(root, rel);
     const allowed = file.startsWith(root + path.sep) && /\.(html|js|css|png|svg)$/.test(file) && !file.includes(`${path.sep}lib${path.sep}`);
     if (!allowed || !existsSync(file)) {

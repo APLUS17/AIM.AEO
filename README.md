@@ -2,8 +2,30 @@
 
 - `index.html`: main landing page
 - `ai-search-grader.html`: free AI Search Grader page
+- `blog/`: generated blog pages (see Blog below; don't edit by hand)
+- `content/blog/`: blog posts as Markdown
 - `api/grade.js`: grading endpoint (Vercel serverless function)
 - `lib/`: grading pipeline (prompts → engines → judge → scoring → email)
+
+## Blog
+
+Posts are Markdown files in `content/blog/`, named `YYYY-MM-DD-your-slug.md`:
+
+```
+---
+title: Can AI crawlers read your site?
+description: One or two sentences. Shown under the title and on the post card.
+date: 2026-10-15
+category: Guides            # optional, default "AEO"
+tags: AEO, crawlers         # optional
+---
+Body in Markdown: ## and ### headings, lists, > quotes, tables, code blocks, links.
+```
+
+- `npm run blog` builds `content/blog/` into `blog/index.html` and `blog/<slug>.html`. Commit the output.
+- A post goes live when its `date` arrives: the build skips anything dated in the future, so a future date schedules it. Rebuild and commit each day (or after each edit) to publish it.
+- Preview another day with `BLOG_TODAY=2026-10-16 npm run blog`. `npm run dev` serves it at `/blog/`.
+- Set `SITE_URL` when building to add canonical URLs to the pages. Every post carries `Article` schema.
 
 ## Design system: Ember Ledger
 
