@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Can AI crawlers read your site? A 15-minute check | AiM</title>
+  <meta name="description" content="Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools."/>
+  
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="AiM"/>
+  <meta property="og:title" content="Can AI crawlers read your site? A 15-minute check | AiM"/>
+  <meta property="og:description" content="Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools."/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27%23202020%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%23ff682c%27/%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/design-system/tokens.css"/>
+  <link rel="stylesheet" href="/design-system/components/bundle.css"/>
+  <link rel="stylesheet" href="/site.css"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Can AI crawlers read your site? A 15-minute check","description":"Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools.","datePublished":"2026-10-08","author":{"@type":"Organization","name":"AiM"},"publisher":{"@type":"Organization","name":"AiM"},"keywords":"AEO, AI crawlers, robots.txt, technical"}</script>
+</head>
+<body class="el-root">
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="el-nav" aria-label="Main navigation">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <div class="el-nav__pill">
+          <a class="el-nav__item" href="/#how-it-works">How It Works</a>
+          <a class="el-nav__item" href="/#the-3-pillars">The 3 Pillars</a>
+          <a class="el-nav__item" href="/blog/" aria-current="page">Blog</a>
+          <a class="el-nav__item" href="/ai-search-grader.html">Free AI Grader</a>
+        </div>
+        <div class="el-nav__end">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <article class="band post">
+    <div class="container">
+      <div class="post-wrap">
+        <a class="el-link--utility" href="/blog/">← All posts</a>
+        <div class="overline post-meta">Guides · Oct 8, 2026 · 3 min read</div>
+        <h1 class="post-title">Can AI crawlers read your site? A 15-minute check</h1>
+        <p class="post-deck">Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools.</p>
+        <div class="post-body">
+<p>Most AEO advice starts with content. Start one step earlier. If an AI system can't fetch your pages, nothing you write on them will ever show up in an answer.</p>
+<p>This check takes about 15 minutes and needs a browser and a terminal. You are looking for three problems: bots that are blocked, bots that are challenged, and pages that arrive empty.</p>
+<h2 id="know-who-is-knocking">Know who is knocking</h2>
+<p>AI companies run more than one crawler, and each has a different job. These are the names the companies publish. Confirm them against each company's documentation before you write rules, because they change.</p>
+<div class="post-table"><table><thead><tr><th scope="col">Company</th><th scope="col">Bot</th><th scope="col">What it does</th></tr></thead><tbody><tr><td>OpenAI</td><td><code>GPTBot</code></td><td>Collects content that may be used to train models</td></tr><tr><td>OpenAI</td><td><code>OAI-SearchBot</code></td><td>Builds the index behind ChatGPT search results</td></tr><tr><td>OpenAI</td><td><code>ChatGPT-User</code></td><td>Fetches a page when a person asks ChatGPT to look at it</td></tr><tr><td>Anthropic</td><td><code>ClaudeBot</code></td><td>Collects content that may be used for training</td></tr><tr><td>Anthropic</td><td><code>Claude-SearchBot</code></td><td>Indexes pages for Claude's search results</td></tr><tr><td>Anthropic</td><td><code>Claude-User</code></td><td>Fetches a page when a person asks Claude to</td></tr><tr><td>Perplexity</td><td><code>PerplexityBot</code></td><td>Builds Perplexity's search index</td></tr><tr><td>Perplexity</td><td><code>Perplexity-User</code></td><td>Fetches a page when a person asks Perplexity to</td></tr><tr><td>Google</td><td><code>Google-Extended</code></td><td>A robots.txt control for whether Google's Gemini models use your content. It does not affect Search</td></tr></tbody></table></div>
+<p>The split matters. Search and user bots decide whether you can be cited in an answer. Training bots are a separate decision about your content being used to build models. You can say yes to one and no to the other.</p>
+<h2 id="the-five-checks">The five checks</h2>
+<h3 id="1-read-your-robots-txt">1. Read your robots.txt</h3>
+<p>Open yoursite.com/robots.txt. Look for <code>User-agent: *</code> followed by <code>Disallow: /</code>, and for a Disallow under any bot in the table. A blanket block, often left over from a staging site, is the most common cause.</p>
+<h3 id="2-allow-the-search-and-user-bots-on-purpose">2. Allow the search and user bots on purpose</h3>
+<p>A minimal version:</p>
+<pre><code>User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /</code></pre>
+<p>Whether to also allow the training bots is a business decision. Make it deliberately, not by default.</p>
+<h3 id="3-check-your-firewall-and-cdn">3. Check your firewall and CDN</h3>
+<p>Bot protection can serve a challenge page or a 403 to crawlers even when robots.txt says yes. Look in your CDN or firewall dashboard for blocked or challenged requests from these user agents. A quick spot check from a terminal:</p>
+<pre><code>curl -sI -A &quot;PerplexityBot&quot; https://yoursite.com/</code></pre>
+<p>You want a <code>200</code>. Treat this as a hint, not proof. Some firewalls verify bots by IP address, so a request from your laptop can behave differently from the real crawler.</p>
+<h3 id="4-look-at-the-raw-html">4. Look at the raw HTML</h3>
+<p>Some AI crawlers don't run JavaScript the way a browser does. If your pricing or product text is built in the browser, they may see an empty shell. Check:</p>
+<pre><code>curl -s https://yoursite.com/pricing | grep -i &quot;per month&quot;</code></pre>
+<p>Swap in a phrase that appears on the page. No match means the text isn't in the raw HTML. Server-rendering or pre-rendering the page fixes it.</p>
+<h3 id="5-check-status-codes-redirects-and-noindex">5. Check status codes, redirects and noindex</h3>
+<p>Your key pages should return a <code>200</code>, should not chain through several redirects, and should not carry a <code>noindex</code> tag. Open the page source and search for &quot;noindex&quot;.</p>
+<h2 id="what-good-looks-like">What good looks like</h2>
+<blockquote><p>If a bot can't fetch the page, the page doesn't exist as far as the answer is concerned.</p></blockquote>
+<p>When you finish, you should be able to say three things. The search bots are allowed. The firewall lets them through. The facts you care about sit in the raw HTML. Fix those first. Content and structured data come next, and the rest of this series covers them.</p>
+<p>Want to see what ChatGPT, Claude, and Perplexity say about your brand right now? Run the <a class="el-link" href="/ai-search-grader.html">free AI Search Grader</a>.</p>
+        </div>
+        <ul class="post-tags" aria-label="Tags"><li><span class="el-tag el-tag--outline">AEO</span></li><li><span class="el-tag el-tag--outline">AI crawlers</span></li><li><span class="el-tag el-tag--outline">robots.txt</span></li><li><span class="el-tag el-tag--outline">technical</span></li></ul>
+      </div>
+    </div>
+  </article>
+
+  <section class="band band--ash">
+    <div class="container">
+      <div class="el-feature el-feature--compact cta-card">
+        <h2 class="section-title">See what AI says about your brand.</h2>
+        <p class="el-feature__body">The free grader asks ChatGPT, Claude, and Perplexity about you and scores their answers out of 100.</p>
+        <div class="btn-row btn-row--center">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand free →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title post-related__title">Keep reading.</h2>
+      <div class="grid-3">
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/write-pages-ai-can-quote.html">
+            <div class="overline">Guides · Oct 14, 2026 · 2 min read</div>
+            <h2 class="card-title">Write pages AI can quote: a five-point checklist</h2>
+            <p class="copy">AI answers are built from passages. Here is how to write a page so an engine finds a clear, accurate sentence to quote.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/what-to-do-when-ai-gets-your-brand-wrong.html">
+            <div class="overline">Guides · Oct 13, 2026 · 2 min read</div>
+            <h2 class="card-title">What to do when AI gets your brand wrong</h2>
+            <p class="copy">Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/five-questions-to-test-your-brand-in-ai.html">
+            <div class="overline">Guides · Oct 12, 2026 · 2 min read</div>
+            <h2 class="card-title">Five questions to test your brand in ChatGPT, Claude, and Perplexity</h2>
+            <p class="copy">A first read you can run in 30 minutes with no tools. Five buyer questions, three AI engines, and a simple way to score what comes back.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer band--ash">
+    <div class="container">
+      <div class="footer-flex">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <ul class="footer-links">
+          <li><a class="el-link--utility" href="/#how-it-works">How It Works</a></li>
+          <li><a class="el-link--utility" href="/#the-3-pillars">The 3 Pillars</a></li>
+          <li><a class="el-link--utility" href="/blog/">Blog</a></li>
+          <li><a class="el-link--utility" href="/ai-search-grader.html">AI Grader</a></li>
+        </ul>
+        <div class="small">© 2026 AiM. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
+  </script>
+</body>
+</html>

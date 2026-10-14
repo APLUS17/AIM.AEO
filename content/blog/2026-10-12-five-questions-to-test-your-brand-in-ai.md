@@ -1,7 +1,7 @@
 ---
 title: Five questions to test your brand in ChatGPT, Claude, and Perplexity
 description: A first read you can run in 30 minutes with no tools. Five buyer questions, three AI engines, and a simple way to score what comes back.
-date: 2026-10-19
+date: 2026-10-12
 category: Guides
 tags: AEO, brand visibility, ChatGPT, Perplexity, Claude
 ---

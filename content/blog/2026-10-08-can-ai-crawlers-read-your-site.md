@@ -1,7 +1,7 @@
 ---
 title: Can AI crawlers read your site? A 15-minute check
 description: Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools.
-date: 2026-10-15
+date: 2026-10-08
 category: Guides
 tags: AEO, AI crawlers, robots.txt, technical
 ---

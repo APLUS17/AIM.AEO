@@ -1,7 +1,7 @@
 ---
 title: "AEO vs SEO: what changes and what stays the same"
 description: AEO doesn't replace SEO. It changes what you are competing for. Here is the side-by-side, and what to keep doing.
-date: 2026-10-16
+date: 2026-10-09
 category: Explainers
 tags: AEO, SEO, answer engine optimization, ChatGPT
 ---

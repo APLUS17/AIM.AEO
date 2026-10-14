@@ -1,7 +1,7 @@
 ---
 title: What to do when AI gets your brand wrong
 description: Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there.
-date: 2026-10-20
+date: 2026-10-13
 category: Guides
 tags: AEO, brand accuracy, structured data, schema
 ---
