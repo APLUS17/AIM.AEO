@@ -1,0 +1,56 @@
+name: Publish blog
+
+# Builds content/blog/ into blog/ and commits the result to main. Vercel then deploys the push.
+# A post goes live on the first run on or after its `date:` (UTC).
+on:
+  schedule:
+    # Weekdays at 13:00 UTC (9am US Eastern in summer, 8am in winter). GitHub can start scheduled runs a few minutes late.
+    - cron: '0 13 * * 1-5'
+  push:
+    branches: [main]
+    paths:
+      - 'content/blog/**'
+      - 'lib/blog.js'
+      - 'scripts/build-blog.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Scheduled runs always use the default branch. This stops a manual run from another branch pushing to it.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test the blog engine
+        run: node --test test/blog.test.js
+
+      - name: Build the blog
+        env:
+          # Optional: set a repository variable named SITE_URL (Settings > Secrets and variables > Actions > Variables)
+          # to add canonical URLs to every page.
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: node scripts/build-blog.mjs
+
+      - name: Commit and push changes
+        run: |
+          git add blog
+          if git diff --cached --quiet; then
+            echo "Nothing new to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(blog): publish scheduled posts"
+          git push || { git pull --rebase origin main && git push; }

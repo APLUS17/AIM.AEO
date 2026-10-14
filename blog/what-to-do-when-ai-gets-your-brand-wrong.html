@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>What to do when AI gets your brand wrong | AiM</title>
+  <meta name="description" content="Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there."/>
+  
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="AiM"/>
+  <meta property="og:title" content="What to do when AI gets your brand wrong | AiM"/>
+  <meta property="og:description" content="Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there."/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27%23202020%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%23ff682c%27/%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/design-system/tokens.css"/>
+  <link rel="stylesheet" href="/design-system/components/bundle.css"/>
+  <link rel="stylesheet" href="/site.css"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What to do when AI gets your brand wrong","description":"Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there.","datePublished":"2026-10-13","author":{"@type":"Organization","name":"AiM"},"publisher":{"@type":"Organization","name":"AiM"},"keywords":"AEO, brand accuracy, structured data, schema"}</script>
+</head>
+<body class="el-root">
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="el-nav" aria-label="Main navigation">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <div class="el-nav__pill">
+          <a class="el-nav__item" href="/#how-it-works">How It Works</a>
+          <a class="el-nav__item" href="/#the-3-pillars">The 3 Pillars</a>
+          <a class="el-nav__item" href="/blog/" aria-current="page">Blog</a>
+          <a class="el-nav__item" href="/ai-search-grader.html">Free AI Grader</a>
+        </div>
+        <div class="el-nav__end">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <article class="band post">
+    <div class="container">
+      <div class="post-wrap">
+        <a class="el-link--utility" href="/blog/">← All posts</a>
+        <div class="overline post-meta">Guides · Oct 13, 2026 · 2 min read</div>
+        <h1 class="post-title">What to do when AI gets your brand wrong</h1>
+        <p class="post-deck">Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there.</p>
+        <div class="post-body">
+<p>You ask ChatGPT about your product and it quotes last year's pricing. Or it describes a feature you retired, or recommends a competitor for a job you do better.</p>
+<p>Wrong answers often trace back to a source: an old page, a stale listing, a conflicting number in two places. That is good news, because a source can be fixed. Here is the order we work in.</p>
+<h2 id="six-steps">Six steps</h2>
+<h3 id="1-write-down-the-exact-error">1. Write down the exact error</h3>
+<p>Record the question, the engine, the date, and the sentence that is wrong. Without this you can't tell later whether your fix worked.</p>
+<h3 id="2-find-where-it-could-come-from">2. Find where it could come from</h3>
+<p>Some engines show their sources. Perplexity lists citations, and ChatGPT shows links when it searches the web. You can also ask the engine where it got a claim. Then check the usual suspects:</p>
+<ul><li>Your own old pricing, feature and about pages</li><li>Old blog posts and press releases that are still live</li><li>Review sites, directories and marketplace listings</li><li>Comparison articles written by other people</li></ul>
+<h3 id="3-fix-the-sources-you-control">3. Fix the sources you control</h3>
+<p>Update, redirect or remove anything out of date. Then make one page that states the plain facts: what you sell, who it is for, what it costs, the main features, and the date the page was last updated. Keep it in normal text on the page, not inside an image or a script.</p>
+<h3 id="4-make-the-facts-machine-readable">4. Make the facts machine-readable</h3>
+<p>Structured data tells crawlers what each fact is. For most companies the useful types are <code>Organization</code>, <code>Product</code> and <code>FAQPage</code> from schema.org. A small example:</p>
+<pre><code>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;Product&quot;,
+  &quot;name&quot;: &quot;Your product&quot;,
+  &quot;description&quot;: &quot;What it does and who it is for.&quot;,
+  &quot;offers&quot;: { &quot;@type&quot;: &quot;Offer&quot;, &quot;price&quot;: &quot;99.00&quot;, &quot;priceCurrency&quot;: &quot;USD&quot; }
+}</code></pre>
+<p>The markup must match what a visitor can read on the page. If the two disagree, you have created a new conflict instead of fixing one.</p>
+<h3 id="5-fix-the-sources-you-don-t-control">5. Fix the sources you don't control</h3>
+<p>Update your profiles on directories and review sites. For articles written by others, ask the author for a correction and send them the updated facts. It is slower than editing your own site, and it often matters most.</p>
+<h3 id="6-re-test-the-same-question">6. Re-test the same question</h3>
+<p>Ask the same question on the same engines after a couple of weeks. Engines that search the live web can reflect changes sooner than models that rely mostly on what they were trained on. Nobody can promise a date, so keep checking and keep the notes.</p>
+<h2 id="what-not-to-do">What not to do</h2>
+<blockquote><p>Fix the source, not the symptom.</p></blockquote>
+<ul><li><strong>Don't hide text for crawlers.</strong> Content that visitors can't see is a risk, and it won't hold up.</li><li><strong>Don't mass-post the same claim everywhere.</strong> One accurate page that other sources can point to beats fifty copies.</li><li><strong>Don't change facts without changing the date.</strong> A visible &quot;last updated&quot; line helps people and machines trust the page.</li></ul>
+<p>Not sure what the AI gets wrong about you yet? The <a class="el-link" href="/blog/five-questions-to-test-your-brand-in-ai.html">five-question test</a> will show you, and the <a class="el-link" href="/ai-search-grader.html">free AI Search Grader</a> will score it.</p>
+        </div>
+        <ul class="post-tags" aria-label="Tags"><li><span class="el-tag el-tag--outline">AEO</span></li><li><span class="el-tag el-tag--outline">brand accuracy</span></li><li><span class="el-tag el-tag--outline">structured data</span></li><li><span class="el-tag el-tag--outline">schema</span></li></ul>
+      </div>
+    </div>
+  </article>
+
+  <section class="band band--ash">
+    <div class="container">
+      <div class="el-feature el-feature--compact cta-card">
+        <h2 class="section-title">See what AI says about your brand.</h2>
+        <p class="el-feature__body">The free grader asks ChatGPT, Claude, and Perplexity about you and scores their answers out of 100.</p>
+        <div class="btn-row btn-row--center">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand free →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title post-related__title">Keep reading.</h2>
+      <div class="grid-3">
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/write-pages-ai-can-quote.html">
+            <div class="overline">Guides · Oct 14, 2026 · 2 min read</div>
+            <h2 class="card-title">Write pages AI can quote: a five-point checklist</h2>
+            <p class="copy">AI answers are built from passages. Here is how to write a page so an engine finds a clear, accurate sentence to quote.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/five-questions-to-test-your-brand-in-ai.html">
+            <div class="overline">Guides · Oct 12, 2026 · 2 min read</div>
+            <h2 class="card-title">Five questions to test your brand in ChatGPT, Claude, and Perplexity</h2>
+            <p class="copy">A first read you can run in 30 minutes with no tools. Five buyer questions, three AI engines, and a simple way to score what comes back.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/aeo-vs-seo-what-changes.html">
+            <div class="overline">Explainers · Oct 9, 2026 · 2 min read</div>
+            <h2 class="card-title">AEO vs SEO: what changes and what stays the same</h2>
+            <p class="copy">AEO doesn't replace SEO. It changes what you are competing for. Here is the side-by-side, and what to keep doing.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer band--ash">
+    <div class="container">
+      <div class="footer-flex">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <ul class="footer-links">
+          <li><a class="el-link--utility" href="/#how-it-works">How It Works</a></li>
+          <li><a class="el-link--utility" href="/#the-3-pillars">The 3 Pillars</a></li>
+          <li><a class="el-link--utility" href="/blog/">Blog</a></li>
+          <li><a class="el-link--utility" href="/ai-search-grader.html">AI Grader</a></li>
+        </ul>
+        <div class="small">© 2026 AiM. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
+  </script>
+</body>
+</html>
