@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>llms.txt: what it is and whether you need one | AiM</title>
+  <meta name="description" content="A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it."/>
+  
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="AiM"/>
+  <meta property="og:title" content="llms.txt: what it is and whether you need one | AiM"/>
+  <meta property="og:description" content="A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it."/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713%27 fill=%27white%27 stroke=%27%23202020%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%23ff682c%27/%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/design-system/tokens.css"/>
+  <link rel="stylesheet" href="/design-system/components/bundle.css"/>
+  <link rel="stylesheet" href="/site.css"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"llms.txt: what it is and whether you need one","description":"A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it.","datePublished":"2026-10-15","author":{"@type":"Organization","name":"AiM"},"publisher":{"@type":"Organization","name":"AiM"},"keywords":"AEO, llms.txt, technical, AI crawlers"}</script>
+</head>
+<body class="el-root">
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="el-nav" aria-label="Main navigation">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <div class="el-nav__pill">
+          <a class="el-nav__item" href="/#how-it-works">How It Works</a>
+          <a class="el-nav__item" href="/#the-3-pillars">The 3 Pillars</a>
+          <a class="el-nav__item" href="/blog/" aria-current="page">Blog</a>
+          <a class="el-nav__item" href="/ai-search-grader.html">Free AI Grader</a>
+        </div>
+        <div class="el-nav__end">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <article class="band post">
+    <div class="container">
+      <div class="post-wrap">
+        <a class="el-link--utility" href="/blog/">← All posts</a>
+        <div class="overline post-meta">Explainers · Oct 15, 2026 · 2 min read</div>
+        <h1 class="post-title">llms.txt: what it is and whether you need one</h1>
+        <p class="post-deck">A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it.</p>
+        <div class="post-body">
+<p>Sooner or later someone tells you to add an <code>llms.txt</code> file. Here is what it is, what we know about it, and how to decide.</p>
+<h2 id="what-it-is">What it is</h2>
+<p><code>llms.txt</code> is a plain text file in Markdown, placed at the root of your site (yoursite.com/llms.txt). It was proposed in 2024 as a convention: a short, curated map of your most useful pages, written for AI tools instead of for people.</p>
+<p>A typical file has a title, a one or two line summary, and groups of links with a short description each:</p>
+<pre><code># Your Company
+
+&gt; One or two sentences on what you sell and who it is for.
+
+## Products
+- [Product overview](https://yoursite.com/product): What it does and who it suits
+- [Pricing](https://yoursite.com/pricing): Plans, limits and what is included
+
+## Help
+- [FAQ](https://yoursite.com/faq): Answers to the questions buyers ask most</code></pre>
+<h2 id="what-is-unproven">What is unproven</h2>
+<p>It is a proposal, not a standard. We are not aware of the major AI search engines saying they use it to decide what to cite. Check each company's current documentation before you count on it, because this changes.</p>
+<p>Some developer tools and agents will read it if you hand them the URL, which is why documentation-heavy sites adopt it first. That is a narrower benefit than &quot;get cited by ChatGPT&quot;.</p>
+<h2 id="do-you-need-one">Do you need one?</h2>
+<blockquote><p>Treat it as a cheap experiment, not a strategy.</p></blockquote>
+<ul><li><strong>Probably worth an hour</strong> if you have a large site, a documentation section, or many product pages.</li><li><strong>Low priority</strong> if you have a small site with a handful of clear pages. Your time does better elsewhere.</li><li><strong>Never a substitute</strong> for the basics. A file that points to pages crawlers can't reach, or pages with vague copy, fixes nothing.</li></ul>
+<h2 id="how-to-try-it">How to try it</h2>
+<ol><li>Pick five to ten pages that answer the questions buyers ask: product, pricing, FAQ, comparison, docs.</li><li>Write a one-line description for each. Lead with what the page answers.</li><li>Save the file as <code>llms.txt</code> at your site root. Serve it as plain text.</li><li>Link to your canonical URLs only, not to redirects or tracking links.</li><li>Update it when pages change, and add a reminder to review it each quarter.</li></ol>
+<p>It is not access control. Anything you list is public, and leaving a page out does not hide it.</p>
+<h2 id="what-to-do-first">What to do first</h2>
+<p>Two things matter more than this file. First, make sure the crawlers can reach your pages at all: <a class="el-link" href="/blog/can-ai-crawlers-read-your-site.html">Can AI crawlers read your site?</a> Second, write pages an engine can quote: <a class="el-link" href="/blog/write-pages-ai-can-quote.html">Write pages AI can quote</a></p>
+<p>Not sure where you stand? The <a class="el-link" href="/ai-search-grader.html">free AI Search Grader</a> scores what ChatGPT, Claude, and Perplexity say about you today.</p>
+        </div>
+        <ul class="post-tags" aria-label="Tags"><li><span class="el-tag el-tag--outline">AEO</span></li><li><span class="el-tag el-tag--outline">llms.txt</span></li><li><span class="el-tag el-tag--outline">technical</span></li><li><span class="el-tag el-tag--outline">AI crawlers</span></li></ul>
+      </div>
+    </div>
+  </article>
+
+  <section class="band band--ash">
+    <div class="container">
+      <div class="el-feature el-feature--compact cta-card">
+        <h2 class="section-title">See what AI says about your brand.</h2>
+        <p class="el-feature__body">The free grader asks ChatGPT, Claude, and Perplexity about you and scores their answers out of 100.</p>
+        <div class="btn-row btn-row--center">
+          <a class="el-btn el-btn--primary" href="/ai-search-grader.html">Grade my brand free →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title post-related__title">Keep reading.</h2>
+      <div class="grid-3">
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/write-pages-ai-can-quote.html">
+            <div class="overline">Guides · Oct 14, 2026 · 2 min read</div>
+            <h2 class="card-title">Write pages AI can quote: a five-point checklist</h2>
+            <p class="copy">AI answers are built from passages. Here is how to write a page so an engine finds a clear, accurate sentence to quote.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/what-to-do-when-ai-gets-your-brand-wrong.html">
+            <div class="overline">Guides · Oct 13, 2026 · 2 min read</div>
+            <h2 class="card-title">What to do when AI gets your brand wrong</h2>
+            <p class="copy">Wrong prices, old features, a competitor named instead of you. Trace the error to its source and fix it there.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+        <article class="el-data post-card">
+          <a class="post-card__link" href="/blog/five-questions-to-test-your-brand-in-ai.html">
+            <div class="overline">Guides · Oct 12, 2026 · 2 min read</div>
+            <h2 class="card-title">Five questions to test your brand in ChatGPT, Claude, and Perplexity</h2>
+            <p class="copy">A first read you can run in 30 minutes with no tools. Five buyer questions, three AI engines, and a simple way to score what comes back.</p>
+            <span class="post-card__more">Read the post →</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer band--ash">
+    <div class="container">
+      <div class="footer-flex">
+        <a class="el-nav__brand" href="/">AiM</a>
+        <ul class="footer-links">
+          <li><a class="el-link--utility" href="/#how-it-works">How It Works</a></li>
+          <li><a class="el-link--utility" href="/#the-3-pillars">The 3 Pillars</a></li>
+          <li><a class="el-link--utility" href="/blog/">Blog</a></li>
+          <li><a class="el-link--utility" href="/ai-search-grader.html">AI Grader</a></li>
+        </ul>
+        <div class="small">© 2026 AiM. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const syncHeader = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    syncHeader();
+  </script>
+</body>
+</html>
