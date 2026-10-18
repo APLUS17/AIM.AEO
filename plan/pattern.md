@@ -22,7 +22,7 @@ Sources: OneWave's blog (verified), the AiM site-copy and design-system voice ru
 ## 2. Funnel rules
 
 - Every post has ONE primary CTA, never more than two total.
-- Codes: **G** = free AI Search Grader. **G+B** = grader plus a booking link (the link doesn't exist yet).
+- Codes: **G** = free AI Search Grader. **G+B** = grader plus a link to book a free call (no price or scope; the link doesn't exist yet, so those posts end on the grader only until it does).
 - Cluster to CTA: Visibility, Position and Sentiment posts end in **G**. Monitor posts and the trust and plan posts end in **G+B**.
 - Second link in every post goes to the next post in its cluster, so a reader always has somewhere to go.
 - Assets are never gated. The grader is the only thing behind an email.
