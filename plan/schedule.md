@@ -15,7 +15,7 @@ Status values: planned, briefed, drafted, proofread, scheduled, published.
 |---|---|---|---|---|---|---|---|---|
 | P01 | Mon 2026-10-26 | Comparison | AEO vs GEO vs SEO: which term to use, and does it matter? | V | G | Three-term comparison table |  | Verdict first: say AEO to buyers, mention GEO so you match what they search, keep SEO for Google work. Link: AEO vs SEO (Oct 9). |
 | P02 | Tue 2026-10-27 | Trust | Who should not hire an AEO agency (an honest filter) | all | G+B | Criteria list (6 situations, each with a free alternative) |  | Open with an honest admission. Disqualifiers first, then when hiring is worth it. Free paths for the 'not us' readers. Link: P05. |
-| P03 | Wed 2026-10-28 | Test | We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed | P | G | Results table: mentioned / position / sources, per engine | DATA (one real test run) | Method, date, engines. What we saw, what it means, what we are not claiming. Link: five-questions guide (Oct 12). |
+| P03 | Wed 2026-10-28 | Test | We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed | P | G | Results table: mentioned / position / sources, per engine | DATA (one real test run; runner built, needs API keys) | Method, date, engines. What we saw, what it means, what we are not claiming. Link: five-questions guide (Oct 12). |
 | P04 | Thu 2026-10-29 | Yours | Why AI doesn't rank you, it selects you | P | G | The article's own comparison table | YOURS (front matter, fact check, sourcing check) | Convert article 01. Keep only claims we can source. Add Sources section. Link: P03. |
 
 ## Week 2 (from 2026-11-02)
@@ -40,8 +40,8 @@ Status values: planned, briefed, drafted, proofread, scheduled, published.
 
 | # | Date | Type | Title | Pillar / Step | CTA | Proof element | Needs | Brief |
 |---|---|---|---|---|---|---|---|---|
-| P13 | Mon 2026-11-16 | Asset | Free template: the five-question AI visibility test | V / 1 | G | The template itself (downloadable, no email gate) | BUILD (template; test it before publishing) | What it is, three steps to use it, how to read results, when to get help. Link: P10. |
-| P14 | Tue 2026-11-17 | Asset | Free snippet pack: robots.txt and schema for AEO | P / 2 | G | The snippets themselves | BUILD (validate every snippet) | robots.txt allow rules plus Organization / Product / FAQPage JSON-LD. Show how to validate. Link: P11. |
+| P13 | Mon 2026-11-16 | Asset | Free template: the five-question AI visibility test | V / 1 | G | The template itself (downloadable, no email gate) | BUILT and verified (plan/assets). Your 5-minute check: open it once in Excel or Sheets | What it is, three steps to use it, how to read results, when to get help. Link: P10. |
+| P14 | Tue 2026-11-17 | Asset | Free snippet pack: robots.txt and schema for AEO | P / 2 | G | The snippets themselves | BUILT and verified (plan/assets). Your 5-minute check: Google Rich Results Test | robots.txt allow rules plus Organization / Product / FAQPage JSON-LD. Show how to validate. Link: P11. |
 | P15 | Wed 2026-11-18 | Trust | Why most AEO projects stall, and how to avoid it | M / 3 | G+B | Criteria list: five common stall causes with fixes |  | No owner, no baseline, fixing symptoms, one-and-done. 'What we are not claiming' block. Link: weekly routine (Oct 16). |
 | P16 | Thu 2026-11-19 | Yours | Be the answer: the local service playbook for AEO | all | G | The article's own example | YOURS (hub for the industry series) | Convert article 05. Links forward to P17 onward as they publish. |
 
@@ -106,7 +106,7 @@ Status values: planned, briefed, drafted, proofread, scheduled, published.
 
 | # | Date | Type | Title | Pillar / Step | CTA | Proof element | Needs | Brief |
 |---|---|---|---|---|---|---|---|---|
-| P39 | Mon 2027-01-11 | Test / data | We graded [N] brands across ChatGPT, Claude, and Perplexity: what we found | all | G | Results table with sample size and date | DATA (grader run on 30-50 public brands we choose, plus AiM) | Method first. What we are not claiming. Fill [N] only from the real run. Never use leads' data without consent. |
+| P39 | Mon 2027-01-11 | Test / data | We graded [N] brands across ChatGPT, Claude, and Perplexity: what we found | all | G | Results table with sample size and date | DATA (runner built: scripts/run-batch.mjs; needs API keys and your brand list) | Method first. What we are not claiming. Fill [N] only from the real run. Never use leads' data without consent. |
 | P40 | Tue 2027-01-12 | Test / data | The most common things AI gets wrong about brands | S | G | Table: error type / how often (from our run) | DATA (same run as P39) | Only report patterns actually seen in the run. |
 | P41 | Wed 2027-01-13 | Test / data | What the highest-scoring brands have in common | P | G | Table of traits vs score band | DATA (same run as P39) | Correlation, not cause. Say so. |
 | P42 | Thu 2027-01-14 | Flex | News slot or field note |  | G | Depends on the piece |  |  |
@@ -116,12 +116,12 @@ Status values: planned, briefed, drafted, proofread, scheduled, published.
 | # | Date | Type | Title | Pillar / Step | CTA | Proof element | Needs | Brief |
 |---|---|---|---|---|---|---|---|---|
 | P43 | Mon 2027-01-18 | Guide / plan | The 90-day AEO roadmap | all | G+B | Three-phase roadmap table |  | Handoff section ~80%. Links: P09 and the phase guides. |
-| P44 | Tue 2027-01-19 | Test / data | We graded ourselves: AiM's own score, before and after | M / 3 | G+B | Before / after score table with dates | DATA (weekly grader runs on aimaeo.com starting now) | Report the real numbers even if they are unflattering. |
+| P44 | Tue 2027-01-19 | Test / data | We graded ourselves: AiM's own score, before and after | M / 3 | G+B | Before / after score table with dates | DATA (weekly runs on aimaeo.com; runner built, needs API keys) | Report the real numbers even if they are unflattering. |
 | P45 | Wed 2027-01-20 | Trust | What AEO can't do: honest limits | all | G+B | Limits list with reasons |  | The post that tells readers where AEO will not help. |
 | P46 | Thu 2027-01-21 | Flex | What we're testing next quarter | M | G | The test list |  |  |
 
 ## Needs before writing (the real work)
 
-1. DATA: P03 needs one real test run. P39 to P41 and P44 need grader runs (30 to 50 public brands we choose, plus aimaeo.com). Start the weekly grader runs on aimaeo.com now so P44 has a true before and after.
-2. BUILD: P13 (template) and P14 (snippet pack) must exist and be tested before their posts.
-3. YOURS: the five Oct 14 articles (P04, P12, P16, P20, P22) need front matter, a fact check, and a sourcing and originality check against the third-party articles the README cites.
+1. DATA: P03 and P39 to P41 and P44 need real runs. The batch runner is built and tested (`scripts/run-batch.mjs`); it needs the three API keys and your brand list. Start the weekly runs on aimaeo.com as soon as the keys exist, so P44 has a true before and after.
+2. BUILD: done. P13 (template) and P14 (snippet pack) are built and verified in `plan/assets/`. They need a 5-minute human check each.
+3. YOURS: the five Oct 14 articles (P04, P12, P16, P20, P22) were checked on Oct 18. See `plan/ledger/your-five-articles.md`. They need rewrites against that list, and the five source URLs for a real overlap check.

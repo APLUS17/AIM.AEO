@@ -1,0 +1,30 @@
+# AI crawler rules. Copy the parts you want into your robots.txt.
+# Crawler names checked against each vendor's own page on 2026-10-18. Names and behaviour change, so re-check before you rely on them.
+
+# --- Search bots: allow, so your pages can be shown in AI search answers ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# --- Training bots: your decision. The rules below are off by default. ---
+# To opt out of model training, remove the "# " at the start of each line.
+#
+# User-agent: GPTBot
+# Disallow: /
+#
+# User-agent: ClaudeBot
+# Disallow: /
+#
+# Google-Extended is a robots.txt token, not a separate crawler. Blocking it stops Google using your content
+# for Gemini training and grounding. Google says it does not affect Search.
+# User-agent: Google-Extended
+# Disallow: /
+
+# --- User-triggered fetchers: ChatGPT-User, Claude-User, Perplexity-User ---
+# These act when a person asks. OpenAI says robots.txt rules may not apply to ChatGPT-User, and Perplexity says
+# Perplexity-User generally ignores robots.txt. Check each vendor's page. Blocking them is a firewall decision.

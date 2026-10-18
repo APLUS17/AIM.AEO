@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Your Business",
+  "url": "https://www.example.com/",
+  "telephone": "+1-555-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main Street",
+    "addressLocality": "Cincinnati",
+    "addressRegion": "OH",
+    "postalCode": "45202",
+    "addressCountry": "US"
+  },
+  "openingHours": "Mo-Fr 08:00-17:00",
+  "areaServed": "Cincinnati, OH"
+}
