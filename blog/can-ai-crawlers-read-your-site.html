@@ -45,7 +45,7 @@
     <div class="container">
       <div class="post-wrap">
         <a class="el-link--utility" href="/blog/">← All posts</a>
-        <div class="overline post-meta">Guides · Oct 8, 2026 · 3 min read</div>
+        <div class="overline post-meta">Guides · Oct 8, 2026 · 4 min read</div>
         <h1 class="post-title">Can AI crawlers read your site? A 15-minute check</h1>
         <p class="post-deck">Before you fix content or add markup, check that ChatGPT, Claude, and Perplexity can reach your pages at all. Five checks, no special tools.</p>
         <div class="post-body">
@@ -53,12 +53,13 @@
 <p>This check takes about 15 minutes and needs a browser and a terminal. You are looking for three problems: bots that are blocked, bots that are challenged, and pages that arrive empty.</p>
 <h2 id="know-who-is-knocking">Know who is knocking</h2>
 <p>AI companies run more than one crawler, and each has a different job. These are the names the companies publish. Confirm them against each company's documentation before you write rules, because they change.</p>
-<div class="post-table"><table><thead><tr><th scope="col">Company</th><th scope="col">Bot</th><th scope="col">What it does</th></tr></thead><tbody><tr><td>OpenAI</td><td><code>GPTBot</code></td><td>Collects content that may be used to train models</td></tr><tr><td>OpenAI</td><td><code>OAI-SearchBot</code></td><td>Builds the index behind ChatGPT search results</td></tr><tr><td>OpenAI</td><td><code>ChatGPT-User</code></td><td>Fetches a page when a person asks ChatGPT to look at it</td></tr><tr><td>Anthropic</td><td><code>ClaudeBot</code></td><td>Collects content that may be used for training</td></tr><tr><td>Anthropic</td><td><code>Claude-SearchBot</code></td><td>Indexes pages for Claude's search results</td></tr><tr><td>Anthropic</td><td><code>Claude-User</code></td><td>Fetches a page when a person asks Claude to</td></tr><tr><td>Perplexity</td><td><code>PerplexityBot</code></td><td>Builds Perplexity's search index</td></tr><tr><td>Perplexity</td><td><code>Perplexity-User</code></td><td>Fetches a page when a person asks Perplexity to</td></tr><tr><td>Google</td><td><code>Google-Extended</code></td><td>A robots.txt control for whether Google's Gemini models use your content. It does not affect Search</td></tr></tbody></table></div>
-<p>The split matters. Search and user bots decide whether you can be cited in an answer. Training bots are a separate decision about your content being used to build models. You can say yes to one and no to the other.</p>
+<div class="post-table"><table><thead><tr><th scope="col">Company</th><th scope="col">Bot</th><th scope="col">What it does</th></tr></thead><tbody><tr><td>OpenAI</td><td><code>GPTBot</code></td><td>Collects content that may be used to train models</td></tr><tr><td>OpenAI</td><td><code>OAI-SearchBot</code></td><td>Builds the index behind ChatGPT search results</td></tr><tr><td>OpenAI</td><td><code>ChatGPT-User</code></td><td>Fetches a page when a person asks ChatGPT to look at it. OpenAI says robots.txt rules may not apply</td></tr><tr><td>Anthropic</td><td><code>ClaudeBot</code></td><td>Collects content that may be used for training</td></tr><tr><td>Anthropic</td><td><code>Claude-SearchBot</code></td><td>Indexes pages for Claude's search results</td></tr><tr><td>Anthropic</td><td><code>Claude-User</code></td><td>Fetches a page when a person asks Claude to</td></tr><tr><td>Perplexity</td><td><code>PerplexityBot</code></td><td>Builds Perplexity's search index</td></tr><tr><td>Perplexity</td><td><code>Perplexity-User</code></td><td>Fetches a page when a person asks Perplexity to. Perplexity says it generally ignores robots.txt</td></tr><tr><td>Google</td><td><code>Google-Extended</code></td><td>A robots.txt token, not a separate crawler. It controls whether Google uses your content for Gemini training and grounding. Google says it does not affect Search</td></tr></tbody></table></div>
+<p>The split matters. Search bots decide whether you can be cited in an answer. Training bots are a separate decision about your content being used to build models. You can say yes to one and no to the other.</p>
+<p>User-triggered fetchers are a third case. They act when a person asks, and two of the vendors say robots.txt may not govern them. Blocking them is a firewall decision, not a robots.txt one.</p>
 <h2 id="the-five-checks">The five checks</h2>
 <h3 id="1-read-your-robots-txt">1. Read your robots.txt</h3>
 <p>Open yoursite.com/robots.txt. Look for <code>User-agent: *</code> followed by <code>Disallow: /</code>, and for a Disallow under any bot in the table. A blanket block, often left over from a staging site, is the most common cause.</p>
-<h3 id="2-allow-the-search-and-user-bots-on-purpose">2. Allow the search and user bots on purpose</h3>
+<h3 id="2-allow-the-search-bots-on-purpose">2. Allow the search bots on purpose</h3>
 <p>A minimal version:</p>
 <pre><code>User-agent: OAI-SearchBot
 Allow: /
@@ -68,13 +69,13 @@ Allow: /
 
 User-agent: PerplexityBot
 Allow: /</code></pre>
-<p>Whether to also allow the training bots is a business decision. Make it deliberately, not by default.</p>
+<p>Whether to also allow the training bots is a business decision. Make it deliberately, not by default. Check each vendor's page for how its user-triggered fetcher treats robots.txt, because the answers differ.</p>
 <h3 id="3-check-your-firewall-and-cdn">3. Check your firewall and CDN</h3>
 <p>Bot protection can serve a challenge page or a 403 to crawlers even when robots.txt says yes. Look in your CDN or firewall dashboard for blocked or challenged requests from these user agents. A quick spot check from a terminal:</p>
 <pre><code>curl -sI -A &quot;PerplexityBot&quot; https://yoursite.com/</code></pre>
 <p>You want a <code>200</code>. Treat this as a hint, not proof. Some firewalls verify bots by IP address, so a request from your laptop can behave differently from the real crawler.</p>
 <h3 id="4-look-at-the-raw-html">4. Look at the raw HTML</h3>
-<p>Some AI crawlers don't run JavaScript the way a browser does. If your pricing or product text is built in the browser, they may see an empty shell. Check:</p>
+<p>Many AI crawlers don't run JavaScript the way a browser does. In a December 2024 study of crawler traffic on its network, Vercel found that OpenAI's and Anthropic's crawlers fetched JavaScript files but did not run them, while Google's Gemini and Apple's AppleBot did render JavaScript. Crawler behaviour changes, so treat that as a snapshot. If your pricing or product text is built in the browser, some crawlers may see an empty shell. Check:</p>
 <pre><code>curl -s https://yoursite.com/pricing | grep -i &quot;per month&quot;</code></pre>
 <p>Swap in a phrase that appears on the page. No match means the text isn't in the raw HTML. Server-rendering or pre-rendering the page fixes it.</p>
 <h3 id="5-check-status-codes-redirects-and-noindex">5. Check status codes, redirects and noindex</h3>
@@ -83,6 +84,9 @@ Allow: /</code></pre>
 <blockquote><p>If a bot can't fetch the page, the page doesn't exist as far as the answer is concerned.</p></blockquote>
 <p>When you finish, you should be able to say three things. The search bots are allowed. The firewall lets them through. The facts you care about sit in the raw HTML. Fix those first. Content and structured data come next, and the rest of this series covers them.</p>
 <p>Want to see what ChatGPT, Claude, and Perplexity say about your brand right now? Run the <a class="el-link" href="/ai-search-grader.html">free AI Search Grader</a>.</p>
+<h2 id="sources">Sources</h2>
+<p>Last checked October 18, 2026. Crawler names and behaviour change, so confirm against the vendor pages before you write rules.</p>
+<ul><li><a class="el-link" href="https://developers.openai.com/api/docs/bots">OpenAI: Overview of OpenAI crawlers</a></li><li><a class="el-link" href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler">Anthropic: Does Anthropic crawl data from the web?</a></li><li><a class="el-link" href="https://docs.perplexity.ai/guides/bots">Perplexity: Perplexity crawlers</a></li><li><a class="el-link" href="https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers">Google: Google's common crawlers (Google-Extended)</a></li><li><a class="el-link" href="https://vercel.com/blog/the-rise-of-the-ai-crawler">Vercel: The rise of the AI crawler (December 17, 2024)</a></li></ul>
         </div>
         <ul class="post-tags" aria-label="Tags"><li><span class="el-tag el-tag--outline">AEO</span></li><li><span class="el-tag el-tag--outline">AI crawlers</span></li><li><span class="el-tag el-tag--outline">robots.txt</span></li><li><span class="el-tag el-tag--outline">technical</span></li></ul>
       </div>
@@ -115,7 +119,7 @@ Allow: /</code></pre>
         </article>
         <article class="el-data post-card">
           <a class="post-card__link" href="/blog/llms-txt-do-you-need-one.html">
-            <div class="overline">Explainers · Oct 15, 2026 · 2 min read</div>
+            <div class="overline">Explainers · Oct 15, 2026 · 3 min read</div>
             <h2 class="card-title">llms.txt: what it is and whether you need one</h2>
             <p class="copy">A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it.</p>
             <span class="post-card__more">Read the post →</span>

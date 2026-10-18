@@ -26,7 +26,6 @@ Replace adjectives with facts: the price, the plan limits, who it suits, what is
 | Before | After (example) |
 |---|---|
 | "We offer flexible plans for growing teams." | "Plans start at $99 a month, with a free trial." |
-| "Trusted by leading brands." | "Used by [number] agencies with 10 to 50 people." (fill in a number you can verify) |
 
 ### 4. One claim per sentence, in plain words
 

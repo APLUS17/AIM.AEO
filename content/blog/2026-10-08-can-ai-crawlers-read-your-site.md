@@ -17,15 +17,17 @@ AI companies run more than one crawler, and each has a different job. These are 
 |---|---|---|
 | OpenAI | `GPTBot` | Collects content that may be used to train models |
 | OpenAI | `OAI-SearchBot` | Builds the index behind ChatGPT search results |
-| OpenAI | `ChatGPT-User` | Fetches a page when a person asks ChatGPT to look at it |
+| OpenAI | `ChatGPT-User` | Fetches a page when a person asks ChatGPT to look at it. OpenAI says robots.txt rules may not apply |
 | Anthropic | `ClaudeBot` | Collects content that may be used for training |
 | Anthropic | `Claude-SearchBot` | Indexes pages for Claude's search results |
 | Anthropic | `Claude-User` | Fetches a page when a person asks Claude to |
 | Perplexity | `PerplexityBot` | Builds Perplexity's search index |
-| Perplexity | `Perplexity-User` | Fetches a page when a person asks Perplexity to |
-| Google | `Google-Extended` | A robots.txt control for whether Google's Gemini models use your content. It does not affect Search |
+| Perplexity | `Perplexity-User` | Fetches a page when a person asks Perplexity to. Perplexity says it generally ignores robots.txt |
+| Google | `Google-Extended` | A robots.txt token, not a separate crawler. It controls whether Google uses your content for Gemini training and grounding. Google says it does not affect Search |
 
-The split matters. Search and user bots decide whether you can be cited in an answer. Training bots are a separate decision about your content being used to build models. You can say yes to one and no to the other.
+The split matters. Search bots decide whether you can be cited in an answer. Training bots are a separate decision about your content being used to build models. You can say yes to one and no to the other.
+
+User-triggered fetchers are a third case. They act when a person asks, and two of the vendors say robots.txt may not govern them. Blocking them is a firewall decision, not a robots.txt one.
 
 ## The five checks
 
@@ -33,7 +35,7 @@ The split matters. Search and user bots decide whether you can be cited in an an
 
 Open yoursite.com/robots.txt. Look for `User-agent: *` followed by `Disallow: /`, and for a Disallow under any bot in the table. A blanket block, often left over from a staging site, is the most common cause.
 
-### 2. Allow the search and user bots on purpose
+### 2. Allow the search bots on purpose
 
 A minimal version:
 
@@ -48,7 +50,7 @@ User-agent: PerplexityBot
 Allow: /
 ```
 
-Whether to also allow the training bots is a business decision. Make it deliberately, not by default.
+Whether to also allow the training bots is a business decision. Make it deliberately, not by default. Check each vendor's page for how its user-triggered fetcher treats robots.txt, because the answers differ.
 
 ### 3. Check your firewall and CDN
 
@@ -62,7 +64,7 @@ You want a `200`. Treat this as a hint, not proof. Some firewalls verify bots by
 
 ### 4. Look at the raw HTML
 
-Some AI crawlers don't run JavaScript the way a browser does. If your pricing or product text is built in the browser, they may see an empty shell. Check:
+Many AI crawlers don't run JavaScript the way a browser does. In a December 2024 study of crawler traffic on its network, Vercel found that OpenAI's and Anthropic's crawlers fetched JavaScript files but did not run them, while Google's Gemini and Apple's AppleBot did render JavaScript. Crawler behaviour changes, so treat that as a snapshot. If your pricing or product text is built in the browser, some crawlers may see an empty shell. Check:
 
 ```
 curl -s https://yoursite.com/pricing | grep -i "per month"
@@ -81,3 +83,13 @@ Your key pages should return a `200`, should not chain through several redirects
 When you finish, you should be able to say three things. The search bots are allowed. The firewall lets them through. The facts you care about sit in the raw HTML. Fix those first. Content and structured data come next, and the rest of this series covers them.
 
 Want to see what ChatGPT, Claude, and Perplexity say about your brand right now? Run the [free AI Search Grader](/ai-search-grader.html).
+
+## Sources
+
+Last checked October 18, 2026. Crawler names and behaviour change, so confirm against the vendor pages before you write rules.
+
+- [OpenAI: Overview of OpenAI crawlers](https://developers.openai.com/api/docs/bots)
+- [Anthropic: Does Anthropic crawl data from the web?](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler)
+- [Perplexity: Perplexity crawlers](https://docs.perplexity.ai/guides/bots)
+- [Google: Google's common crawlers (Google-Extended)](https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers)
+- [Vercel: The rise of the AI crawler (December 17, 2024)](https://vercel.com/blog/the-rise-of-the-ai-crawler)

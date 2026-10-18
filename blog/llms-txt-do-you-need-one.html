@@ -45,13 +45,13 @@
     <div class="container">
       <div class="post-wrap">
         <a class="el-link--utility" href="/blog/">← All posts</a>
-        <div class="overline post-meta">Explainers · Oct 15, 2026 · 2 min read</div>
+        <div class="overline post-meta">Explainers · Oct 15, 2026 · 3 min read</div>
         <h1 class="post-title">llms.txt: what it is and whether you need one</h1>
         <p class="post-deck">A proposed file that points AI tools to your best pages. What it does, what is unproven, and a cheap way to try it.</p>
         <div class="post-body">
 <p>Sooner or later someone tells you to add an <code>llms.txt</code> file. Here is what it is, what we know about it, and how to decide.</p>
 <h2 id="what-it-is">What it is</h2>
-<p><code>llms.txt</code> is a plain text file in Markdown, placed at the root of your site (yoursite.com/llms.txt). It was proposed in 2024 as a convention: a short, curated map of your most useful pages, written for AI tools instead of for people.</p>
+<p><code>llms.txt</code> is a plain text file in Markdown, placed at the root of your site (yoursite.com/llms.txt). It was proposed by Jeremy Howard in September 2024 as a convention: a short, curated map of your most useful pages, written for AI tools instead of for people.</p>
 <p>A typical file has a title, a one or two line summary, and groups of links with a short description each:</p>
 <pre><code># Your Company
 
@@ -64,7 +64,8 @@
 ## Help
 - [FAQ](https://yoursite.com/faq): Answers to the questions buyers ask most</code></pre>
 <h2 id="what-is-unproven">What is unproven</h2>
-<p>It is a proposal, not a standard. We are not aware of the major AI search engines saying they use it to decide what to cite. Check each company's current documentation before you count on it, because this changes.</p>
+<p>It is a proposal, not a standard. Here is what we found when we checked.</p>
+<ul><li><strong>Google says you don't need it.</strong> Google's guidance on AI features says: &quot;You don't need to create new machine readable files, AI text files, or markup to appear in these features.&quot; The page was last updated December 10, 2025.</li><li><strong>One large study found no link.</strong> SE Ranking looked at nearly 300,000 domains. About 10% (10.13%) had an llms.txt file. Having one showed no correlation with being cited in AI answers, and removing it from their model made the model more accurate. The authors say results are context-dependent and may change.</li><li><strong>Some AI labs publish one for their own docs.</strong> The proposal's site says OpenAI, Anthropic and Gemini publish llms.txt files for their developer documentation. That shows they publish the file. It does not say their products read other sites' files.</li></ul>
 <p>Some developer tools and agents will read it if you hand them the URL, which is why documentation-heavy sites adopt it first. That is a narrower benefit than &quot;get cited by ChatGPT&quot;.</p>
 <h2 id="do-you-need-one">Do you need one?</h2>
 <blockquote><p>Treat it as a cheap experiment, not a strategy.</p></blockquote>
@@ -75,6 +76,9 @@
 <h2 id="what-to-do-first">What to do first</h2>
 <p>Two things matter more than this file. First, make sure the crawlers can reach your pages at all: <a class="el-link" href="/blog/can-ai-crawlers-read-your-site.html">Can AI crawlers read your site?</a> Second, write pages an engine can quote: <a class="el-link" href="/blog/write-pages-ai-can-quote.html">Write pages AI can quote</a></p>
 <p>Not sure where you stand? The <a class="el-link" href="/ai-search-grader.html">free AI Search Grader</a> scores what ChatGPT, Claude, and Perplexity say about you today.</p>
+<h2 id="sources">Sources</h2>
+<p>Last checked October 18, 2026.</p>
+<ul><li><a class="el-link" href="https://llmstxt.org/">llmstxt.org: the proposal (Jeremy Howard, September 3, 2024)</a></li><li><a class="el-link" href="https://developers.google.com/search/docs/appearance/ai-features">Google Search Central: AI features and your website</a></li><li><a class="el-link" href="https://seranking.com/blog/llms-txt/">SE Ranking: llms.txt and AI citations, 300,000 domains</a></li></ul>
         </div>
         <ul class="post-tags" aria-label="Tags"><li><span class="el-tag el-tag--outline">AEO</span></li><li><span class="el-tag el-tag--outline">llms.txt</span></li><li><span class="el-tag el-tag--outline">technical</span></li><li><span class="el-tag el-tag--outline">AI crawlers</span></li></ul>
       </div>
