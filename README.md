@@ -30,6 +30,10 @@ Body in Markdown: ## and ### headings, lists, > quotes, tables, code blocks, lin
 - Preview another day with `BLOG_TODAY=2026-10-16 npm run blog`. `npm run dev` serves it at `/blog/`.
 - Set `SITE_URL` when building to add canonical URLs to the pages. Every post carries `Article` schema.
 
+## Blog plan
+
+`plan/pattern.md` is the post pattern (templates, rules, definition of done). `plan/schedule.md` and `plan/schedule.csv` are the 90-day schedule, one row per post with its template, CTA, proof element and what it needs before writing. These files are kept off the public site by `.vercelignore`, which also hides `content/` (so future-dated drafts are not readable early).
+
 ## Design system: Ember Ledger
 
 The site is built on the Ember Ledger design system, pulled from Claude Design (see
