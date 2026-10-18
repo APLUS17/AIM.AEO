@@ -9,6 +9,7 @@
     "dev": "node scripts/dev-server.js",
     "tokens": "node scripts/build-tokens.mjs",
     "blog": "node scripts/build-blog.mjs",
+    "blog:lint": "node scripts/lint-blog.mjs",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {

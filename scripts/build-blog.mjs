@@ -1,5 +1,6 @@
 // Builds the blog: content/blog/*.md -> blog/index.html + blog/<slug>.html.
-// Only posts dated today or earlier are published, so a future `date:` schedules a post.
+// Only non-draft posts dated today or earlier are published, so a future `date:` schedules a post
+// and `status: draft` holds one back until it is approved.
 // Run it daily (and after edits) and commit blog/.
 //   BLOG_TODAY=2026-10-16 npm run blog   preview a given day
 //   BLOG_CONTENT_DIR / BLOG_OUT_DIR       override the folders (used by tests)
@@ -36,6 +37,7 @@ for (const post of live) {
   await writeFile(path.join(outDir, `${post.slug}.html`), renderPost(post, related, { siteUrl }));
 }
 
-const scheduled = posts.filter((p) => p.date > today).sort((a, b) => a.date.localeCompare(b.date));
-console.log(`Blog built for ${today}: ${live.length} live, ${scheduled.length} scheduled.`);
+const drafts = posts.filter((p) => p.status === 'draft');
+const scheduled = posts.filter((p) => p.status !== 'draft' && p.date > today).sort((a, b) => a.date.localeCompare(b.date));
+console.log(`Blog built for ${today}: ${live.length} live, ${scheduled.length} scheduled, ${drafts.length} drafts (never published until status changes).`);
 for (const p of scheduled) console.log(`  ${p.date}  ${p.slug}`);

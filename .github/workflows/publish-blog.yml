@@ -11,7 +11,9 @@ on:
     paths:
       - 'content/blog/**'
       - 'lib/blog.js'
+      - 'lib/lint.js'
       - 'scripts/build-blog.mjs'
+      - 'scripts/lint-blog.mjs'
   workflow_dispatch:
 
 permissions:
@@ -34,7 +36,10 @@ jobs:
           node-version: 22
 
       - name: Test the blog engine
-        run: node --test test/blog.test.js
+        run: node --test test/blog.test.js test/lint.test.js
+
+      - name: Pattern check (errors block publishing)
+        run: node scripts/lint-blog.mjs
 
       - name: Build the blog
         env:
