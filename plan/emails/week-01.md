@@ -12,7 +12,7 @@ Key data I found:
   - Pew: with an AI summary, people clicked a regular result link in 8% of visits, against 15% with no summary. (Pew Research Center short read, 2025-07-22) https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/
   - The GEO paper (Aggarwal et al., first submitted 2023-11-16, accepted to KDD 2024): "GEO can boost visibility by up to 40% in generative engine responses.". (arXiv 2311.09735 (abstract)) https://arxiv.org/abs/2311.09735
 Questions for you: Do you want AiM to commit to "AEO" as its main term? | Is "mention GEO once so you match searches" right for how you want AiM to sound?
-Draft: written (held as a draft)
+Draft: written, approved 2026-10-18
 
 P02 · Tue 2026-10-27
 Headline: Who should not hire an AEO agency (an honest filter)
@@ -21,7 +21,7 @@ What it covers: Six situations where hiring an AEO agency is the wrong move.; Wh
 What you will learn: When AEO is a waste of money, and the questions that expose a weak agency.
 Data: none used.
 Questions for you: Are you comfortable opening with "We sell AEO work, and some of you should not buy it"? | Do the six situations match how you would really advise a prospect?
-Draft: written (held as a draft)
+Draft: written, approved 2026-10-18
 
 P03 · Wed 2026-10-28
 Headline: We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed

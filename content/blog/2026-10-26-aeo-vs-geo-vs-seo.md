@@ -2,7 +2,7 @@
 title: "AEO vs GEO vs SEO: which term to use, and does it matter?"
 description: The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.
 date: 2026-10-26
-status: draft
+status: approved
 category: Explainers
 tags: AEO, GEO, SEO, terminology
 ---

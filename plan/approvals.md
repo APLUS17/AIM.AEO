@@ -8,8 +8,8 @@ Draft: **written** = a full draft exists as `status: draft`. **no** = not starte
 
 | # | Goes live | Headline | Subheadline | Research | Draft | Your call |
 |---|---|---|---|---|---|---|
-| P01 | Mon 2026-10-26 | AEO vs GEO vs SEO: which term to use, and does it matter? | The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers. | done | written | [ ] approve  [ ] change |
-| P02 | Tue 2026-10-27 | Who should not hire an AEO agency (an honest filter) | Six situations where paying for AEO is the wrong move, and what to do instead. We sell this work, and we will still tell you when not to buy it. | done | written | [ ] approve  [ ] change |
+| P01 | Mon 2026-10-26 | AEO vs GEO vs SEO: which term to use, and does it matter? | The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers. | done | written, approved | approved 2026-10-18 |
+| P02 | Tue 2026-10-27 | Who should not hire an AEO agency (an honest filter) | Six situations where paying for AEO is the wrong move, and what to do instead. We sell this work, and we will still tell you when not to buy it. | done | written, approved | approved 2026-10-18 |
 | P03 | Wed 2026-10-28 | We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed | How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results. | blocked | no | [ ] approve  [ ] change |
 | P04 | Thu 2026-10-29 | Why AI doesn't rank you, it selects you | A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen. | blocked | no | [ ] approve  [ ] change |
 | P05 | Mon 2026-11-02 | DIY AEO vs hiring an agency: what each really takes | Time, skills, tools and risk side by side, with a rule of thumb by company size. Our view, and our estimates are labelled. | done | written | [ ] approve  [ ] change |

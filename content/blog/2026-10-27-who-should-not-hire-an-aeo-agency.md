@@ -2,7 +2,7 @@
 title: "Who should not hire an AEO agency (an honest filter)"
 description: Six situations where paying for AEO is the wrong move, and what to do instead. We sell this work, and we will still tell you when not to buy it.
 date: 2026-10-27
-status: draft
+status: approved
 category: Trust
 tags: AEO, agencies, buying guide
 ---

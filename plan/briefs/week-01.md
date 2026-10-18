@@ -41,7 +41,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Do you want AiM to commit to "AEO" as its main term?
 - Is "mention GEO once so you match searches" right for how you want AiM to sound?
 
-**Draft:** written, status: draft, in `content/blog/2026-10-26-aeo-vs-geo-vs-seo.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-26-aeo-vs-geo-vs-seo.md`
 
 ## P02 · Tue 2026-10-27 · Trust
 
@@ -71,7 +71,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Are you comfortable opening with "We sell AEO work, and some of you should not buy it"?
 - Do the six situations match how you would really advise a prospect?
 
-**Draft:** written, status: draft, in `content/blog/2026-10-27-who-should-not-hire-an-aeo-agency.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-27-who-should-not-hire-an-aeo-agency.md`
 
 ## P03 · Wed 2026-10-28 · Test
 
