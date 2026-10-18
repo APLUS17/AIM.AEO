@@ -1,6 +1,6 @@
-# Week 12 briefs (2027-01-11 to 2027-01-14)
+# Week 12 briefs (2027-01-04 to 2027-01-07)
 
-## P39 · Mon 2027-01-11 · Test / data
+## P39 · Mon 2027-01-04 · Test / data
 
 **Headline:** We graded [N] brands across ChatGPT, Claude, and Perplexity: what we found
 
@@ -8,13 +8,13 @@
 
 **Pattern:** Test / data. Proof element: Results table with sample size and date. Next step for the reader: free AI Search Grader.
 
-**Research queue (runs before this week's email):** The only post that needs API keys (scheduled Jan 11 to 13, so no decision is needed until mid-December; it can be swapped for sourced posts). The batch runner is built (scripts/run-batch.mjs). Method, sample size and date must be disclosed. State that these are API models, not the consumer apps.
+**Research queue (runs before this week's email):** The only post that needs API keys (scheduled Jan 4 to 6, so a decision is needed by mid-December; it can be swapped for sourced posts). The batch runner is built (scripts/run-batch.mjs). Method, sample size and date must be disclosed. State that these are API models, not the consumer apps.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P40 · Tue 2027-01-12 · Test / data
+## P40 · Tue 2027-01-05 · Test / data
 
 **Headline:** The most common things AI gets wrong about brands
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P41 · Wed 2027-01-13 · Test / data
+## P41 · Wed 2027-01-06 · Test / data
 
 **Headline:** What the highest-scoring brands have in common
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P42 · Thu 2027-01-14 · Flex
+## P42 · Thu 2027-01-07 · Flex
 
 **Headline:** News slot or field note
 

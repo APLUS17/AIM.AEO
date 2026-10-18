@@ -1,8 +1,8 @@
 ---
 title: "AEO trackers vs doing the work: what a dashboard can't fix"
 description: A tracker tells you whether AI mentions you. It does not change what AI says. Here is where each one fits.
-date: 2026-11-03
-status: draft
+date: 2026-10-22
+status: approved
 category: Comparison
 tags: AEO, trackers, monitoring, tools
 ---

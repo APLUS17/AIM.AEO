@@ -1,8 +1,8 @@
 ---
 title: "DIY AEO vs hiring an agency: what each really takes"
 description: Time, skills, tools and risk, side by side, with a rule of thumb by company size. This is our view, and we label the estimates as ours.
-date: 2026-11-02
-status: draft
+date: 2026-10-21
+status: approved
 category: Comparison
 tags: AEO, DIY, agencies, buying guide
 ---

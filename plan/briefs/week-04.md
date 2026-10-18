@@ -1,6 +1,6 @@
-# Week 4 briefs (2026-11-16 to 2026-11-19)
+# Week 4 briefs (2026-11-09 to 2026-11-12)
 
-## P13 · Mon 2026-11-16 · Asset
+## P13 · Mon 2026-11-09 · Asset
 
 **Headline:** Free template: the five-question AI visibility test
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P14 · Tue 2026-11-17 · Asset
+## P14 · Tue 2026-11-10 · Asset
 
 **Headline:** Free snippet pack: robots.txt and schema for AEO
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P15 · Wed 2026-11-18 · Trust
+## P15 · Wed 2026-11-11 · Trust
 
 **Headline:** Why most AEO projects stall, and how to avoid it
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P16 · Thu 2026-11-19 · Yours
+## P16 · Thu 2026-11-12 · Yours
 
 **Headline:** Be the answer: the local service playbook for AEO
 

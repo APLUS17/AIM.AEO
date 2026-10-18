@@ -1,8 +1,8 @@
-Subject: AiM blog, week of 2026-10-26: topics for your approval
+Subject: AiM blog, week of 2026-10-19: topics for your approval
 
-These posts go live Mon 2026-10-26 to Thu 2026-10-29. Nothing publishes until you approve it. Reply with APPROVE or tell me what to change.
+These posts go live Mon 2026-10-19 to Thu 2026-10-22. Nothing publishes until you approve it. Reply with APPROVE or tell me what to change.
 
-P01 · Mon 2026-10-26
+P01 · Mon 2026-10-19
 Headline: AEO vs GEO vs SEO: which term to use, and does it matter?
 Subheadline: The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.
 What it covers: What SEO, AEO and GEO each name, in a table.; Where the term GEO came from (a 2023 research paper).; Why the label matters less than the target: being named in the answer.
@@ -14,7 +14,7 @@ Key data I found:
 Questions for you: Do you want AiM to commit to "AEO" as its main term? | Is "mention GEO once so you match searches" right for how you want AiM to sound?
 Draft: written, approved 2026-10-18
 
-P02 · Tue 2026-10-27
+P02 · Tue 2026-10-20
 Headline: Who should not hire an AEO agency (an honest filter)
 Subheadline: Six situations where paying for AEO is the wrong move, and what to do instead. We sell this work, and we will still tell you when not to buy it.
 What it covers: Six situations where hiring an AEO agency is the wrong move.; When hiring is worth it.; Four questions to put to any agency, including us.
@@ -23,22 +23,22 @@ Data: none used.
 Questions for you: Are you comfortable opening with "We sell AEO work, and some of you should not buy it"? | Do the six situations match how you would really advise a prospect?
 Draft: written, approved 2026-10-18
 
-P03 · Wed 2026-10-28
-Headline: We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed
-Subheadline: How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results.
-What it covers: The same five questions on ChatGPT, Claude and Perplexity.; A results table: mentioned, position, sources.; Method, date and the limits of what we can say.
-What you will learn: How different engines answer the same buyer question, measured, not guessed.
+P05 · Wed 2026-10-21
+Headline: DIY AEO vs hiring an agency: what each really takes
+Subheadline: Time, skills, tools and risk side by side, with a rule of thumb by company size. Our view, and our estimates are labelled.
+What it covers: A table: time, skills, tools, risk, best when, DIY vs agency.; A rule of thumb by company size.; What you can do yourself first, and where DIY gets hard.
+What you will learn: Which parts of AEO a small team can do alone, and where doing it yourself runs out.
 Data: none used.
-Questions for you: Which route: you run the three apps by hand (best), or web-search only? | Which subject should the test use: AiM itself, or a business you choose?
-Draft: not started
+Questions for you: Are the time estimates right for how AiM actually works? | Is "hybrid at 10 to 50 people" how you would advise?
+Draft: written, approved 2026-10-18
 
-P04 · Thu 2026-10-29
-Headline: Why AI doesn't rank you, it selects you
-Subheadline: A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen.
-What it covers: Your Oct 14 article "Why AI doesn't rank you, it selects you", converted to the pattern.; Search shows ten links; AI answers name a few options.
-What you will learn: How being chosen differs from being ranked.
+P06 · Thu 2026-10-22
+Headline: AEO trackers vs doing the work: what a dashboard can't fix
+Subheadline: A tracker tells you whether AI mentions you. It does not change what AI says. Here is where each one fits.
+What it covers: What an AEO tracker does and cannot do.; A table pairing each dashboard result with what really fixes it.; Five things to look for if you buy one.
+What you will learn: What monitoring tools can and cannot do, and what to demand before buying one.
 Data: none used.
-Questions for you: Do you have the URL of the original article it was adapted from?
-Draft: not started
+Questions for you: Do you want to name any trackers? Naming them needs a real test of each.
+Draft: written, approved 2026-10-18
 
 Reply APPROVE for each post you are happy with, or send changes. Anything not approved stays a draft and does not publish.

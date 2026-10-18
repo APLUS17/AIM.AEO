@@ -1,6 +1,6 @@
-# Week 1 briefs (2026-10-26 to 2026-10-29)
+# Week 1 briefs (2026-10-19 to 2026-10-22)
 
-## P01 · Mon 2026-10-26 · Comparison
+## P01 · Mon 2026-10-19 · Comparison
 
 **Headline:** AEO vs GEO vs SEO: which term to use, and does it matter?
 
@@ -41,9 +41,9 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Do you want AiM to commit to "AEO" as its main term?
 - Is "mention GEO once so you match searches" right for how you want AiM to sound?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-26-aeo-vs-geo-vs-seo.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-19-aeo-vs-geo-vs-seo.md`
 
-## P02 · Tue 2026-10-27 · Trust
+## P02 · Tue 2026-10-20 · Trust
 
 **Headline:** Who should not hire an AEO agency (an honest filter)
 
@@ -71,63 +71,64 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Are you comfortable opening with "We sell AEO work, and some of you should not buy it"?
 - Do the six situations match how you would really advise a prospect?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-27-who-should-not-hire-an-aeo-agency.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-20-who-should-not-hire-an-aeo-agency.md`
 
-## P03 · Wed 2026-10-28 · Test
+## P05 · Wed 2026-10-21 · Comparison
 
-**Headline:** We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed
+**Headline:** DIY AEO vs hiring an agency: what each really takes
 
-**Subheadline:** How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results.
+**Subheadline:** Time, skills, tools and risk side by side, with a rule of thumb by company size. Our view, and our estimates are labelled.
 
-**Pattern:** Test. Proof element: Results table: mentioned / position / sources, per engine. Next step for the reader: free AI Search Grader.
+**Pattern:** Comparison. Proof element: Time / skill / tools / risk table. Next step for the reader: grader plus booking link (not built yet).
 
 **What it covers**
 
-- The same five questions on ChatGPT, Claude and Perplexity.
-- A results table: mentioned, position, sources.
-- Method, date and the limits of what we can say.
+- A table: time, skills, tools, risk, best when, DIY vs agency.
+- A rule of thumb by company size.
+- What you can do yourself first, and where DIY gets hard.
 
-**What you will learn:** How different engines answer the same buyer question, measured, not guessed.
+**What you will learn:** Which parts of AEO a small team can do alone, and where doing it yourself runs out.
 
 **Data and stats:** none used in this post.
 
 **What is our judgment, not sourced fact**
 
-- Not blocked on keys. Nothing is claimed until the test is run.
-- Two no-key routes: you run the free template on the three apps (what buyers actually see), or I run a web-search-only version (one engine, which the post must say).
-- If anyone later runs it through the developer APIs, those models are not the same as the consumer apps, and the post must say so.
+- No external statistics. "A few focused days" and "about an hour a week" are our estimates and are labelled as such.
+- The size rule of thumb is judgment.
 
 **Questions for you**
 
-- Which route: you run the three apps by hand (best), or web-search only?
-- Which subject should the test use: AiM itself, or a business you choose?
+- Are the time estimates right for how AiM actually works?
+- Is "hybrid at 10 to 50 people" how you would advise?
 
-**Draft:** not started
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-21-diy-aeo-vs-hiring-an-agency.md`
 
-## P04 · Thu 2026-10-29 · Yours
+## P06 · Thu 2026-10-22 · Comparison
 
-**Headline:** Why AI doesn't rank you, it selects you
+**Headline:** AEO trackers vs doing the work: what a dashboard can't fix
 
-**Subheadline:** A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen.
+**Subheadline:** A tracker tells you whether AI mentions you. It does not change what AI says. Here is where each one fits.
 
-**Pattern:** Yours. Proof element: The article's own comparison table. Next step for the reader: free AI Search Grader.
+**Pattern:** Comparison. Proof element: Table: what a tracker shows vs what fixes it. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
-- Your Oct 14 article "Why AI doesn't rank you, it selects you", converted to the pattern.
-- Search shows ten links; AI answers name a few options.
+- What an AEO tracker does and cannot do.
+- A table pairing each dashboard result with what really fixes it.
+- Five things to look for if you buy one.
 
-**What you will learn:** How being chosen differs from being ranked.
+**What you will learn:** What monitoring tools can and cannot do, and what to demand before buying one.
 
 **Data and stats:** none used in this post.
 
 **What is our judgment, not sourced fact**
 
-- Blocked: needs the originality check against the third-party article your README cites, and a source for every claim in it.
+- No external statistics, and no products are named. Everything is category-level and our judgment.
+- The post discloses that AiM sells the fixing work.
 
 **Questions for you**
 
-- Do you have the URL of the original article it was adapted from?
+- Do you want to name any trackers? Naming them needs a real test of each.
 
-**Draft:** not started
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-22-aeo-trackers-vs-doing-the-work.md`
 

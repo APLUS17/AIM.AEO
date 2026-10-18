@@ -1,6 +1,6 @@
-# Week 13 briefs (2027-01-18 to 2027-01-21)
+# Week 13 briefs (2027-01-11 to 2027-01-14)
 
-## P43 · Mon 2027-01-18 · Guide / plan
+## P43 · Mon 2027-01-11 · Guide / plan
 
 **Headline:** The 90-day AEO roadmap
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P44 · Tue 2027-01-19 · Test / data
+## P44 · Tue 2027-01-12 · Test / data
 
 **Headline:** We graded ourselves: AiM's own score, before and after
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P45 · Wed 2027-01-20 · Trust
+## P45 · Wed 2027-01-13 · Trust
 
 **Headline:** What AEO can't do: honest limits
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P46 · Thu 2027-01-21 · Flex
+## P46 · Thu 2027-01-14 · Flex
 
 **Headline:** What we're testing next quarter
 

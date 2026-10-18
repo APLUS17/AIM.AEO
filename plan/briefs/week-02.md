@@ -1,65 +1,6 @@
-# Week 2 briefs (2026-11-02 to 2026-11-05)
+# Week 2 briefs (2026-10-26 to 2026-10-29)
 
-## P05 · Mon 2026-11-02 · Comparison
-
-**Headline:** DIY AEO vs hiring an agency: what each really takes
-
-**Subheadline:** Time, skills, tools and risk side by side, with a rule of thumb by company size. Our view, and our estimates are labelled.
-
-**Pattern:** Comparison. Proof element: Time / skill / tools / risk table. Next step for the reader: grader plus booking link (not built yet).
-
-**What it covers**
-
-- A table: time, skills, tools, risk, best when, DIY vs agency.
-- A rule of thumb by company size.
-- What you can do yourself first, and where DIY gets hard.
-
-**What you will learn:** Which parts of AEO a small team can do alone, and where doing it yourself runs out.
-
-**Data and stats:** none used in this post.
-
-**What is our judgment, not sourced fact**
-
-- No external statistics. "A few focused days" and "about an hour a week" are our estimates and are labelled as such.
-- The size rule of thumb is judgment.
-
-**Questions for you**
-
-- Are the time estimates right for how AiM actually works?
-- Is "hybrid at 10 to 50 people" how you would advise?
-
-**Draft:** written, status: draft, in `content/blog/2026-11-02-diy-aeo-vs-hiring-an-agency.md`
-
-## P06 · Tue 2026-11-03 · Comparison
-
-**Headline:** AEO trackers vs doing the work: what a dashboard can't fix
-
-**Subheadline:** A tracker tells you whether AI mentions you. It does not change what AI says. Here is where each one fits.
-
-**Pattern:** Comparison. Proof element: Table: what a tracker shows vs what fixes it. Next step for the reader: free AI Search Grader.
-
-**What it covers**
-
-- What an AEO tracker does and cannot do.
-- A table pairing each dashboard result with what really fixes it.
-- Five things to look for if you buy one.
-
-**What you will learn:** What monitoring tools can and cannot do, and what to demand before buying one.
-
-**Data and stats:** none used in this post.
-
-**What is our judgment, not sourced fact**
-
-- No external statistics, and no products are named. Everything is category-level and our judgment.
-- The post discloses that AiM sells the fixing work.
-
-**Questions for you**
-
-- Do you want to name any trackers? Naming them needs a real test of each.
-
-**Draft:** written, status: draft, in `content/blog/2026-11-03-aeo-trackers-vs-doing-the-work.md`
-
-## P07 · Wed 2026-11-04 · Comparison
+## P07 · Mon 2026-10-26 · Comparison
 
 **Headline:** Schema vs llms.txt vs plain good copy: where to spend your first hour
 
@@ -99,9 +40,9 @@ _Used in the draft: all four._
 
 - Is "copy first" the position you want AiM to take publicly?
 
-**Draft:** written, status: draft, in `content/blog/2026-11-04-schema-vs-llms-txt-vs-good-copy.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-26-schema-vs-llms-txt-vs-good-copy.md`
 
-## P08 · Thu 2026-11-05 · Comparison
+## P08 · Tue 2026-10-27 · Comparison
 
 **Headline:** Which AI engine should you check first? A buyer-led way to choose
 
@@ -136,5 +77,63 @@ _Used in the draft: both._
 
 - Is it fine to point readers at their own analytics and customers before our grader?
 
-**Draft:** written, status: draft, in `content/blog/2026-11-05-which-ai-engine-to-check-first.md`
+**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-27-which-ai-engine-to-check-first.md`
+
+## P03 · Wed 2026-10-28 · Test
+
+**Headline:** We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed
+
+**Subheadline:** How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results.
+
+**Pattern:** Test. Proof element: Results table: mentioned / position / sources, per engine. Next step for the reader: free AI Search Grader.
+
+**What it covers**
+
+- The same five questions on ChatGPT, Claude and Perplexity.
+- A results table: mentioned, position, sources.
+- Method, date and the limits of what we can say.
+
+**What you will learn:** How different engines answer the same buyer question, measured, not guessed.
+
+**Data and stats:** none used in this post.
+
+**What is our judgment, not sourced fact**
+
+- Not blocked on keys. Nothing is claimed until the test is run.
+- Two no-key routes: you run the free template on the three apps (what buyers actually see), or I run a web-search-only version (one engine, which the post must say).
+- If anyone later runs it through the developer APIs, those models are not the same as the consumer apps, and the post must say so.
+
+**Questions for you**
+
+- Which route: you run the three apps by hand (best), or web-search only?
+- Which subject should the test use: AiM itself, or a business you choose?
+
+**Draft:** not started
+
+## P04 · Thu 2026-10-29 · Yours
+
+**Headline:** Why AI doesn't rank you, it selects you
+
+**Subheadline:** A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen.
+
+**Pattern:** Yours. Proof element: The article's own comparison table. Next step for the reader: free AI Search Grader.
+
+**What it covers**
+
+- Your Oct 14 article "Why AI doesn't rank you, it selects you", converted to the pattern.
+- Search shows ten links; AI answers name a few options.
+
+**What you will learn:** How being chosen differs from being ranked.
+
+**Data and stats:** none used in this post.
+
+**What is our judgment, not sourced fact**
+
+- Blocked: needs the originality check against the third-party article your README cites, and a source for every claim in it.
+
+**Questions for you**
+
+- Do you have the URL of the original article it was adapted from?
+
+**Draft:** not started
 
