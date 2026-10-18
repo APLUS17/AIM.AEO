@@ -29,7 +29,7 @@ Subheadline: How the answers and the sources differed between engines, how we te
 What it covers: The same five questions on ChatGPT, Claude and Perplexity.; A results table: mentioned, position, sources.; Method, date and the limits of what we can say.
 What you will learn: How different engines answer the same buyer question, measured, not guessed.
 Data: none used.
-Questions for you: Which subject should the test use: AiM itself, or a business you choose?
+Questions for you: Which route: you run the three apps by hand (best), or web-search only? | Which subject should the test use: AiM itself, or a business you choose?
 Draft: not started
 
 P04 · Thu 2026-10-29

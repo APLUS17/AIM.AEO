@@ -22,7 +22,7 @@
 
 **Pattern:** Test / data. Proof element: Before / after score table with dates. Next step for the reader: grader plus booking link (not built yet).
 
-**Research queue (runs before this week's email):** The batch runner is built. Needs API keys, then weekly runs on aimaeo.com starting as soon as they exist. Report the real numbers, including flat or negative results.
+**Research queue (runs before this week's email):** No keys needed: a weekly web-search check by me plus a monthly hand run by you with the free template, starting now. Report the real numbers, including flat or negative results.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 

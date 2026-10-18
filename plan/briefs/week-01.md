@@ -93,11 +93,13 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 
 **What is our judgment, not sourced fact**
 
-- Blocked: needs the real test run (API keys). Nothing is claimed until it runs.
-- The API models are not the same as the consumer apps. The post must say so.
+- Not blocked on keys. Nothing is claimed until the test is run.
+- Two no-key routes: you run the free template on the three apps (what buyers actually see), or I run a web-search-only version (one engine, which the post must say).
+- If anyone later runs it through the developer APIs, those models are not the same as the consumer apps, and the post must say so.
 
 **Questions for you**
 
+- Which route: you run the three apps by hand (best), or web-search only?
 - Which subject should the test use: AiM itself, or a business you choose?
 
 **Draft:** not started

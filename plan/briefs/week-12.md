@@ -8,7 +8,7 @@
 
 **Pattern:** Test / data. Proof element: Results table with sample size and date. Next step for the reader: free AI Search Grader.
 
-**Research queue (runs before this week's email):** The batch runner is built (scripts/run-batch.mjs). Needs the API keys and your brand list. Method, sample size and date must be disclosed. State that these are API models, not the consumer apps.
+**Research queue (runs before this week's email):** The only post that needs API keys (scheduled Jan 11 to 13, so no decision is needed until mid-December; it can be swapped for sourced posts). The batch runner is built (scripts/run-batch.mjs). Method, sample size and date must be disclosed. State that these are API models, not the consumer apps.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 
@@ -22,7 +22,7 @@
 
 **Pattern:** Test / data. Proof element: Table: error type / how often (from our run). Next step for the reader: free AI Search Grader.
 
-**Research queue (runs before this week's email):** Same run as P39. Report only error patterns actually observed.
+**Research queue (runs before this week's email):** Needs keys (same run as P39). Report only error patterns actually observed.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 
@@ -36,7 +36,7 @@
 
 **Pattern:** Test / data. Proof element: Table of traits vs score band. Next step for the reader: free AI Search Grader.
 
-**Research queue (runs before this week's email):** Same run as P39. Correlation only; say so.
+**Research queue (runs before this week's email):** Needs keys (same run as P39). Correlation only; say so.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 
