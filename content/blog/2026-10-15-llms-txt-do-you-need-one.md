@@ -9,7 +9,7 @@ Sooner or later someone tells you to add an `llms.txt` file. Here is what it is,
 
 ## What it is
 
-`llms.txt` is a plain text file in Markdown, placed at the root of your site (yoursite.com/llms.txt). It was proposed in 2024 as a convention: a short, curated map of your most useful pages, written for AI tools instead of for people.
+`llms.txt` is a plain text file in Markdown, placed at the root of your site (yoursite.com/llms.txt). It was proposed by Jeremy Howard in September 2024 as a convention: a short, curated map of your most useful pages, written for AI tools instead of for people.
 
 A typical file has a title, a one or two line summary, and groups of links with a short description each:
 
@@ -28,7 +28,11 @@ A typical file has a title, a one or two line summary, and groups of links with 
 
 ## What is unproven
 
-It is a proposal, not a standard. We are not aware of the major AI search engines saying they use it to decide what to cite. Check each company's current documentation before you count on it, because this changes.
+It is a proposal, not a standard. Here is what we found when we checked.
+
+- **Google says you don't need it.** Google's guidance on AI features says: "You don't need to create new machine readable files, AI text files, or markup to appear in these features." The page was last updated December 10, 2025.
+- **One large study found no link.** SE Ranking looked at nearly 300,000 domains. About 10% (10.13%) had an llms.txt file. Having one showed no correlation with being cited in AI answers, and removing it from their model made the model more accurate. The authors say results are context-dependent and may change.
+- **Some AI labs publish one for their own docs.** The proposal's site says OpenAI, Anthropic and Gemini publish llms.txt files for their developer documentation. That shows they publish the file. It does not say their products read other sites' files.
 
 Some developer tools and agents will read it if you hand them the URL, which is why documentation-heavy sites adopt it first. That is a narrower benefit than "get cited by ChatGPT".
 
@@ -55,3 +59,11 @@ It is not access control. Anything you list is public, and leaving a page out do
 Two things matter more than this file. First, make sure the crawlers can reach your pages at all: [Can AI crawlers read your site?](/blog/can-ai-crawlers-read-your-site.html) Second, write pages an engine can quote: [Write pages AI can quote](/blog/write-pages-ai-can-quote.html)
 
 Not sure where you stand? The [free AI Search Grader](/ai-search-grader.html) scores what ChatGPT, Claude, and Perplexity say about you today.
+
+## Sources
+
+Last checked October 18, 2026.
+
+- [llmstxt.org: the proposal (Jeremy Howard, September 3, 2024)](https://llmstxt.org/)
+- [Google Search Central: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+- [SE Ranking: llms.txt and AI citations, 300,000 domains](https://seranking.com/blog/llms-txt/)

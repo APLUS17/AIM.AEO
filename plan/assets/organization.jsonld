@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Your Company",
+  "url": "https://www.example.com/",
+  "logo": "https://www.example.com/logo.png",
+  "description": "One sentence on what you sell and who it is for.",
+  "sameAs": [
+    "https://www.linkedin.com/company/your-company"
+  ]
+}

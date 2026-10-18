@@ -1,0 +1,12 @@
+# Keep drafts, plans and tooling off the public site. Future-dated posts live in
+# content/blog/ and must not be readable before their publish date.
+# Do NOT list lib/, api/ or design-system/: the site and the grader need them.
+plan/
+content/
+scripts/
+test/
+.github/
+site-copy.md
+README.md
+blog/*.md
+data/

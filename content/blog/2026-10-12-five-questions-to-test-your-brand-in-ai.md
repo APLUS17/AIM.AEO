@@ -4,6 +4,7 @@ description: A first read you can run in 30 minutes with no tools. Five buyer qu
 date: 2026-10-12
 category: Guides
 tags: AEO, brand visibility, ChatGPT, Perplexity, Claude
+placeholders: intended
 ---
 You don't need software to get a first read on how AI talks about your brand. You need five questions, three tabs, and a notes page. It takes about 30 minutes.
 
