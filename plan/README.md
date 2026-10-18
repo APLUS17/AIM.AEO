@@ -9,7 +9,7 @@ Private working files for the blog. `.vercelignore` keeps this folder off the pu
 | `schedule.md`, `schedule.csv` | The 46-post schedule: date, template, CTA, proof element, what each post needs |
 | `briefs/week-NN.md` | Per week: what each post covers, what you will learn, the stats found with their sources, what is our judgment, questions for you |
 | `emails/week-NN.md` | The pre-publish email text for a week (weeks 1 and 2 now; later weeks are written after their research) |
-| `ledger/` | Claim-by-claim checks: your five Oct 14 articles |
+| `ledger/` | Claim-by-claim checks: your five Oct 14 articles, and what OneWave actually cites |
 | `assets/` | The free template and snippet pack, with `VERIFIED.md` |
 
 ## How approval works

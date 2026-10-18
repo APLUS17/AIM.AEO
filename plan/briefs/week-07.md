@@ -1,6 +1,6 @@
-# Week 7 briefs (2026-12-07 to 2026-12-10)
+# Week 7 briefs (2026-11-30 to 2026-12-03)
 
-## P23 · Mon 2026-12-07 · Industry
+## P23 · Mon 2026-11-30 · Industry
 
 **Headline:** AEO for restaurants and hospitality: the playbook
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P24 · Tue 2026-12-08 · Industry
+## P24 · Tue 2026-12-01 · Industry
 
 **Headline:** AEO for auto dealers and repair shops: the playbook
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P25 · Wed 2026-12-09 · Industry
+## P25 · Wed 2026-12-02 · Industry
 
 **Headline:** AEO for accounting and bookkeeping firms: the playbook
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P26 · Thu 2026-12-10 · Flex
+## P26 · Thu 2026-12-03 · Flex
 
 **Headline:** News slot (newsjack within 5 days) or a short field note
 

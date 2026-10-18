@@ -1,8 +1,8 @@
 ---
 title: "Schema vs llms.txt vs plain good copy: where to spend your first hour"
 description: Google says you do not need special AI files or markup. Here is what the evidence shows, and what to do first.
-date: 2026-11-04
-status: draft
+date: 2026-10-26
+status: approved
 category: Comparison
 tags: AEO, schema, llms.txt, structured data, copywriting
 ---

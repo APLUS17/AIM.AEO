@@ -1,6 +1,6 @@
-# Week 8 briefs (2026-12-14 to 2026-12-17)
+# Week 8 briefs (2026-12-07 to 2026-12-10)
 
-## P27 · Mon 2026-12-14 · Industry
+## P27 · Mon 2026-12-07 · Industry
 
 **Headline:** AEO for insurance agencies: the playbook
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P28 · Tue 2026-12-15 · Industry
+## P28 · Tue 2026-12-08 · Industry
 
 **Headline:** AEO for e-commerce and DTC brands: the playbook
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P29 · Wed 2026-12-16 · Industry
+## P29 · Wed 2026-12-09 · Industry
 
 **Headline:** AEO for B2B SaaS and agencies: the playbook
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P30 · Thu 2026-12-17 · Flex
+## P30 · Thu 2026-12-10 · Flex
 
 **Headline:** News slot or field note
 

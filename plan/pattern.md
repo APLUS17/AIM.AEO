@@ -157,3 +157,19 @@ Deliberately NOT adopted from the pasted "4-block template":
 - A cost / setup time / maintenance / ROI table in the top 30% of every post. It appears in none of the five posts.
 - A mid-page "grab the raw prompts" gate. Not observed.
 - "We deploy this in 14 days" and a "15-minute build call". Not observed, and a delivery timeframe is a business decision we have not made. OneWave's real claims are looser ("results in weeks", "30-day pilot").
+
+## 11. Source policy (from the OneWave check; applied from Oct 18, confirm or edit)
+
+What counts as a source, best first:
+1. **Official vendor documentation and help centres** (Google Search Central, OpenAI, Anthropic, Perplexity). This is what OneWave leans on most.
+2. **Standards and regulators** (schema.org, advertising rules for a field, platform policies).
+3. **Primary studies and surveys** from the publisher itself (Pew, SparkToro, SE Ranking, academic papers). Link the original, not a write-up.
+4. **Vendor announcements and GitHub pages**, for facts about that vendor only. A vendor's own performance claim is labelled as the vendor's claim.
+5. **Trade news**, only when a primary source is not available. Say it is secondary.
+6. **Social posts**, only for a named person's own statement.
+7. **Our own tests**, only when we actually ran them, with the method, sample size and date shown.
+
+Rules:
+- Every statistic is linked, dated and carries the source's own caveat. A number without a source is cut (OneWave's real estate post leaves about a dozen unsourced; we do not).
+- No client results, case studies or "we saw" claims unless real, approved and shown. AiM has no verified client results yet.
+- Only P39 to P41 depend on running the engines. All other posts need no API keys.

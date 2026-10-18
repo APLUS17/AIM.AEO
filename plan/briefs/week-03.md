@@ -1,6 +1,6 @@
-# Week 3 briefs (2026-11-09 to 2026-11-12)
+# Week 3 briefs (2026-11-02 to 2026-11-05)
 
-## P09 · Mon 2026-11-09 · Guide / plan
+## P09 · Mon 2026-11-02 · Guide / plan
 
 **Headline:** The 30-day AEO plan for a small team, week by week
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P10 · Tue 2026-11-10 · Guide / plan
+## P10 · Tue 2026-11-03 · Guide / plan
 
 **Headline:** Week 1, Map and Audit: how to see what AI says about you
 
@@ -28,7 +28,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P11 · Wed 2026-11-11 · Guide / plan
+## P11 · Wed 2026-11-04 · Guide / plan
 
 **Headline:** Week 2, Structure and Feed: what to change on your site first
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P12 · Thu 2026-11-12 · Yours
+## P12 · Thu 2026-11-05 · Yours
 
 **Headline:** The three technical gates to LLM citations
 

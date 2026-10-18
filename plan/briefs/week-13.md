@@ -1,6 +1,6 @@
-# Week 13 briefs (2027-01-18 to 2027-01-21)
+# Week 13 briefs (2027-01-11 to 2027-01-14)
 
-## P43 · Mon 2027-01-18 · Guide / plan
+## P43 · Mon 2027-01-11 · Guide / plan
 
 **Headline:** The 90-day AEO roadmap
 
@@ -14,7 +14,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P44 · Tue 2027-01-19 · Test / data
+## P44 · Tue 2027-01-12 · Test / data
 
 **Headline:** We graded ourselves: AiM's own score, before and after
 
@@ -22,13 +22,13 @@
 
 **Pattern:** Test / data. Proof element: Before / after score table with dates. Next step for the reader: grader plus booking link (not built yet).
 
-**Research queue (runs before this week's email):** The batch runner is built. Needs API keys, then weekly runs on aimaeo.com starting as soon as they exist. Report the real numbers, including flat or negative results.
+**Research queue (runs before this week's email):** No keys needed: a weekly web-search check by me plus a monthly hand run by you with the free template, starting now. Report the real numbers, including flat or negative results.
 
 **Data and stats:** not researched yet. I will add every number with its source before the email goes out.
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P45 · Wed 2027-01-20 · Trust
+## P45 · Wed 2027-01-13 · Trust
 
 **Headline:** What AEO can't do: honest limits
 
@@ -42,7 +42,7 @@
 
 **Draft:** not started. I draft after the headline is approved.
 
-## P46 · Thu 2027-01-21 · Flex
+## P46 · Thu 2027-01-14 · Flex
 
 **Headline:** What we're testing next quarter
 

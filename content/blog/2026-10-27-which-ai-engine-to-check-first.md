@@ -1,8 +1,8 @@
 ---
 title: "Which AI engine should you check first? A buyer-led way to choose"
 description: Usage and referral data point different ways. Start with where your own buyers ask.
-date: 2026-11-05
-status: draft
+date: 2026-10-27
+status: approved
 category: Comparison
 tags: AEO, ChatGPT, Perplexity, Claude, Gemini, analytics
 ---
