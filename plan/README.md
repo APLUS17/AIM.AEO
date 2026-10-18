@@ -23,3 +23,13 @@ Private working files for the blog. `.vercelignore` keeps this folder off the pu
 ## Regenerating
 
 The schedule, approvals and briefs are generated from one data file, so a date change is one edit and a re-run.
+
+## Content Desk (interactive dashboard)
+
+`plan/posts.json` is the source of truth for every live and scheduled post. The Content Desk artifact holds a copy in its database, where posts can be approved, moved, edited and annotated. Edits there do not publish. To sync:
+
+1. Read the desk's `posts` collection and write each post whose fields differ from its `repo` snapshot into a changes file: `{ "P03": { "status": "headline_ok", "date": "2026-10-29", "note": "..." } }`.
+2. `node scripts/plan.mjs apply changes.json` (add `--dry` to preview). It renames and rewrites `content/blog/*.md` and `plan/posts.json`, then re-renders the schedule, briefs and emails.
+3. `npm test` and `npm run blog:lint`, commit, merge. Then update each synced desk document's `repo` snapshot so it shows as synced.
+
+`node scripts/plan.mjs seed` writes the documents used to load the desk.
