@@ -4,7 +4,7 @@ _Generated from `plan/posts.json` by `node scripts/plan.mjs render`. Edit in the
 
 46 posts, 2026-10-19 to 2027-01-14. Friday is for proofreading and social posts. Holiday weeks carry fewer posts.
 
-Approved 6 · awaiting approval 0 · headline only 40 · changes requested 0 · on hold 0.
+Approved 6 · awaiting approval 2 · headline only 38 · changes requested 0 · on hold 0.
 
 Template, proof element and the rules behind every row are in `pattern.md`. CTA: G = free AI Search Grader, G+B = grader plus a booking link (the booking link does not exist yet).
 
@@ -24,8 +24,8 @@ Template, proof element and the rules behind every row are in `pattern.md`. CTA:
 |---|---|---|---|---|---|---|---|---|---|
 | P07 | Mon 2026-10-26 | Comparison | Schema vs llms.txt vs plain good copy: where to spend your first hour | P / 2 | G | Approved | Effort / evidence / risk table |  | Verdict: copy first. Check every claim against vendor docs. Links: llms.txt (Oct 15), Write pages AI can quote (Oct 14). |
 | P08 | Tue 2026-10-27 | Comparison | Which AI engine should you check first? A buyer-led way to choose | V | G | Approved | Decision table by buyer behaviour |  | Choose by where your buyers actually ask. No claims about engine market share. Link: five-questions guide (Oct 12). |
-| P03 | Wed 2026-10-28 | Test | We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed | P | G | Headline only | Results table: mentioned / position / sources, per engine | DATA, no keys needed: you run the free template on the three apps (about 30 min) or I run a web-search-only version (one engine, labelled). Pick one | Method, date, engines. What we saw, what it means, what we are not claiming. Link: five-questions guide (Oct 12). |
-| P04 | Thu 2026-10-29 | Yours | Why AI doesn't rank you, it selects you | P | G | Headline only | The article's own comparison table | YOURS (front matter, fact check, sourcing check) | Convert article 01. Keep only claims we can source. Add Sources section. Link: P03. |
+| P03 | Wed 2026-10-28 | Test | We ran our own five-question test: AiM was named 0 times in 10 searches | P | G | Awaiting your approval | Results table: named / pages shared between runs / what came back, per question |  | Method, date, engines. What we saw, what it means, what we are not claiming. Link: five-questions guide (Oct 12). |
+| P04 | Thu 2026-10-29 | Yours | AI doesn't rank you, it shortlists you | P | G | Awaiting your approval | Search page vs AI answer table, with Pew click data |  | Convert article 01. Keep only claims we can source. Add Sources section. Link: P03. |
 
 ## Week 3 (from 2026-11-02)
 

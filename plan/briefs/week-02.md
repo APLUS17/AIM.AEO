@@ -81,59 +81,90 @@ _Used in the draft: both._
 
 ## P03 · Wed 2026-10-28 · Test
 
-**Headline:** We asked ChatGPT, Claude, and Perplexity the same five questions: how their sources differed
+**Headline:** We ran our own five-question test: AiM was named 0 times in 10 searches
 
-**Subheadline:** How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results.
+**Subheadline:** One search engine, five questions, each asked twice. What came back, what changed between runs, and what one test cannot tell you.
 
-**Status:** Headline only. **Pattern:** Test. Proof element: Results table: mentioned / position / sources, per engine. Next step for the reader: free AI Search Grader.
+**Status:** Awaiting your approval. **Pattern:** Test. Proof element: Results table: named / pages shared between runs / what came back, per question. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
-- The same five questions on ChatGPT, Claude and Perplexity.
-- A results table: mentioned, position, sources.
-- Method, date and the limits of what we can say.
+- The five questions from our guide, run on AiM itself with one search engine.
+- A results table for 10 searches, two per question.
+- What changed between runs, and what we are not claiming.
 
-**What you will learn:** How different engines answer the same buyer question, measured, not guessed.
+**What you will learn:** How to run the five-question test on your own brand, and why one run is an anecdote.
 
-**Data and stats:** none used in this post.
+**Data and stats I found (checked at the original publisher)**
+
+- AiM was named in 0 of 10 searches. The four searches that did not name us returned agency lists and pricing guides; the six that did returned other companies with similar names (aeoagency.org, i-am.agency, Aimeos, Vercel AI Gateway) and said nothing was found about AiM.
+  - Source: [Our own test, October 18, 2026 (log: plan/ledger/p03-test-log.md)]() (Own test). Retrieved 2026-10-18.
+  - Caveat: One engine (the Claude Code web search tool), one day, two runs per question. Not ChatGPT, the Claude app or Perplexity. Questions 3 to 5 included our domain.
+- Between the two runs of each question: 3 of 15 distinct pages shared (Q1), 0 of 18 (Q2), 9 of 9 (Q3), 0 of 18 (Q4), 9 of 9 (Q5).
+  - Source: [Our own test log]() (Own test). Retrieved 2026-10-18.
+  - Caveat: Counts compare returned URLs only. We did not open the pages.
+- In all four runs of the two category questions, the written answer said the results were mostly vendor-written or sales pages.
+  - Source: [Our own test log]() (Own test). Retrieved 2026-10-18.
+  - Caveat: This is the search tool's written summary, a model's reading of the results.
+
+_Used in the draft: Own test only._
 
 **What is our judgment, not sourced fact**
 
-- Not blocked on keys. Nothing is claimed until the test is run.
-- Two no-key routes: you run the free template on the three apps (what buyers actually see), or I run a web-search-only version (one engine, which the post must say).
-- If anyone later runs it through the developer APIs, those models are not the same as the consumer apps, and the post must say so.
+- Route chosen by you on Oct 18: web search only. The post says so in its first section and does not mention ChatGPT, Claude or Perplexity results.
+- Subject is AiM itself, so nothing is said about another business.
+- The headline says 'named 0 times', which is what we measured. It makes no claim about why.
 
 **Questions for you**
 
-- Which route: you run the three apps by hand (best), or web-search only?
-- Which subject should the test use: AiM itself, or a business you choose?
+- The post says AiM 'had been publishing for ten days' when we ran the test. Is it right to publish our own zero result?
+- Do you want us to re-run this monthly (P44 would use it)?
 
-**Draft:** not started
+**Draft:** written, held, in `content/blog/2026-10-28-we-ran-our-own-five-question-test.md`
 
 ## P04 · Thu 2026-10-29 · Yours
 
-**Headline:** Why AI doesn't rank you, it selects you
+**Headline:** AI doesn't rank you, it shortlists you
 
-**Subheadline:** A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen.
+**Subheadline:** A search page shows ten links. An AI answer names a handful of options, and fewer people click through. What that changes about being chosen.
 
-**Status:** Headline only. **Pattern:** Yours. Proof element: The article's own comparison table. Next step for the reader: free AI Search Grader.
+**Status:** Awaiting your approval. **Pattern:** Yours. Proof element: Search page vs AI answer table, with Pew click data. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
-- Your Oct 14 article "Why AI doesn't rank you, it selects you", converted to the pattern.
-- Search shows ten links; AI answers name a few options.
+- Your Oct 14 article, rewritten: a search page gives ten links, an AI answer names a few.
+- Pew click data on AI summaries, with its limits.
+- Three things we think decide who is named, labelled as our view.
 
-**What you will learn:** How being chosen differs from being ranked.
+**What you will learn:** How being named in an answer differs from ranking, and what to check this week.
 
-**Data and stats:** none used in this post.
+**Data and stats I found (checked at the original publisher)**
+
+- Pew: with an AI summary, people clicked a regular result link in 8% of visits, against 15% with no summary; 1% clicked a link inside the summary; 26% of visits with a summary ended the session, against 16% without.
+  - Source: [Pew Research Center short read, 2025-07-22](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/) (Primary). Retrieved 2026-10-18.
+  - Caveat: 900 US adults, 68,879 Google searches, March 2025. Observational. Google only.
+- Google: "The best practices for SEO continue to be relevant"; AEO and GEO are not separate from SEO. It defines query fan-out as "A set of concurrent, related queries generated by the model."
+  - Source: [Google Search Central, Optimizing your website for generative AI features (updated 2026-07-10)](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) (Primary). Retrieved 2026-10-18.
+  - Caveat: About Google's features only. The post does not claim other engines work this way.
+- Vercel: OpenAI's and Anthropic's crawlers fetched JavaScript files but did not run them (December 2024).
+  - Source: [Vercel blog, The rise of the AI crawler (2024-12-17)](https://vercel.com/blog/the-rise-of-the-ai-crawler) (Primary). Retrieved 2026-10-18.
+  - Caveat: December 2024 snapshot from Vercel's own network. Crawler behaviour changes.
+- Our own test (P03): the written answers to the 'best AEO agency' question named about five firms each, and searches for AiM returned similarly named companies.
+  - Source: [Our own test, October 18, 2026]() (Own test). Retrieved 2026-10-18.
+  - Caveat: One engine, one day, two runs.
+
+_Used in the draft: Pew, Google, Vercel, own test._
 
 **What is our judgment, not sourced fact**
 
-- Blocked: needs the originality check against the third-party article your README cites, and a source for every claim in it.
+- Headline changed from 'selects you' to 'shortlists you': our own test shows answers name several options, so 'selects one answer' overstated it.
+- Cut from your original: 'confidence score drops to zero', 'computation budgets', 'LLMs do not count keywords', and 'invisible inside ChatGPT despite #1' (none sourced). The three gates stay, as our view and tied to our own test.
+- This post links to P03 (Oct 28). If you approve P04 without P03, the checks will block it.
 
 **Questions for you**
 
-- Do you have the URL of the original article it was adapted from?
+- The original adapted a third-party article. Do you have its URL? I could not find it, so I rewrote this from sourced material instead of the original's wording.
+- Are you comfortable with the shorter headline replacing 'selects you'?
 
-**Draft:** not started
+**Draft:** written, held, in `content/blog/2026-10-29-ai-doesnt-rank-you-it-shortlists-you.md`
 

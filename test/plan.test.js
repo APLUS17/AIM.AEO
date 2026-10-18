@@ -43,7 +43,7 @@ test('applyChanges moves, renames and rewrites a draft, and leaves the input unt
 
 test('applyChanges refuses bad edits and changes nothing', () => {
   assert.throws(() => applyChanges(posts, { P99: {} }, io, today), /Unknown/);
-  assert.throws(() => applyChanges(posts, { P03: { status: 'approved' } }, io, today), /no draft/);
+  assert.throws(() => applyChanges(posts, { P09: { status: 'approved' } }, io, today), /no draft/);
   assert.throws(() => applyChanges(posts, { P01: { date: '2026-10-24' } }, io, today), /weekday/);
   assert.throws(() => applyChanges(posts, { P01: { title: '  ' } }, io, today), /empty/);
   assert.throws(() => applyChanges(posts, { P01: { status: 'bogus' } }, io, today), /unknown status/);
@@ -51,7 +51,7 @@ test('applyChanges refuses bad edits and changes nothing', () => {
 });
 
 test('applyChanges warns when two posts land on one day', () => {
-  const r = applyChanges(posts, { P03: { date: '2026-10-19' } }, io, today);
+  const r = applyChanges(posts, { P09: { date: '2026-10-19' } }, io, today);
   assert.ok(r.warnings.some((w) => /both on 2026-10-19/.test(w)));
 });
 
