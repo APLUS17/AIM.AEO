@@ -6,7 +6,7 @@
 
 **Subheadline:** The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.
 
-**Pattern:** Comparison. Proof element: Three-term comparison table. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Comparison. Proof element: Three-term comparison table. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -41,7 +41,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Do you want AiM to commit to "AEO" as its main term?
 - Is "mention GEO once so you match searches" right for how you want AiM to sound?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-19-aeo-vs-geo-vs-seo.md`
+**Draft:** written and approved, in `content/blog/2026-10-19-aeo-vs-geo-vs-seo.md`
 
 ## P02 · Tue 2026-10-20 · Trust
 
@@ -49,7 +49,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 
 **Subheadline:** Six situations where paying for AEO is the wrong move, and what to do instead. We sell this work, and we will still tell you when not to buy it.
 
-**Pattern:** Trust. Proof element: Criteria list (6 situations, each with a free alternative). Next step for the reader: grader plus booking link (not built yet).
+**Status:** Approved. **Pattern:** Trust. Proof element: Criteria list (6 situations, each with a free alternative). Next step for the reader: grader plus booking link (not built yet).
 
 **What it covers**
 
@@ -71,7 +71,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Are you comfortable opening with "We sell AEO work, and some of you should not buy it"?
 - Do the six situations match how you would really advise a prospect?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-20-who-should-not-hire-an-aeo-agency.md`
+**Draft:** written and approved, in `content/blog/2026-10-20-who-should-not-hire-an-aeo-agency.md`
 
 ## P05 · Wed 2026-10-21 · Comparison
 
@@ -79,7 +79,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 
 **Subheadline:** Time, skills, tools and risk side by side, with a rule of thumb by company size. Our view, and our estimates are labelled.
 
-**Pattern:** Comparison. Proof element: Time / skill / tools / risk table. Next step for the reader: grader plus booking link (not built yet).
+**Status:** Approved. **Pattern:** Comparison. Proof element: Time / skill / tools / risk table. Next step for the reader: grader plus booking link (not built yet).
 
 **What it covers**
 
@@ -101,7 +101,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Are the time estimates right for how AiM actually works?
 - Is "hybrid at 10 to 50 people" how you would advise?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-21-diy-aeo-vs-hiring-an-agency.md`
+**Draft:** written and approved, in `content/blog/2026-10-21-diy-aeo-vs-hiring-an-agency.md`
 
 ## P06 · Thu 2026-10-22 · Comparison
 
@@ -109,7 +109,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 
 **Subheadline:** A tracker tells you whether AI mentions you. It does not change what AI says. Here is where each one fits.
 
-**Pattern:** Comparison. Proof element: Table: what a tracker shows vs what fixes it. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Comparison. Proof element: Table: what a tracker shows vs what fixes it. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -130,5 +130,5 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 
 - Do you want to name any trackers? Naming them needs a real test of each.
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-22-aeo-trackers-vs-doing-the-work.md`
+**Draft:** written and approved, in `content/blog/2026-10-22-aeo-trackers-vs-doing-the-work.md`
 

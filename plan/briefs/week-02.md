@@ -6,7 +6,7 @@
 
 **Subheadline:** Google says you do not need special AI files or markup. Here is what the evidence shows, and what to do first.
 
-**Pattern:** Comparison. Proof element: Effort / evidence / risk table. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Comparison. Proof element: Effort / evidence / risk table. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -40,7 +40,7 @@ _Used in the draft: all four._
 
 - Is "copy first" the position you want AiM to take publicly?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-26-schema-vs-llms-txt-vs-good-copy.md`
+**Draft:** written and approved, in `content/blog/2026-10-26-schema-vs-llms-txt-vs-good-copy.md`
 
 ## P08 · Tue 2026-10-27 · Comparison
 
@@ -48,7 +48,7 @@ _Used in the draft: all four._
 
 **Subheadline:** Usage and referral data point different ways. Start with where your own buyers ask.
 
-**Pattern:** Comparison. Proof element: Decision table by buyer behaviour. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Comparison. Proof element: Decision table by buyer behaviour. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -77,7 +77,7 @@ _Used in the draft: both._
 
 - Is it fine to point readers at their own analytics and customers before our grader?
 
-**Draft:** written, APPROVED on 2026-10-18, status: approved, in `content/blog/2026-10-27-which-ai-engine-to-check-first.md`
+**Draft:** written and approved, in `content/blog/2026-10-27-which-ai-engine-to-check-first.md`
 
 ## P03 · Wed 2026-10-28 · Test
 
@@ -85,7 +85,7 @@ _Used in the draft: both._
 
 **Subheadline:** How the answers and the sources differed between engines, how we tested, and what we cannot conclude from the results.
 
-**Pattern:** Test. Proof element: Results table: mentioned / position / sources, per engine. Next step for the reader: free AI Search Grader.
+**Status:** Headline only. **Pattern:** Test. Proof element: Results table: mentioned / position / sources, per engine. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -116,7 +116,7 @@ _Used in the draft: both._
 
 **Subheadline:** A search page shows ten links. An AI answer names a few options. What that changes about how a business gets chosen.
 
-**Pattern:** Yours. Proof element: The article's own comparison table. Next step for the reader: free AI Search Grader.
+**Status:** Headline only. **Pattern:** Yours. Proof element: The article's own comparison table. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
