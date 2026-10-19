@@ -2,7 +2,7 @@
 title: "We ran our own five-question test: AiM was named 0 times in 10 searches"
 description: One search engine, five questions, each asked twice. What came back, what changed between runs, and what one test cannot tell you.
 date: 2026-10-28
-status: draft
+status: approved
 category: Test
 tags: AEO, AI search, test, brand visibility
 ---

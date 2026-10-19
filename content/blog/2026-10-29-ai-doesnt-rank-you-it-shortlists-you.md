@@ -1,8 +1,8 @@
 ---
-title: "AI doesn't rank you, it shortlists you"
+title: AI doesn't rank you, it shortlists you
 description: A search page shows ten links. An AI answer names a handful of options, and fewer people click through. What that changes about being chosen.
 date: 2026-10-29
-status: draft
+status: approved
 category: Explainers
 tags: AEO, AI search, SEO, buyer behaviour
 ---

@@ -25,7 +25,7 @@ Key data I found:
 Questions for you: Is it fine to point readers at their own analytics and customers before our grader?
 Draft: written, approved
 
-P03 · Wed 2026-10-28 · Awaiting your approval
+P03 · Wed 2026-10-28 · Approved
 Headline: We ran our own five-question test: AiM was named 0 times in 10 searches
 Subheadline: One search engine, five questions, each asked twice. What came back, what changed between runs, and what one test cannot tell you.
 What it covers: The five questions from our guide, run on AiM itself with one search engine.; A results table for 10 searches, two per question.; What changed between runs, and what we are not claiming.
@@ -35,9 +35,9 @@ Key data I found:
   - Between the two runs of each question: 3 of 15 distinct pages shared (Q1), 0 of 18 (Q2), 9 of 9 (Q3), 0 of 18 (Q4), 9 of 9 (Q5).. (Our own test log) 
   - In all four runs of the two category questions, the written answer said the results were mostly vendor-written or sales pages.. (Our own test log) 
 Questions for you: The post says AiM 'had been publishing for ten days' when we ran the test. Is it right to publish our own zero result? | Do you want us to re-run this monthly (P44 would use it)?
-Draft: written (held as a draft)
+Draft: written, approved
 
-P04 · Thu 2026-10-29 · Awaiting your approval
+P04 · Thu 2026-10-29 · Approved
 Headline: AI doesn't rank you, it shortlists you
 Subheadline: A search page shows ten links. An AI answer names a handful of options, and fewer people click through. What that changes about being chosen.
 What it covers: Your Oct 14 article, rewritten: a search page gives ten links, an AI answer names a few.; Pew click data on AI summaries, with its limits.; Three things we think decide who is named, labelled as our view.
@@ -47,6 +47,6 @@ Key data I found:
   - Google: "The best practices for SEO continue to be relevant"; AEO and GEO are not separate from SEO. (Google Search Central, Optimizing your website for generative AI features (updated 2026-07-10)) https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
   - Vercel: OpenAI's and Anthropic's crawlers fetched JavaScript files but did not run them (December 2024).. (Vercel blog, The rise of the AI crawler (2024-12-17)) https://vercel.com/blog/the-rise-of-the-ai-crawler
 Questions for you: The original adapted a third-party article. Do you have its URL? I could not find it, so I rewrote this from sourced material instead of the original's wording. | Are you comfortable with the shorter headline replacing 'selects you'?
-Draft: written (held as a draft)
+Draft: written, approved
 
 Reply APPROVE for each post you are happy with, or send changes. Anything not approved stays a draft and does not publish.

@@ -85,7 +85,7 @@ _Used in the draft: both._
 
 **Subheadline:** One search engine, five questions, each asked twice. What came back, what changed between runs, and what one test cannot tell you.
 
-**Status:** Awaiting your approval. **Pattern:** Test. Proof element: Results table: named / pages shared between runs / what came back, per question. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Test. Proof element: Results table: named / pages shared between runs / what came back, per question. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -120,7 +120,7 @@ _Used in the draft: Own test only._
 - The post says AiM 'had been publishing for ten days' when we ran the test. Is it right to publish our own zero result?
 - Do you want us to re-run this monthly (P44 would use it)?
 
-**Draft:** written, held, in `content/blog/2026-10-28-we-ran-our-own-five-question-test.md`
+**Draft:** written and approved, in `content/blog/2026-10-28-we-ran-our-own-five-question-test.md`
 
 ## P04 · Thu 2026-10-29 · Yours
 
@@ -128,7 +128,7 @@ _Used in the draft: Own test only._
 
 **Subheadline:** A search page shows ten links. An AI answer names a handful of options, and fewer people click through. What that changes about being chosen.
 
-**Status:** Awaiting your approval. **Pattern:** Yours. Proof element: Search page vs AI answer table, with Pew click data. Next step for the reader: free AI Search Grader.
+**Status:** Approved. **Pattern:** Yours. Proof element: Search page vs AI answer table, with Pew click data. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -166,5 +166,5 @@ _Used in the draft: Pew, Google, Vercel, own test._
 - The original adapted a third-party article. Do you have its URL? I could not find it, so I rewrote this from sourced material instead of the original's wording.
 - Are you comfortable with the shorter headline replacing 'selects you'?
 
-**Draft:** written, held, in `content/blog/2026-10-29-ai-doesnt-rank-you-it-shortlists-you.md`
+**Draft:** written and approved, in `content/blog/2026-10-29-ai-doesnt-rank-you-it-shortlists-you.md`
 
