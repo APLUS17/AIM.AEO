@@ -1,11 +1,13 @@
 name: Publish blog
 
 # Builds content/blog/ into blog/ and commits the result to main. Vercel then deploys the push.
-# A post goes live on the first run on or after its `date:` (UTC).
+# A post goes live on the first run on or after its `date:` (US Eastern time).
 on:
   schedule:
-    # Weekdays at 13:00 UTC (9am US Eastern in summer, 8am in winter). GitHub can start scheduled runs a few minutes late.
-    - cron: '0 13 * * 1-5'
+    # Weekdays at 9:00 am US Eastern, in summer and winter (the timezone key follows daylight saving).
+    # GitHub can start scheduled runs hours late under load; it was 4 to 5 hours late on Oct 14 to 16, 2026.
+    - cron: '0 9 * * 1-5'
+      timezone: 'America/New_York'
   push:
     branches: [main]
     paths:

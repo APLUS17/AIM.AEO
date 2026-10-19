@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parsePost, markdownToHtml, selectPublished, renderIndex, renderPost, formatDate } from '../lib/blog.js';
+import { parsePost, markdownToHtml, selectPublished, renderIndex, renderPost, formatDate, todayInEastern } from '../lib/blog.js';
 
 const source = `---
 title: Can AI read your site?
@@ -70,4 +70,13 @@ test('pages render, with an empty state and Article schema', () => {
   assert.match(page, /"@type":"Article"/);
   assert.match(page, /rel="canonical" href="https:\/\/example\.com\/blog\/can-ai-read-your-site\.html"/);
   assert.equal(formatDate('2026-10-15'), 'Oct 15, 2026');
+});
+
+test('todayInEastern gives the Eastern calendar date, not the UTC one', () => {
+  // 01:30 UTC on Oct 29 is 9:30 pm on Oct 28 in New York (EDT)
+  assert.equal(todayInEastern(new Date('2026-10-29T01:30:00Z')), '2026-10-28');
+  // 13:00 UTC in winter is 8:00 am EST the same day
+  assert.equal(todayInEastern(new Date('2026-11-02T13:00:00Z')), '2026-11-02');
+  // the first hour after midnight Eastern is already the next day
+  assert.equal(todayInEastern(new Date('2026-11-03T05:30:00Z')), '2026-11-03');
 });

@@ -4,7 +4,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parsePost } from '../lib/blog.js';
+import { parsePost, todayInEastern } from '../lib/blog.js';
 import { lintPost } from '../lib/lint.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -18,7 +18,7 @@ for (const file of files) {
   loaded.push({ file, post: parsePost(source, file), body: source.replace(/\r\n/g, '\n').replace(/^---\n[\s\S]*?\n---\n?/, '') });
 }
 const known = new Map(loaded.map((l) => [l.post.slug, { date: l.post.date, status: l.post.status }]));
-const today = process.env.BLOG_TODAY || new Date().toISOString().slice(0, 10);
+const today = process.env.BLOG_TODAY || todayInEastern();
 
 let errors = 0;
 let warnings = 0;
