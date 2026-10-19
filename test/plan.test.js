@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { applyChanges, bodyOf, markPublished, renderCsv, seedDocs, withWeeks } from '../lib/plan.js';
 
-const { posts } = JSON.parse(readFileSync(new URL('../plan/posts.json', import.meta.url), 'utf8'));
+const plan = JSON.parse(readFileSync(new URL('../plan/posts.json', import.meta.url), 'utf8')).posts;
+// Tests run on the plan as it stood before anything published, plus one fixed headline-only post (PX), so they
+// do not change as posts go live or get drafted.
+const posts = [
+  ...plan.map((p) => (p.kind === 'scheduled' && p.status === 'live' ? { ...p, status: 'approved', publishedOn: undefined } : p)),
+  { id: 'PX', kind: 'scheduled', date: '2027-02-01', type: 'Test', title: 'Fixture', sub: 'Fixture sub', status: 'planned', file: null, research: 'queued', covers: [], data: [], judgment: [], ask: [], note: '', answers: {} }
+];
 const io = { read: (p) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8') };
 const today = '2026-10-18';
 
 test('posts.json has live posts, 46 scheduled posts, and no two scheduled posts on one day', () => {
-  assert.equal(posts.filter((p) => p.kind === 'scheduled').length, 46);
+  assert.equal(posts.filter((p) => p.kind === 'scheduled').length, 47, '46 planned posts plus the PX fixture');
   assert.ok(posts.filter((p) => p.kind === 'live').length >= 7);
   const dates = posts.filter((p) => p.kind === 'scheduled').map((p) => p.date);
   assert.equal(new Set(dates).size, dates.length);
@@ -16,7 +22,7 @@ test('posts.json has live posts, 46 scheduled posts, and no two scheduled posts 
 });
 
 test('every approved post has a draft file with a matching front matter status', () => {
-  for (const p of posts.filter((x) => x.status === 'approved')) {
+  for (const p of posts.filter((x) => x.kind === 'scheduled' && (x.status === 'approved' || x.status === 'live'))) {
     assert.ok(p.file, `${p.id} needs a file`);
     assert.match(io.read(p.file), /^status: approved$/m);
   }
@@ -43,7 +49,7 @@ test('applyChanges moves, renames and rewrites a draft, and leaves the input unt
 
 test('applyChanges refuses bad edits and changes nothing', () => {
   assert.throws(() => applyChanges(posts, { P99: {} }, io, today), /Unknown/);
-  assert.throws(() => applyChanges(posts, { P09: { status: 'approved' } }, io, today), /no draft/);
+  assert.throws(() => applyChanges(posts, { PX: { status: 'approved' } }, io, today), /no draft/);
   assert.throws(() => applyChanges(posts, { P01: { date: '2026-10-24' } }, io, today), /weekday/);
   assert.throws(() => applyChanges(posts, { P01: { title: '  ' } }, io, today), /empty/);
   assert.throws(() => applyChanges(posts, { P01: { status: 'bogus' } }, io, today), /unknown status/);
@@ -51,19 +57,19 @@ test('applyChanges refuses bad edits and changes nothing', () => {
 });
 
 test('applyChanges warns when two posts land on one day', () => {
-  const r = applyChanges(posts, { P09: { date: '2026-10-19' } }, io, today);
+  const r = applyChanges(posts, { PX: { date: '2026-10-19' } }, io, today);
   assert.ok(r.warnings.some((w) => /both on 2026-10-19/.test(w)));
 });
 
 test('renderCsv has one row per scheduled post plus a header', () => {
-  assert.equal(renderCsv(posts).trim().split('\n').length, 47);
+  assert.equal(renderCsv(posts).trim().split('\n').length, 48);
 });
 
 test('markPublished marks only approved posts that are due, and week numbers do not shift', () => {
-  const r = markPublished(posts, ['P01', 'P02', 'P09', 'P99'], '2026-10-19');
+  const r = markPublished(posts, ['P01', 'P02', 'PX', 'P99'], '2026-10-19');
   assert.deepEqual(r.marked, ['P01']);
   assert.match(r.skipped.find((s) => s.id === 'P02').reason, /not yet due/);
-  assert.match(r.skipped.find((s) => s.id === 'P09').reason, /not approved/);
+  assert.match(r.skipped.find((s) => s.id === 'PX').reason, /not approved/);
   assert.match(r.skipped.find((s) => s.id === 'P99').reason, /unknown/);
   const p01 = r.posts.find((p) => p.id === 'P01');
   assert.equal(p01.status, 'live');
