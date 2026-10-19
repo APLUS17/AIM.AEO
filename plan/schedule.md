@@ -4,7 +4,7 @@ _Generated from `plan/posts.json` by `node scripts/plan.mjs render`. Edit in the
 
 46 posts, 2026-10-19 to 2027-01-14. Friday is for proofreading and social posts. Holiday weeks carry fewer posts.
 
-Approved 8 · awaiting approval 0 · headline only 38 · changes requested 0 · on hold 0.
+Live 1 · approved 7 · awaiting approval 0 · headline only 38 · changes requested 0 · on hold 0.
 
 Template, proof element and the rules behind every row are in `pattern.md`. CTA: G = free AI Search Grader, G+B = grader plus a booking link (the booking link does not exist yet).
 
@@ -13,7 +13,7 @@ Template, proof element and the rules behind every row are in `pattern.md`. CTA:
 
 | # | Date | Type | Title | Pillar / Step | CTA | Status | Proof element | Needs | Brief |
 |---|---|---|---|---|---|---|---|---|---|
-| P01 | Mon 2026-10-19 | Comparison | AEO vs GEO vs SEO: which term to use, and does it matter? | V | G | Approved | Three-term comparison table |  | Verdict first: say AEO to buyers, mention GEO so you match what they search, keep SEO for Google work. Link: AEO vs SEO (Oct 9). |
+| P01 | Mon 2026-10-19 | Comparison | AEO vs GEO vs SEO: which term to use, and does it matter? | V | G | Live | Three-term comparison table |  | Verdict first: say AEO to buyers, mention GEO so you match what they search, keep SEO for Google work. Link: AEO vs SEO (Oct 9). |
 | P02 | Tue 2026-10-20 | Trust | Who should not hire an AEO agency (an honest filter) | all | G+B | Approved | Criteria list (6 situations, each with a free alternative) |  | Open with an honest admission. Disqualifiers first, then when hiring is worth it. Free paths for the 'not us' readers. Link: P05. |
 | P05 | Wed 2026-10-21 | Comparison | DIY AEO vs hiring an agency: what each really takes | P | G+B | Approved | Time / skill / tools / risk table |  | Verdict by company size. Include a 'Do it yourself or bring in a partner?' section near the end. Link: P02. |
 | P06 | Thu 2026-10-22 | Comparison | AEO trackers vs doing the work: what a dashboard can't fix | M | G | Approved | Table: what a tracker shows vs what fixes it |  | Describe the category, not named products, unless we have tested them. Link: weekly routine (Oct 16). |

@@ -6,7 +6,7 @@
 
 **Subheadline:** The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.
 
-**Status:** Approved. **Pattern:** Comparison. Proof element: Three-term comparison table. Next step for the reader: free AI Search Grader.
+**Status:** Live. **Pattern:** Comparison. Proof element: Three-term comparison table. Next step for the reader: free AI Search Grader.
 
 **What it covers**
 
@@ -41,7 +41,7 @@ _Used in the draft: google, pew_click, geo (spark is available but not used in t
 - Do you want AiM to commit to "AEO" as its main term?
 - Is "mention GEO once so you match searches" right for how you want AiM to sound?
 
-**Draft:** written and approved, in `content/blog/2026-10-19-aeo-vs-geo-vs-seo.md`
+**Draft:** written, held, in `content/blog/2026-10-19-aeo-vs-geo-vs-seo.md`
 
 ## P02 · Tue 2026-10-20 · Trust
 

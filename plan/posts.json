@@ -197,7 +197,7 @@
       "type": "Comparison",
       "title": "AEO vs GEO vs SEO: which term to use, and does it matter?",
       "sub": "The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.",
-      "status": "approved",
+      "status": "live",
       "pillar": "V",
       "cta": "G",
       "proof": "Three-term comparison table",
@@ -253,7 +253,8 @@
       "used": "google, pew_click, geo (spark is available but not used in the draft)",
       "note": "",
       "answers": {},
-      "week": 1
+      "week": 1,
+      "publishedOn": "2026-10-19"
     },
     {
       "id": "P02",

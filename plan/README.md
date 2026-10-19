@@ -33,3 +33,14 @@ The schedule, approvals and briefs are generated from one data file, so a date c
 3. `npm test` and `npm run blog:lint`, commit, merge. Then update each synced desk document's `repo` snapshot so it shows as synced.
 
 `node scripts/plan.mjs seed` writes the documents used to load the desk.
+
+## After every publish (standing rule)
+
+Whenever a post goes live, the Content Desk must show it as Live, in the same session if possible.
+
+1. Confirm the page is up on the site, then run `node scripts/plan.mjs published` (it checks every approved post that is due and marks only those that return 200 on the live site). Pass ids to limit it: `node scripts/plan.mjs published P02`.
+2. Update each post's desk document: `status: "live"`, `publishedOn`, `repo.status: "live"`, and one history line. A live post is never edited or moved in the desk.
+3. Commit the regenerated plan files to the working branch. They are private, so no PR is needed on their own.
+4. At the start of any session, check whether a post went live since the last one and do steps 1 to 3 before other work.
+
+The daily 19:30 UTC check also tries to do step 2 for the day's post if its session has the artifact tool. That is not proven until it has run once.

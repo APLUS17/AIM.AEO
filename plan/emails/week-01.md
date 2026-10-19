@@ -2,7 +2,7 @@ Subject: AiM blog, week of 2026-10-19: topics for your approval
 
 These posts go live Mon 2026-10-19 to Thu 2026-10-22. Nothing publishes until you approve it. Reply with APPROVE or tell me what to change.
 
-P01 · Mon 2026-10-19 · Approved
+P01 · Mon 2026-10-19 · Live
 Headline: AEO vs GEO vs SEO: which term to use, and does it matter?
 Subheadline: The three labels overlap more than they differ. Here is what each one names, and which to use with your buyers.
 What it covers: What SEO, AEO and GEO each name, in a table.; Where the term GEO came from (a 2023 research paper).; Why the label matters less than the target: being named in the answer.
@@ -12,7 +12,7 @@ Key data I found:
   - Pew: with an AI summary, people clicked a regular result link in 8% of visits, against 15% with no summary. (Pew Research Center short read, 2025-07-22) https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/
   - The GEO paper (Aggarwal et al., first submitted 2023-11-16, accepted to KDD 2024): "GEO can boost visibility by up to 40% in generative engine responses.". (arXiv 2311.09735 (abstract)) https://arxiv.org/abs/2311.09735
 Questions for you: Do you want AiM to commit to "AEO" as its main term? | Is "mention GEO once so you match searches" right for how you want AiM to sound?
-Draft: written, approved
+Draft: written (held as a draft)
 
 P02 · Tue 2026-10-20 · Approved
 Headline: Who should not hire an AEO agency (an honest filter)

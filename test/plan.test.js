@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyChanges, bodyOf, renderCsv, seedDocs, withWeeks } from '../lib/plan.js';
+import { applyChanges, bodyOf, markPublished, renderCsv, seedDocs, withWeeks } from '../lib/plan.js';
 
 const { posts } = JSON.parse(readFileSync(new URL('../plan/posts.json', import.meta.url), 'utf8'));
 const io = { read: (p) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8') };
@@ -57,4 +57,23 @@ test('applyChanges warns when two posts land on one day', () => {
 
 test('renderCsv has one row per scheduled post plus a header', () => {
   assert.equal(renderCsv(posts).trim().split('\n').length, 47);
+});
+
+test('markPublished marks only approved posts that are due, and week numbers do not shift', () => {
+  const r = markPublished(posts, ['P01', 'P02', 'P09', 'P99'], '2026-10-19');
+  assert.deepEqual(r.marked, ['P01']);
+  assert.match(r.skipped.find((s) => s.id === 'P02').reason, /not yet due/);
+  assert.match(r.skipped.find((s) => s.id === 'P09').reason, /not approved/);
+  assert.match(r.skipped.find((s) => s.id === 'P99').reason, /unknown/);
+  const p01 = r.posts.find((p) => p.id === 'P01');
+  assert.equal(p01.status, 'live');
+  assert.equal(p01.publishedOn, '2026-10-19');
+  assert.equal(withWeeks(r.posts).find((p) => p.id === 'P02').week, 1);
+  assert.equal(posts.find((p) => p.id === 'P01').status, 'approved', 'input is not changed');
+});
+
+test('a post that is live cannot be moved or have its status changed', () => {
+  const live = markPublished(posts, ['P01'], '2026-10-19').posts;
+  assert.throws(() => applyChanges(live, { P01: { status: 'hold' } }, io, today), /is live/);
+  assert.throws(() => applyChanges(live, { P01: { date: '2026-10-20' } }, io, today), /is live/);
 });

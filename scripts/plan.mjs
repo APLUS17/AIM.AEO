@@ -3,14 +3,17 @@
 //   node scripts/plan.mjs render                         rewrite schedule.md, schedule.csv, approvals.md, briefs/, emails/
 //   node scripts/plan.mjs seed [out.json]                write the dashboard's documents (default plan/dashboard-seed.json)
 //   node scripts/plan.mjs apply <changes.json> [--dry]   apply dashboard edits to content/blog and plan/posts.json
+//   node scripts/plan.mjs published [P01 P02 ...]        mark approved posts as live once their page is up on the site
+//                                                        (no ids: checks every approved post that is due). SITE_URL overrides the site.
 //
 // changes.json looks like { "P01": { "status": "hold", "date": "2026-10-21", "title": "...", "body": "..." } }.
 // apply changes nothing if any edit is invalid. After it, run `npm run blog:lint` and `npm test`.
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { todayInEastern } from '../lib/blog.js';
 import {
-  applyChanges, bodyOf, renderApprovals, renderBrief, renderCsv, renderEmail, renderScheduleMd, seedDocs, sortPosts, withWeeks
+  applyChanges, bodyOf, markPublished, renderApprovals, renderBrief, renderCsv, renderEmail, renderScheduleMd, seedDocs, sortPosts, withWeeks
 } from '../lib/plan.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -63,7 +66,29 @@ if (cmd === 'render') {
   for (const p of result.removes) if (existsSync(path.join(root, p))) rmSync(path.join(root, p));
   write('plan/posts.json', JSON.stringify({ ...data, posts: sortPosts(result.posts) }, null, 2) + '\n');
   render(result.posts);
+} else if (cmd === 'published') {
+  const data = load();
+  const today = todayInEastern();
+  const site = (process.env.SITE_URL || 'https://aimaeo.vercel.app').replace(/\/$/, '');
+  const ids = process.argv.slice(3).filter((a) => /^[PL]\d+$/.test(a));
+  const due = ids.length ? ids : data.posts.filter((p) => p.status === 'approved' && p.date <= today).map((p) => p.id);
+  const confirmed = [];
+  for (const id of due) {
+    const p = data.posts.find((x) => x.id === id);
+    const slug = p?.file?.split('/').pop().replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    if (!slug) continue;
+    const res = await fetch(`${site}/blog/${slug}.html`).catch(() => null);
+    if (res && res.status === 200) confirmed.push(id);
+    else console.log(`${id}: not live yet at ${site}/blog/${slug}.html (${res ? res.status : 'no response'})`);
+  }
+  const result = markPublished(data.posts, confirmed, today);
+  for (const s of result.skipped) console.log(`${s.id}: skipped, ${s.reason}`);
+  if (result.marked.length) {
+    write('plan/posts.json', JSON.stringify({ ...data, posts: sortPosts(result.posts) }, null, 2) + '\n');
+    render(result.posts);
+  }
+  console.log(result.marked.length ? `Marked live: ${result.marked.join(', ')}. Update the Content Desk to match.` : 'Nothing new to mark live.');
 } else {
-  console.error('Usage: node scripts/plan.mjs render | seed [out.json] | apply <changes.json> [--dry]');
+  console.error('Usage: node scripts/plan.mjs render | seed [out.json] | apply <changes.json> [--dry] | published [ids]');
   process.exit(2);
 }
