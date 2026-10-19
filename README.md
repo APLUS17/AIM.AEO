@@ -24,13 +24,13 @@ Body in Markdown: ## and ### headings, lists, > quotes, tables, code blocks, lin
 
 - `npm run blog` builds `content/blog/` into `blog/index.html` and `blog/<slug>.html`.
 - A post goes live when its `date` arrives: the build skips anything dated in the future, so a future date schedules it.
-- **Publishing is automatic.** `.github/workflows/publish-blog.yml` runs on weekdays at 13:00 UTC and whenever `content/blog/` changes on `main`. It tests, builds, and commits `blog/` to `main`; Vercel deploys that push. Never edit `blog/` by hand. You can also run it from the Actions tab ("Run workflow"). A post with bad front matter fails the run (you get GitHub's failure email) and nothing is published.
+- **Publishing is automatic.** `.github/workflows/publish-blog.yml` runs on weekdays at 9:00 am US Eastern (it follows daylight saving; GitHub can start it hours late) and whenever `content/blog/` changes on `main`. It tests, builds, and commits `blog/` to `main`; Vercel deploys that push. Never edit `blog/` by hand. You can also run it from the Actions tab ("Run workflow"). A post with bad front matter fails the run (you get GitHub's failure email) and nothing is published.
 - If `main` is protected, allow `github-actions[bot]` to push to it, or the commit step will fail.
 - Optional: add a repository variable `SITE_URL` (Settings > Secrets and variables > Actions > Variables) to put canonical URLs on every page.
 - **Approval gate:** a post with `status: draft` in its front matter is never published, whatever its date. Change it to `approved` to release it. A post with no `status` publishes on its date.
 - **Pattern check:** `npm run blog:lint` checks every post that can publish (unresolved placeholders, broken or not-yet-live links, missing Sources section when a percentage appears, length, structure). The publish workflow runs it first, and errors block publishing. `placeholders: intended` in the front matter marks a post that deliberately shows [bracketed] template wording.
 - **Studies:** `node scripts/run-batch.mjs --brands data/brands.csv --pilot 3` grades many brands with the grader's pipeline for the data posts. It needs all three API keys, refuses sample mode, never emails anyone, and writes every raw answer plus the models used to `data/runs/<date>/`.
-- Preview another day with `BLOG_TODAY=2026-10-16 npm run blog`. `npm run dev` serves it at `/blog/`.
+- A post goes live on its `date:` in US Eastern time. Preview another day with `BLOG_TODAY=2026-10-16 npm run blog`. `npm run dev` serves it at `/blog/`.
 - Set `SITE_URL` when building to add canonical URLs to the pages. Every post carries `Article` schema.
 
 ## Blog plan
